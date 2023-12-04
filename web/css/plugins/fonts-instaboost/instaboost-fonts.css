@@ -1,0 +1,18 @@
+@font-face
+{
+   font-family: "Material Icons";
+   font-display: swap;
+   src: url('font-files/MaterialIcons-Regular.woff2') format('woff2'),
+}
+@font-face
+{
+   font-family: "Archy EDT";
+   font-display: swap;
+   src: url('font-files/archyedt-bold-webfont.woff2') format('woff2');
+}
+@font-face
+{
+   font-family: "BPG Banner";
+   font-display: swap;
+   src: url('font-files/bpg-banner-webfont.woff2') format('woff2');
+}
