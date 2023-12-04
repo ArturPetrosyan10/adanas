@@ -15436,28 +15436,7 @@ footer {
     left:0;
     border-radius:0.4rem;
 }
-.fs-product-name{
-    width:100%;
-    padding-top:1.2rem;
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
-    font-weight:700;
-    font-size:1.4rem;
-    line-height:2.2rem;
-    color:#4A4640;
-    margin-top:0;
-    margin-bottom:0rem;
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-    padding-right:3.6rem
-}
-.fs-product-name a{
-    color:inherit;
-    text-decoration:none;
-    word-break:break-word
-}
+
 .fs-product-category{
     width:100%;
     display:block;
@@ -15470,14 +15449,7 @@ footer {
     text-overflow:ellipsis;
     padding-bottom:0;
 }
-.fs-product-current-price{
-    width:100%;
-    display:block;
-    font-weight:700;
-    font-size:1.4rem;
-    line-height:2.2rem;
-    color:#4A4640
-}
+
 .fs-product-current-price:not(:nth-last-child(2)){
     padding-bottom:0.4rem
 }

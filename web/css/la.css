@@ -46,7 +46,6 @@ body,
 
 body {
   background: #fff;
-  color: var(--color-text);
   font-family: "Raleway", sans-serif;
   font-size: 20px;
   line-height: 1.5;
@@ -219,12 +218,12 @@ pre code [class*=hljs-] {
   margin-top: var(--section-padding);
 }
 
-.row {
-  --flexgrid-column-size: 12;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 50px clamp(0px, calc(var(--container-padding) * 2), calc((100% - 12px) / 12));
-}
+/*.row {*/
+/*  --flexgrid-column-size: 12;*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(12, 1fr);*/
+/*  gap: 50px clamp(0px, calc(var(--container-padding) * 2), calc((100% - 12px) / 12));*/
+/*}*/
 
 .col {
   grid-column: span var(--flexgrid-column-size);
@@ -240,9 +239,9 @@ pre code [class*=hljs-] {
           flex-direction: column;
 }
 .col--pre pre {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
 }
 
 .col-1 {

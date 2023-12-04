@@ -1,21 +1,6 @@
-<?php use \app\models\FsProducts;?>
-<i class="fas fa-trash"></i>
+<?php use \app\models\FsProducts;
+?>
 <main class="fs-main-content">
-<!--    <div class="fs-category-top-row">
-        <div class="fs-container">
-            <div class="fs-category-row-list-wrapper">
-                <div class="fs-category-row-list owl-carousel owl-theme">
-                    <div class="item">
-                        <a class="header-nav-slider-el" href="/categories"><?php /*=$GLOBALS['text']['_all_cats_']*/?></a>
-                    </div>
-                    <?php /*foreach ($categories as $category): */?> <div class="item">
-                        <a class="header-nav-slider-el" href="/categories/
-                        <?php /*= $category->url */?>"> <?php /*= $_COOKIE['language'] ? ($_COOKIE['language'] == 'hy' ? $category->name : $category->translation['name_' . $_COOKIE['language']]) : $category->name */?> </a>
-                    </div> <?php /*endforeach; */?>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="d-none fs-hero-slider-wrapper">
         <div class="fs-hero-slider owl-carousel owl-theme">
             <?php foreach ($banners as $banner){ ?>
@@ -65,12 +50,12 @@
                                         <source src="<?= $banner->image ?>" type="video/mp4">
                                     </video>';
                          }else{
-                            $html .= '<div class="small-video"  style="background: url(/'.$banner->image.');width: 200px;height: 150px;background-size: cover;background-position: center;"></div>';
+                            $html .= '<div class="small-video"  style="background: url(/'.$banner->image.');"></div>';
                          }
                     $html .= '</div>';
                  }
             } ?>
-        <div class="d-flex flex-column" style="overflow: hidden;height: 450px; width:15%">
+        <div class="d-flex flex-column right-parent" >
             <?= $html; ?>
         </div>
     </div>
@@ -81,39 +66,36 @@
             <div class="fs-home-page-banner-list">
                 <?php foreach ($offers as $offer){ ?>
                    <?php if($offer->url){ $tag = 'a'; } else { $tag = 'span';} ?>
-                    <<?=$tag;?> href="<?= $offer->url ?>" class="fs-home-page-banner macro-banner">
+                    <<?=$tag;?> href="<?= $offer->url ?>" class="fs-home-page-banner macro-banner position-relative">
                         <img src="/<?= $offer->image ?>" alt="" />
+                        <span class="position-absolute title"><?= $offer->title_am ?><?= ($_COOKIE['language'] ? ($_COOKIE['language'] == 'ru' ? $offer->title_ru : $offer->title_en) : $offer->title_am) ?></span>
                     </<?=$tag;?>>
                 <?php }; ?>
             </div>
         </div>
     </section>
-    <section>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 adv-container-block">
-                    <div class="adv-icon"><i class="fas fa-truck-fast"></i></div>
+    <section class="suggestions-section" >
+        <div class="container-fluid" >
+            <div class="main-suggestions" style="margin-top:120px">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="icon-about-parent"><i class="fa fa-shipping-fast"></i></div>
                     <div class="adv-title">Անվճար առաքում</div>
                     <div class="adv-content">Անվճար առաքում Երևանում</div>
-
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 adv-container-block">
-                    <div class="adv-icon"><i class="fas fa-headset"></i></div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="icon-about-parent"><i class="fa fa-headset"></i></div>
                     <div class="adv-title">Աջակցություն 24/7</div>
                     <div class="adv-content">Մենք աջակցում ենք օրը 24 ժամ</div>
-
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 adv-container-block">
-                    <div class="adv-icon"><i class="fas fa-arrows-rotate"></i></div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="icon-about-parent"><i class="fa fa-exchange-alt"></i></div>
                     <div class="adv-title">100% գումարի վերադարձ</div>
                     <div class="adv-content">Դուք ունեք 30 օր վերադարցնելու համար</div>
-
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 adv-container-block">
-                    <div class="adv-icon"><i class="fas fa-gift"></i></div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="icon-about-parent"><i class="fa fa-gift"></i></div>
                     <div class="adv-title">Ապահով վճարում</div>
                     <div class="adv-content">Մենք ապահովում ենք անվտանգ վճարում</div>
-
                 </div>
             </div>
         </div>
