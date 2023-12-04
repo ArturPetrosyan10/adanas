@@ -1,0 +1,472 @@
+[12-Mar-2023 18:14:22 Asia/Yerevan] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 5.6.40. in /home/fos/demo2.fos.am/vendor/composer/platform_check.php on line 25
+[12-Mar-2023 18:15:30 Asia/Yerevan] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 5.6.40. in /home/fos/demo2.fos.am/vendor/composer/platform_check.php on line 25
+[12-Mar-2023 18:41:12 Asia/Yerevan] An Error occurred while handling another error:
+yii\base\InvalidRouteException: Unable to resolve the request "site/error". in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(109): yii\base\Module->runAction('site/error')
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\NotFoundHttpException))
+#2 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\NotFoundHttpException))
+#3 {main}
+Previous exception:
+yii\base\InvalidRouteException: Unable to resolve the request "". in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('', Array)
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#2 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,ru;q=0.8,hy;q=0.7',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => 'PHPSESSID=e67f2672a0e5e12335440be37cca170d; _identity=f43aee658635e6b75f6f3d9d32ecaa0b91ee296d83548d71f3f012c86ae4125ea%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B6%2C%22W-ok0XUWjPdEtilBf96gB2X5UkOcedeO%22%2C2592000%5D%22%3B%7D; _csrf=d5c2ed29bfb2c539ad08138bc4553a36029d2a63cc995ca9bdc5d458736b31f6a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22GycQQg_thoIC7VqJtJU09cj49eyHsrkk%22%3B%7D',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_SITE' => 'none',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_STATUS' => '200',
+    'REMOTE_ADDR' => '46.36.115.17',
+    'REMOTE_PORT' => '49779',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZA3kiIXevss3OYtysNop4gAAAA8',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1678632072.400281,
+    'REQUEST_TIME' => 1678632072,
+]
+[02-Apr-2023 19:19:01 Asia/Yerevan] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/models/FsLoginForm.php on line 51. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/models/FsLoginForm.php on line 51. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(390): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTENT_LENGTH' => '90',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-GB,en-US;q=0.9,en;q=0.8',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => 'PHPSESSID=c661d55e90ec77e39cd10f4f6d4e81d3; _csrf=430046b3d0446c682bb778dd856d125febc5d0f0a54baa18b185b32d78f31856a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22J9YonA33eLr5SHIkiatS9C-KfhUyZBBt%22%3B%7D; _identity=dfa7959a01f9f63aca93adeb1a8bb08874e6814c70e281706478e95838b18e09a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A16%3A%22%5B3%2Cnull%2C2592000%5D%22%3B%7D',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_ORIGIN' => 'http://demo2.fos.am',
+    'HTTP_REFERER' => 'http://demo2.fos.am/site/sign-in',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_SCRIPT_URI' => 'http://demo2.fos.am/site/login/',
+    'REDIRECT_SCRIPT_URL' => '/site/login/',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZCmc5PMLmtMHEi3_ZXLejQAAABc',
+    'REDIRECT_URL' => '/site/login/',
+    'REMOTE_ADDR' => '46.36.115.181',
+    'REMOTE_PORT' => '42262',
+    'REQUEST_METHOD' => 'POST',
+    'REQUEST_SCHEME' => 'http',
+    'REQUEST_URI' => '/site/login/',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SCRIPT_URI' => 'http://demo2.fos.am/site/login/',
+    'SCRIPT_URL' => '/site/login/',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '80',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZCmc5PMLmtMHEi3_ZXLejQAAABc',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1680448740.329041,
+    'REQUEST_TIME' => 1680448740,
+]
+[13-Apr-2023 12:17:35 Asia/Yerevan] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 468. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 468. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(390): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_panelAdmin=d87e373b4a7f380ece5433e0c70a98c1eba20e369a8d391baf1a75c0a031915ea%3A2%3A%7Bi%3A0%3Bs%3A11%3A%22_panelAdmin%22%3Bi%3A1%3Bs%3A16%3A%22%5B3%2Cnull%2C2592000%5D%22%3B%7D; _csrf=fda4d836612b46b42ab58647fa6673c04cf773fae92c1291cfd8bfc2375a5de2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rGWHF7woNtRd8tWneELx0QjyUajuIZ93%22%3B%7D; myapp_session=06486164928817f0875dda3b162b8f95',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_REFERER' => 'https://demo2.fos.am/site/supplier-requests/',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_HTTPS' => 'on',
+    'REDIRECT_SSL_TLS_SNI' => 'demo2.fos.am',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZDe6n7Wi0NcdYVQXgd0z-wAAAD4',
+    'REDIRECT_URL' => '/site/supplier-dealers/',
+    'REMOTE_ADDR' => '83.139.28.57',
+    'REMOTE_PORT' => '34090',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/site/supplier-dealers/',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZDe6n7Wi0NcdYVQXgd0z-wAAAD4',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1681373855.295109,
+    'REQUEST_TIME' => 1681373855,
+]
+[13-Apr-2023 12:18:31 Asia/Yerevan] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 468. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 468. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(390): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_panelAdmin=d87e373b4a7f380ece5433e0c70a98c1eba20e369a8d391baf1a75c0a031915ea%3A2%3A%7Bi%3A0%3Bs%3A11%3A%22_panelAdmin%22%3Bi%3A1%3Bs%3A16%3A%22%5B3%2Cnull%2C2592000%5D%22%3B%7D; _csrf=fda4d836612b46b42ab58647fa6673c04cf773fae92c1291cfd8bfc2375a5de2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rGWHF7woNtRd8tWneELx0QjyUajuIZ93%22%3B%7D; myapp_session=70265b76803ca80f6bfc839dbfbd854c',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_REFERER' => 'https://demo2.fos.am/site/supplier-requests/',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_HTTPS' => 'on',
+    'REDIRECT_SSL_TLS_SNI' => 'demo2.fos.am',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZDe6164g6ucEH4QK9HIJYgAAADg',
+    'REDIRECT_URL' => '/site/supplier-dealers/',
+    'REMOTE_ADDR' => '83.139.28.57',
+    'REMOTE_PORT' => '42596',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/site/supplier-dealers/',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZDe6164g6ucEH4QK9HIJYgAAADg',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1681373911.559692,
+    'REQUEST_TIME' => 1681373911,
+]
+[23-Oct-2023 10:54:29 Asia/Yerevan] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 656. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(136): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/fos/demo2.fos.am/controllers/SiteController.php on line 656. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php:368
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Response.php(341): yii\web\Response->sendHeaders()
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(390): yii\web\Response->send()
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,ru;q=0.8',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => 'language=hy; _identity=f43aee658635e6b75f6f3d9d32ecaa0b91ee296d83548d71f3f012c86ae4125ea%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B6%2C%22W-ok0XUWjPdEtilBf96gB2X5UkOcedeO%22%2C2592000%5D%22%3B%7D; _panelAdmin=1275415626c598f85149c54f479c348408473c7d01f80c893cdef5d24d4ee8d6a%3A2%3A%7Bi%3A0%3Bs%3A11%3A%22_panelAdmin%22%3Bi%3A1%3Bs%3A17%3A%22%5B42%2Cnull%2C2592000%5D%22%3B%7D; _csrf=1f54664f1525379b63049c35b84192a0d4cd6c34075c7e268542a38bcedf2595a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22pUCVFmkLrcrHv8A6lzrlQes8taWJZ1WR%22%3B%7D; myapp_session=4cac6783a5915c9336e1cf4f5f0dde57',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_REFERER' => 'https://demo2.fos.am/corporate',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_HTTPS' => 'on',
+    'REDIRECT_SSL_TLS_SNI' => 'demo2.fos.am',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZTYYpOuaaWMultUtE78ZLQAAABI',
+    'REDIRECT_URL' => '/company-details/46',
+    'REMOTE_ADDR' => '87.241.132.38',
+    'REMOTE_PORT' => '52661',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/company-details/46',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZTYYpOuaaWMultUtE78ZLQAAABI',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1698044068.807401,
+    'REQUEST_TIME' => 1698044068,
+]
+[25-Oct-2023 18:43:27 Asia/Yerevan] An Error occurred while handling another error:
+ParseError: syntax error, unexpected '{', expecting '(' in /home/fos/demo2.fos.am/controllers/SiteController.php:109
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('app\\controllers...')
+#1 [internal function]: spl_autoload_call('app\\controllers...')
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(661): class_exists('app\\controllers...')
+#3 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(620): yii\base\Module->createControllerByID('site')
+#4 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(546): yii\base\Module->createController('error_')
+#5 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(109): yii\base\Module->runAction('site/error_')
+#6 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\NotFoundHttpException))
+#7 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\NotFoundHttpException))
+#8 {main}
+Previous exception:
+yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#2 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,ru;q=0.8',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => 'language=hy; _identity=f43aee658635e6b75f6f3d9d32ecaa0b91ee296d83548d71f3f012c86ae4125ea%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B6%2C%22W-ok0XUWjPdEtilBf96gB2X5UkOcedeO%22%2C2592000%5D%22%3B%7D; sort=1; sort_text=Նոր; _csrf=ed02374b6a48a51dd4cb3d740f17b46a02a258b583c4d1d96d455c435a3a3893a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22O4Vidp-5P0pCS4CYuB93dLqBD8oq8lFI%22%3B%7D; myapp_session=a8157d76b8504ffe9b9e5162a6dadab7',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_REFERER' => 'https://demo2.fos.am/',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'image',
+    'HTTP_SEC_FETCH_MODE' => 'no-cors',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_HTTPS' => 'on',
+    'REDIRECT_SSL_TLS_SNI' => 'demo2.fos.am',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZTkpj8PDUnLtN4JlCS-uZQAAAAw',
+    'REDIRECT_URL' => '/favicon.ico',
+    'REMOTE_ADDR' => '87.241.132.38',
+    'REMOTE_PORT' => '61740',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/favicon.ico',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZTkpj8PDUnLtN4JlCS-uZQAAAAw',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1698245007.634575,
+    'REQUEST_TIME' => 1698245007,
+]
+[14-Nov-2023 15:42:34 Asia/Yerevan] An Error occurred while handling another error:
+ParseError: syntax error, unexpected '$post' (T_VARIABLE), expecting '(' in /home/fos/demo2.fos.am/controllers/SiteController.php:1068
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('app\\controllers...')
+#1 [internal function]: spl_autoload_call('app\\controllers...')
+#2 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(661): class_exists('app\\controllers...')
+#3 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(620): yii\base\Module->createControllerByID('site')
+#4 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php(546): yii\base\Module->createController('error_')
+#5 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/ErrorHandler.php(109): yii\base\Module->runAction('site/error_')
+#6 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/ErrorHandler.php(152): yii\web\ErrorHandler->renderException(Object(yii\web\NotFoundHttpException))
+#7 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\NotFoundHttpException))
+#8 {main}
+Previous exception:
+yii\base\InvalidRouteException: Unable to resolve the request "favicon.ico". in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('favicon.ico', Array)
+#1 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /home/fos/demo2.fos.am/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/fos/demo2.fos.am/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/fos/demo2.fos.am/index.php(18): yii\base\Application->run()
+#2 {main}
+$_SERVER = [
+    'CONTEXT_DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'CONTEXT_PREFIX' => '',
+    'DOCUMENT_ROOT' => '/home/fos/demo2.fos.am',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'HTTPS' => 'on',
+    'HTTP_ACCEPT' => 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_COOKIE' => '_identity=f43aee658635e6b75f6f3d9d32ecaa0b91ee296d83548d71f3f012c86ae4125ea%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B6%2C%22W-ok0XUWjPdEtilBf96gB2X5UkOcedeO%22%2C2592000%5D%22%3B%7D; sort=3; sort_text=Ըստ գնի նվազման; _csrf=55cda32b9f943bfd8a5490c4916cf96619537c7fdce705826dd894d8e3694f87a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22IYD7PkgRv4UVK2AYJl6ejILYHr88Q1TD%22%3B%7D; language=ru; myapp_session=096d667ec0c4639251abc8776dc39931',
+    'HTTP_HOST' => 'demo2.fos.am',
+    'HTTP_REFERER' => 'https://demo2.fos.am/logout',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Windows"',
+    'HTTP_SEC_FETCH_DEST' => 'image',
+    'HTTP_SEC_FETCH_MODE' => 'no-cors',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'PATH' => '/bin:/usr/bin',
+    'QUERY_STRING' => '',
+    'REDIRECT_HTTPS' => 'on',
+    'REDIRECT_SSL_TLS_SNI' => 'demo2.fos.am',
+    'REDIRECT_STATUS' => '200',
+    'REDIRECT_UNIQUE_ID' => 'ZVNdKqhoeHlhe5CjjZ5nlgAAAAA',
+    'REDIRECT_URL' => '/favicon.ico',
+    'REMOTE_ADDR' => '87.241.132.38',
+    'REMOTE_PORT' => '56073',
+    'REQUEST_METHOD' => 'GET',
+    'REQUEST_SCHEME' => 'https',
+    'REQUEST_URI' => '/favicon.ico',
+    'SCRIPT_FILENAME' => '/home/fos/demo2.fos.am/index.php',
+    'SCRIPT_NAME' => '/index.php',
+    'SERVER_ADDR' => '46.19.96.204',
+    'SERVER_ADMIN' => 'webmaster@demo2.fos.am',
+    'SERVER_NAME' => 'demo2.fos.am',
+    'SERVER_PORT' => '443',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SSL_TLS_SNI' => 'demo2.fos.am',
+    'TZ' => 'Asia/Yerevan',
+    'UNIQUE_ID' => 'ZVNdKqhoeHlhe5CjjZ5nlgAAAAA',
+    'PHP_SELF' => '/index.php',
+    'REQUEST_TIME_FLOAT' => 1699962154.904392,
+    'REQUEST_TIME' => 1699962154,
+]

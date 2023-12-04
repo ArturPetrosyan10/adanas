@@ -1,0 +1,26 @@
+//Typography
+$font-family: 'Mardoto', sans-serif;
+
+//Coloring
+$site-color-1: #4A4640;
+$site-color-2: #9B958C;
+$site-color-3: #D7D4D1;
+$site-color-4: #FAF9F9;
+$revert-color: #ffffff;
+
+//Secondary Colors
+$secondary-color-1: #8C8370;
+$secondary-color-2: #B9AF9D;
+$secondary-color-3: #DAA520;
+
+//State Colors
+$hover-color: rgba($site-color-1, 0.15);
+$pressed-color: rgba($site-color-1, 0.25);
+
+//Static Colors
+$success-color: #297551;
+$error-color: #A02929;
+$warning-color: #DAA520;
+
+//Gradients
+$gradient-1: linear-gradient(270.17deg, rgba(51, 51, 51, 0.07) 20.33%, rgba(51, 51, 51, 0.7) 60.3%);

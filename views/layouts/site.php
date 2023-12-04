@@ -1,0 +1,94 @@
+<?php
+
+/** @var yii\web\View $this */
+/** @var string $content */
+
+
+
+use app\assets\NewAsset;
+use app\models\FsTexts;
+use app\widgets\Alert;
+use yii\bootstrap5\Breadcrumbs;
+use yii\bootstrap5\Html;
+use yii\bootstrap5\Nav;
+use yii\bootstrap5\NavBar;
+use yii\helpers\ArrayHelper;
+
+
+NewAsset::register($this);
+$this->registerCsrfMetaTags();
+$this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
+$this->registerMetaTag(['name' => 'description', 'content' => 'E-Commerce Site']);
+$this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
+$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
+
+
+?>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>" class="h-100">
+<head>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+
+    <link rel="stylesheet" href="/web/css/plugins/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/web/css/new/site.css">
+
+</head>
+
+<?php $this->beginBody() ?>
+<div id="page">
+<?php include('header.php'); ?>
+    <?php $urls = [0=>['url' => '/','name'=>'Գլխավոր'],1=>['name'=>'Խանութ'],2=>['name'=>'Կատեգորիաներ'],3=>['name'=>'Բրենդներ'],4=>['name'=>'Նորություններ'],5=>['name'=>'Կապ']] ?>
+    <div class="fs-container">
+        <ul class="d-flex p-0" style="align-items:center;height:75px">
+            <?php foreach ($urls as $index => $url) { ?>
+                <li class="item">
+                    <a class="navbar url-item" href="<?= $url['url'] ?>"><?= $url['name'] ?></a>
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+    <hr>
+
+
+    <div id="content">
+        <main id="main"  role="main">
+            <div class="fs-container">
+                <?php if (!empty($this->params['breadcrumbs'])): ?>
+                    <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
+                <?php endif ?>
+
+                <?= $content ?>
+            </div>
+        </main>
+    </div>
+<?php include('footer.php'); ?>
+    <script src="/web/js/new-adanas/app.js"></script>
+<?php $this->endBody() ?>
+
+</div>
+<script>
+    var idleTimer = null;
+    var idleState = false; // состояние отсутствия
+    var idleWait = 1000*60*10; // время ожидания в мс. (1/1000 секунды)
+    $(document).ready( function(){
+      $(document).bind('mousemove keydown scroll', function(){
+        clearTimeout(idleTimer); // отменяем прежний временной отрезок
+        idleState = false;
+        idleTimer = setTimeout(function(){
+          // Действия на отсутствие пользователя
+          window.location.href = '/logout';
+          idleState = true;
+        }, idleWait);
+      });
+
+  $("body").trigger("mousemove"); // сгенерируем ложное событие, для запуска скрипта
+});
+</script>
+<button class="fs-to-top-button fs-icon-chevron"></button>
+</html>
+<?php $this->endPage() ?>

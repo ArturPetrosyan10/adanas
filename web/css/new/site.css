@@ -1,0 +1,201 @@
+.fs-search-block input+i{
+    color:#008A4E !important;
+}
+.fs-product-slider .owl-dots .owl-dot.active span, .fs-product-slider .owl-dots .owl-dot:hover span{
+    background:#008A4E;
+}
+.fs-weekly-supplier .owl-dots .owl-dot.active span,.fs-weekly-supplier .owl-dots .owl-dot:hover span{
+    background:#008A4E;
+}
+.fs-hero-slider .owl-dots .owl-dot.active span,.fs-hero-slider .owl-dots .owl-dot:hover span{
+    background:#008A4E;
+}
+.fs-logo {
+    width: max-content;
+    height: max-content;
+    display: block;
+    margin-right: 2.4rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.basket-block{
+    gap:2rem;
+}
+.basket-block i {
+    font-size: 25px;
+    font-weight: 100;
+    color: #000;
+}
+a.wishlist_products_counter {
+    position: absolute;
+    background: #ffbd27;
+    font-style: normal;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px 0px rgb(0 0 0 / 30%);
+    font-size: 11px;
+    padding-left: 0px;
+    padding-right: 0px;
+    line-height: 17px;
+    letter-spacing: 0;
+    height: 18px;
+    min-width: 18px;
+    border-radius: 99px;
+    text-align: center;
+    z-index: 3;
+    right: -7px;
+    top: -5px;
+}
+.price-span{
+    width: max-content;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    font-size:14px;
+}
+
+
+.fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper{
+    position: absolute;
+    top: 60px;
+    left: 31rem;
+    width: 100%;
+    height: max-content;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    pointer-events: none;
+}
+.fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>a {
+    width: 100%;
+    max-width: 300px;
+    min-height: 4.6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    padding-right: 6.6rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    color: #4A4640;
+}
+.fs-hidden-menu-list-wrapper-ul{
+    position: absolute;
+    height: max-content;
+    top: 18px;
+    overflow: visible;
+    width: -webkit-fill-available;
+}
+ul li {
+    list-style:none''
+}
+.url-item{
+    font-size: 18px;
+    color: black;
+}
+.fs-lang-list-wrapper {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    width: 100%;
+    padding-top: 3.2rem;
+}
+.fs-lang-list-item{
+    justify-content:end;
+    padding-right:4px;
+}
+.fs-action-button a {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 5px;
+    white-space: nowrap;
+    color:black;
+}
+.fs-search-block {
+    width: 78.4rem;
+    height: 4.6rem;
+    position: relative;
+}
+.fs-home-page-banner-list {
+    display: grid !important;
+    grid-template-columns: repeat(6, calc( 16.66% - 25px ) );
+    grid-gap: 30px;
+}
+.fs-home-page-banner-list img{
+    height: auto;
+    max-width: 100%;
+    border-radius:10px;
+}
+.new-slider-first-half{
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25%;
+    height: 450px;
+    overflow: hidden;
+    background-position: center !important;
+}
+
+
+
+/*//test*/
+.fs-home-page-banner.macro-banner:after{
+    content:"";
+    display:block;
+    padding-top:59.608%
+}
+
+.fs-home-page-banner {
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.15s ease-in-out;
+    max-height: 216px;
+}
+/*//test*/
+.fs-product-card{
+    transition: transform 0.15s ease-in-out;
+}
+.fs-home-page-banner:hover {
+    transform: scale(1.05);
+}
+.fs-product-card:hover {
+    transform: scale(1.05);
+}
+
+
+.fs-section-title{
+    padding-top: 11rem;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    color: #4A4640;
+    width: max-content;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ffbd27;
+    margin-bottom: 2rem;
+}

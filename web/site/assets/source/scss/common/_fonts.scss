@@ -1,0 +1,146 @@
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./../../fonts/mardoto/Mardoto-Regular.eot');
+  src: url('./../../fonts/mardoto/Mardoto-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./../../fonts/mardoto/Mardoto-Regular.woff2') format('woff2'),
+  url('./../../fonts/mardoto/Mardoto-Regular.woff') format('woff'),
+  url('./../../fonts/mardoto/Mardoto-Regular.ttf') format('truetype'),
+  url('./../../fonts/mardoto/Mardoto-Regular.svg#Mardoto-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  //src: url('./../../fonts/mardoto/Mardoto-Light.eot');
+  src: url('./../../fonts/mardoto/Mardota-Light.eot');
+  src: url('./../../fonts/mardoto/Mardoto-Light.eot?#iefix') format('embedded-opentype'),
+  url('./../../fonts/mardoto/Mardoto-Light.woff2') format('woff2'),
+  url('./../../fonts/mardoto/Mardoto-Light.woff') format('woff'),
+  url('./../../fonts/mardoto/Mardoto-Light.ttf') format('truetype'),
+  url('./../../fonts/mardoto/Mardoto-Light.svg#Mardoto-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./../../fonts/mardoto/Mardoto-Medium.eot');
+  src: url('./../../fonts/mardoto/Mardoto-Medium.eot?#iefix') format('embedded-opentype'),
+  url('./../../fonts/mardoto/Mardoto-Medium.woff2') format('woff2'),
+  url('./../../fonts/mardoto/Mardoto-Medium.woff') format('woff'),
+  url('./../../fonts/mardoto/Mardoto-Medium.ttf') format('truetype'),
+  url('./../../fonts/mardoto/Mardoto-Medium.svg#Mardoto-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'Mardoto';
+  src: url('./../../fonts/mardoto/Mardoto-Bold.eot');
+  src: url('./../../fonts/mardoto/Mardoto-Bold.eot?#iefix') format('embedded-opentype'),
+  url('./../../fonts/mardoto/Mardoto-Bold.woff2') format('woff2'),
+  url('./../../fonts/mardoto/Mardoto-Bold.woff') format('woff'),
+  url('./../../fonts/mardoto/Mardoto-Bold.ttf') format('truetype'),
+  url('./../../fonts/mardoto/Mardoto-Bold.svg#Mardoto-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'FOS-Icons';
+  src:  url('./../../fonts/icons/fonts/FOS-Icons.eot?1dm2ac');
+  src:  url('./../../fonts/icons/fonts/FOS-Icons.eot?1dm2ac#iefix') format('embedded-opentype'),
+  url('./../../fonts/icons/fonts/FOS-Icons.ttf?1dm2ac') format('truetype'),
+  url('./../../fonts/icons/fonts/FOS-Icons.woff?1dm2ac') format('woff'),
+  url('./../../fonts/icons/fonts/FOS-Icons.svg?1dm2ac#FOS-Icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="fs-icon-"], [class*=" fs-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'FOS-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fs-icon-error:before {
+  content: "\e915";
+}
+.fs-icon-calendar:before {
+  content: "\e914";
+}
+.fs-icon-filled-heart:before {
+  content: "\e913";
+}
+.fs-icon-approved:before {
+  content: "\e90f";
+}
+.fs-icon-approved-with-change:before {
+  content: "\e910";
+}
+.fs-icon-ordered:before {
+  content: "\e911";
+}
+.fs-icon-rejected:before {
+  content: "\e912";
+}
+.fs-icon-upload:before {
+  content: "\e90e";
+}
+.fs-icon-camera:before {
+  content: "\e90d";
+}
+.fs-icon-remove:before {
+  content: "\e90c";
+}
+.fs-icon-close:before {
+  content: "\e90b";
+}
+.fs-icon-filter:before {
+  content: "\e90a";
+}
+.fs-icon-check:before {
+  content: "\e909";
+}
+.fs-icon-search:before {
+  content: "\e908";
+}
+.fs-icon-arrow:before {
+  content: "\e900";
+}
+.fs-icon-basket:before {
+  content: "\e901";
+}
+.fs-icon-bell:before {
+  content: "\e902";
+}
+.fs-icon-chevron:before {
+  content: "\e903";
+}
+.fs-icon-heart:before {
+  content: "\e904";
+}
+.fs-icon-minus:before {
+  content: "\e905";
+}
+.fs-icon-plus:before {
+  content: "\e906";
+}
+.fs-icon-user:before {
+  content: "\e907";
+}
