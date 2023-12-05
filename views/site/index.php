@@ -62,7 +62,13 @@
 <!--test-->
     <section class="fs-hot-offer-section fs-main-section-el" id="hot" data-dom-el="section">
         <div class="fs-container">
-            <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_2_']?></h2>
+            <div class="d-flex justify-content-between">
+                <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_2_']?></h2>
+                <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
+                     <?= $GLOBALS['text']['__view__all__'] ?>
+                    <i class="fa fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
             <div class="fs-home-page-banner-list">
                 <?php foreach ($offers as $offer){ ?>
                    <?php if($offer->url){ $tag = 'a'; } else { $tag = 'span';} ?>
@@ -102,8 +108,14 @@
     </section>
     <section class="fs- last-viewed-section fs-main-section-el" id="last" data-dom-el="section" >
         <div class="fs-container">
-            <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_3_']?></h2>
-            <div class="fs-product-slider owl-carousel owl-theme" style="margin-bottom:0">
+            <div class="d-flex justify-content-between">
+                <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_3_']?></h2>
+                <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
+                    <?= $GLOBALS['text']['__view__all__'] ?>
+                    <i class="fa fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
+            <div class="fs-product-slider owl-carousel owl-theme aaaaaaaaaaaa" style="margin-bottom:0">
                 <?php if(!empty($view_history)){;?>
                     <?php foreach ($view_history as $vp => $vp_val){ ?>
                         <?php $product = FsProducts::findOne($vp_val->id);?>
@@ -115,9 +127,18 @@
             </div>
         </div>
     </section>
+    <section style="margin-top:20px;">
+        <img src="/web/images/home-page1.webp" alt="">
+    </section>
     <section class="fs-weekly-supplier fs-main-section-el" id="weekly" data-dom-el="section" style="margin-bottom: 14.6rem">
         <div class="fs-container">
-            <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_1_']?></h2>
+            <div class="d-flex justify-content-between">
+                <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_1_']?></h2>
+                <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
+                    <?= $GLOBALS['text']['__view__all__'] ?>
+                    <i class="fa fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
             <div class="fs-weekly-supplier-slider owl-carousel owl-theme">
                 <?php if(!empty($partners)){ $l = 0;?>
 
