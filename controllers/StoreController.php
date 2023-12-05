@@ -39,10 +39,10 @@ class StoreController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout='store';
+        $this->layout = 'store';
         $searchModel = new StoreSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
+//        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = Store::find()->asArray()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -118,15 +118,18 @@ class StoreController extends Controller
         return $this->redirect(['index']);
     }
 
+
     public function actionCreateStore()
     {
         if (Yii::$app->user->isGuest) {
             $this->redirect(['admin/login']);
         }
 
+        $model = new Store();
+
         return $this->renderAjax('store-popup',
-//            ['param' => $param, 'paramChailds' => $paramChailds, 'paramsToCategory' => $paramsToCategory, 'categories' => $categories, 'type' => 'copy']
-);
+            ['model' => $model]
+        );
 
     }
 

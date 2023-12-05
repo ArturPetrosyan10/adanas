@@ -20,41 +20,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             <button class="btn btn-success"
-                    id="createStore">Ստեղծել Խանութ</button>
-<!--            --><?php //= Html::a('Ստեղծել Խանութ', ['create'], ['class' => 'btn btn-success',
-//                'id' => 'createStore']) ?>
-            <span class="buttons">
-                                          <span class="overlay show_" style="width:99px;"></span>
-                                          <button class="btn btn-sm btn-default" style="margin-left:30px;"
-                                                  id="copyStore"><i class="fa fa-copy"></i></button>
-                                          <button class="btn btn-sm btn-default" id="editeStore"><i
-                                                      class="fa fa-pencil"></i></button>
-                                          <button class="btn btn-sm btn-danger" id="disableStore"><i
-                                                      class="fa fa-trash"></i></button>
-                                        </span>
+                    id="createStore">Ստեղծել Խանութ
+            </button>
+<!--            <span class="buttons">-->
+            <!--                <span class="overlay show_" style="width:99px;"></span>-->
+            <!--                <button class="btn btn-sm btn-default" style="margin-left:30px;"-->
+            <!--                        id="copyStore"><i class="fa fa-copy"></i></button>-->
+            <!--                <button class="btn btn-sm btn-default" id="editeStore"><i-->
+            <!--                            class="fa fa-pencil"></i></button>-->
+            <!--                <button class="btn btn-sm btn-danger" id="disableStore"><i-->
+            <!--                            class="fa fa-trash"></i></button>-->
+            <!--            </span>-->
         </p>
-
-        <!--        --><?php //// echo $this->render('_search', ['model' => $searchModel]); ?>
-        <!---->
-        <!--        --><?php //= GridView::widget([
-        //            'dataProvider' => $dataProvider,
-        //            'filterModel' => $searchModel,
-        //            'columns' => [
-        //                ['class' => 'yii\grid\SerialColumn'],
-        //
-        //                'id',
-        //                'name',
-        //                'address',
-        //                'location',
-        //                'number',
-        ////                [
-        ////                    'class' => ActionColumn::className(),
-        ////                    'urlCreator' => function ($action, Store $model) {
-        ////                        return Url::toRoute([$action, 'id' => $model->id]);
-        ////                    }
-        ////                ],
-        //            ],
-        //        ]); ?>
 
         <div class="tbl">
             <table class="table table-bordered ">
@@ -68,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 </thead>
                 <tbody class="sortableTable" id="sortable">
+
                 <!---->
                 <!--                <tbody class="sortableTable" id="sortable">-->
                 <!--                --><?php //if (!empty($stores)) { ?>
@@ -104,18 +82,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 //                } ?>
                 <!--                </tbody>-->
 
-                <tr data-id="1" class="active">
-                    <td scope="col"><span class="move"><i
-                                    class="fa fa-arrows-alt"></i></span>
-                        ID 1
-                    </td>
+                <?php if (!empty($dataProvider)) { ?>
+                <?php foreach ($dataProvider as $store) { ?>
+                        <tr data-id="<?php echo $store['id']; ?>" class="">
+                            <td scope="col"><span class="move"><i
+                                            class="fa fa-arrows-alt"></i></span>
+                                ID <?php echo $store['id']; ?>
+                            </td>
 
-                    <td scope="col"> սաս</td>
-                    <td scope="col">Հասցե</td>
-                    <td scope="col">լօց</td>
-                    <td scope="col">1</td>
+                            <td scope="col"><?php echo $store['name'];?></td>
+                            <td scope="col"><?php echo $store['address']; ?></td>
+                            <td scope="col"><?php echo $store['location'];?></td>
+                            <td scope="col"><?php echo $store['number'];?></td>
 
-                </tr>
+                        </tr>
+                <?php } } ?>
+
+
+<!--                <div id="map" style="-->
+<!--                        background-color:darkgreen ;-->
+<!--                        width: 70%; height: 200px; padding: 0; margin: 0;"></div>-->
 
                 </tbody>
             </table>
@@ -123,3 +109,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=e243c296-f6a7-46b7-950a-bd42eb4b2684" type="text/javascript"></script>
+<script src="../../web/js/new/geolocation.js" type="text/javascript"></script>

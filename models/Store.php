@@ -44,7 +44,7 @@ class Store extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Անուն',
             'address' => 'Հասցե',
-            'location' => 'Location',
+            'location' => 'Գտնվելու Վայրը',
             'number' => 'Համար',
         ];
     }

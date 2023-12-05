@@ -3,7 +3,6 @@ function openPopup(id) {
     jQuery.ajax({
         url: "/store/create-store",
         success: function (result) {
-            console.log(result)
             jQuery("body").append(result);
         }
     });
@@ -20,7 +19,6 @@ function openPopup(id) {
 
 jQuery(document).ready(function ($) {
     $('#createStore').on('click', function (event) {
-        console.log("open moddddd")
         // var id = $('.sortable li.active').attr('data-id');
         openPopup();
     });
