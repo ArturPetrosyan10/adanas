@@ -49,15 +49,12 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
             <?= ($_COOKIE['language'] == 'hy') ? $product->name : ($_COOKIE['language'] == 'ru' ? $product->name_ru : $product->name_en) ?>
         </a>
     </h3>
-<!--    <a class="fs-product-category" href="/company-details/--><?php //= $product->provider_id ?><!--">--><?php //= $product->provider->legal_name ?? '' ?><!--</a>-->
     <?php if(!$discount->discount_procent){ ?>
-        <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>
-              <?= ''// ($_COOKIE['language'] == 'hy') ? @strtoupper($product->qty->name) : ($_COOKIE['language'] == 'ru' ? @strtoupper($product->qty->name_ru) : @strtoupper($product->qty->name_en))?>">
+        <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
             <?=number_format($product->price, 0);?>
         </span>
     <?php } else { ?>
-        <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>
-              <?= ''// ($_COOKIE['language'] == 'hy') ? @strtoupper($product->qty->name) : ($_COOKIE['language'] == 'ru' ? @strtoupper($product->qty->name_ru) : @strtoupper($product->qty->name_en))?>">
+        <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
             <span style=" text-decoration: line-through;color:#9B958C;"><?=number_format($product->price,0)?> <?= $GLOBALS['text']['__dr__'] ?> </span>
             <?=number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
     <?php } ?>
@@ -91,9 +88,6 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                             <?php }else { ?>
                                 <img src="http://<?=$_SERVER['SERVER_NAME'];?>/img/prodpic/no-image.png" alt="">
                             <?php } ?>
-<!--                            <div class="fs-product-fast-view-stock-block">-->
-<!--                                <p>Գնիր 2 հատ ստացիր լրացուցիչ 30% զեղչ</p>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -155,19 +149,4 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
             </div>
         </div>
     </div>
-    <style>
-        .filter-select-prod{
-            position:absolute;
-            top: 54%;
-            right: 5px;
-            border:1px solid lightgray;
-            border-radius:3px;
-        }
-        .filter-select-prod-sec{
-            border:1px solid lightgray;
-            border-radius:3px;
-        }
-        .fs-product-current-price span{
-            padding-right: 10px;
-        }
-    </style>
+

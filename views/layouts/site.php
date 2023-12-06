@@ -42,7 +42,13 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
 <div id="page">
 <?php include('header.php'); ?>
-    <?php $urls = [0=>['url' => '/','name'=>'Գլխավոր'],1=>['name'=>'Խանութ'],2=>['name'=>'Կատեգորիաներ'],3=>['name'=>'Բրենդներ'],4=>['name'=>'Նորություններ'],5=>['name'=>'Կապ']] ?>
+    <?php $urls = [0=>['url' => '/','name'=> $GLOBALS['text']['__home__page__'] ],
+        1=>['name'=>$GLOBALS['text']['__shop__']],
+        2=>['name'=>$GLOBALS['text']['__categories__']],
+        3=>['name'=>$GLOBALS['text']['__brands__']],
+        4=>['name'=>$GLOBALS['text']['__news__']],
+        5=>['name'=>$GLOBALS['text']['__contact__']]] ?>
+
     <div class="fs-container">
         <ul class="d-flex p-0" style="align-items:center;height:75px">
             <?php foreach ($urls as $index => $url) { ?>
@@ -53,8 +59,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         </ul>
     </div>
     <hr>
-
-
     <div id="content">
         <main id="main"  role="main">
             <div class="fs-container">
