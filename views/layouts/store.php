@@ -390,9 +390,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         });
     }
 </script>
-<script src="/web/js/main.js"></script>
-
-<script src="/web/js/new/store.js"></script>
+<!--<script type="module" src="../../web/js/new/geolocation.js" ></script>-->
+<script type="module" src="/web/js/main.js"></script>
+<script type="module" src="/web/js/new/store.js" ></script>
 
 <?php $this->endBody() ?>
 <style>

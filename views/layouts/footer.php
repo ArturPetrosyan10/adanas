@@ -153,10 +153,10 @@ use app\models\FsPages;
 </style>
 <script src="/web/site/assets/source/js/libs_n_plugins/owl_carousel/owl.carousel.min.js?v3"></script>
 <!--<script src="/web/site/assets/source/js/libs_n_plugins/video/video.min.js?v3"></script>-->
-<script
-        src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
-        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
-        crossorigin="anonymous"></script>
+<!--<script-->
+<!--        src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"-->
+<!--        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="-->
+<!--        crossorigin="anonymous"></script>-->
 <script src="/web/site/assets/source/js/libs_n_plugins/tel/intlTelInput-jquery.min.js?v3"></script>
 <script src="/web/site/assets/source/js/libs_n_plugins/tel/intlTelInput.min.js?v3"></script>
 <script src="/web/site/assets/source/js/libs_n_plugins/mask/jquery.mask.min.js?v3"></script>

@@ -43,6 +43,9 @@ class StoreController extends Controller
         $searchModel = new StoreSearch();
 //        $dataProvider = $searchModel->search($this->request->queryParams);
         $dataProvider = Store::find()->asArray()->all();
+        if (Yii::$app->request->isAjax && Yii::$app->request->isGet) {
+            return json_encode($dataProvider);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

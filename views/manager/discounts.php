@@ -739,7 +739,7 @@
 
 
 <script defer src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script defer src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!--<script defer src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>-->
 <script defer src="/web/js/discount.js"></script>
     <script >
         setTimeout(function(){
