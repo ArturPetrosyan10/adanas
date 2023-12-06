@@ -99,9 +99,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php } } ?>
 
 
-<!--                <div id="map" style="-->
-<!--                        background-color:darkgreen ;-->
-<!--                        width: 70%; height: 200px; padding: 0; margin: 0;"></div>-->
+                <div id="map" style="
+                        background-color:darkgreen ;
+                        width: 70%; height: 200px; padding: 0; margin: 0;"></div>
 
                 </tbody>
             </table>

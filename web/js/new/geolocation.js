@@ -3,8 +3,8 @@ ymaps.ready(init);
 function init() {
     let geolocation = ymaps.geolocation,
         myMap = new ymaps.Map('map', {
-            center: [55, 34],
-            zoom: 5,
+            center: [40.177628, 44.512546],
+            zoom: 13,
             controls: ['geolocationControl']
 
         }, {
@@ -15,9 +15,9 @@ function init() {
     // положение, вычисленное средствами браузера.
     geolocation.get({
         provider: 'yandex',
-        mapStateAutoApply: true
+        mapStateAutoApply: false
     }).then(function (result) {
-        console.log(result)
+        // console.log(result.geoObjects.position)
 
         // Красным цветом пометим положение, вычисленное через ip.
         result.geoObjects.options.set('preset', 'islands#redCircleIcon');
