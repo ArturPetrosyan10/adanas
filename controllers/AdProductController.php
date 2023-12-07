@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use app\models\AdProduct;
-use app\models\Store;
-use app\models\StoreSearch;
-use Yii;
+use app\models\AdProductImg;
+use app\models\AdProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StoreController implements the CRUD actions for Store model.
+ * AdProductController implements the CRUD actions for AdProduct model.
  */
-class StoreController extends Controller
+class AdProductController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,19 +33,17 @@ class StoreController extends Controller
     }
 
     /**
-     * Lists all Store models.
+     * Lists all AdProduct models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $this->layout = 'store';
-        $searchModel = new StoreSearch();
-//        $dataProvider = $searchModel->search($this->request->queryParams);
-        $dataProvider = Store::find()->asArray()->all();
-        if (Yii::$app->request->isAjax && Yii::$app->request->isGet) {
-            return json_encode($dataProvider);
-        }
+
+        $searchModel = new AdProductSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -54,30 +51,35 @@ class StoreController extends Controller
     }
 
     /**
-     * Displays a single Store model.
+     * Displays a single AdProduct model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $this->layout = 'store';
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Store model.
+     * Creates a new AdProduct model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Store();
+        $this->layout = 'store';
+
+        $model = new AdProduct();
+        $modelImg = new AdProductImg();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -85,11 +87,12 @@ class StoreController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'modelImg'=>$modelImg
         ]);
     }
 
     /**
-     * Updates an existing Store model.
+     * Updates an existing AdProduct model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -97,6 +100,8 @@ class StoreController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'store';
+
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -109,7 +114,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Deletes an existing Store model.
+     * Deletes an existing AdProduct model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -122,58 +127,21 @@ class StoreController extends Controller
         return $this->redirect(['index']);
     }
 
-
-    public function actionCreateStore()
-    {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
-
-        $model = new Store();
-
-        return $this->renderAjax('store-popup',
-            ['model' => $model]
-        );
-
-    }
-
-
-    public function actionProducts()
-    {
-        $this->layout = 'store';
-
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
-
-        $dataProvider = AdProduct::find()->asArray()->all();
-
-//        $model = new Store();
-
-        return $this->render('products',
-            ['dataProvider' => $dataProvider]
-        );
-
-    }
-
-
-
-
     /**
-     * Finds the Store model based on its primary key value.
+     * Finds the AdProduct model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Store the loaded model
+     * @return AdProduct the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Store::findOne(['id' => $id])) !== null) {
+        $this->layout = 'store';
+
+        if (($model = AdProduct::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
 }

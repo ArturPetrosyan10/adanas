@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 06, 2023 at 03:42 PM
+-- Generation Time: Dec 07, 2023 at 03:33 PM
 -- Server version: 10.8.4-MariaDB
 -- PHP Version: 8.1.9
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `fos_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ad_product`
+--
+
+CREATE TABLE `ad_product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `q_t` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ad_product`
+--
+
+INSERT INTO `ad_product` (`id`, `name`, `description`, `q_t`) VALUES
+(1, 'գետ', 'գետ', '1000 կմ'),
+(2, 'գետ', 'գետ', '1000 կմ'),
+(3, 'գետ', 'գետ', '1000 կմ'),
+(4, 'գետ', 'գետ', '1000 կմ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ad_product_img`
+--
+
+CREATE TABLE `ad_product_img` (
+  `id` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1743,7 +1779,8 @@ INSERT INTO `store` (`id`, `name`, `address`, `location`, `number`) VALUES
 (6, 'mg', 'Կորյունի փողոց', '40.188086, 44.524094', '12345'),
 (7, 'SAS', 'hanrapetucyan hrarak', '40.177633, 44.512630', 'hyjukil'),
 (8, 'CIRANI', 'Մաշտոցի պողոտա', '40.177633, 44.512630', '1234'),
-(9, 'CIRANI', 'tyugihojo', '40.177633, 44.512630', '1234');
+(9, 'CIRANI', 'tyugihojo', '40.177633, 44.512630', '1234'),
+(10, 'CIRANI', 'Մաշտոցի պողոտա', '40.177633, 44.512630', '1234');
 
 -- --------------------------------------------------------
 
@@ -1777,6 +1814,18 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password`, `password_reset_to
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ad_product`
+--
+ALTER TABLE `ad_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ad_product_img`
+--
+ALTER TABLE `ad_product_img`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `fs_banners`
@@ -1991,6 +2040,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `ad_product`
+--
+ALTER TABLE `ad_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `ad_product_img`
+--
+ALTER TABLE `ad_product_img`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `fs_banners`
 --
 ALTER TABLE `fs_banners`
@@ -2186,7 +2247,7 @@ ALTER TABLE `fs_wishlist`
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`

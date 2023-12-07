@@ -96,7 +96,6 @@ a.wishlist_products_counter {
     height: max-content;
     top: 18px;
     overflow: visible;
-    width: -webkit-fill-available;
 }
 ul li {
     list-style:none''
@@ -258,7 +257,6 @@ ul li {
 
 .fs-product-current-price{
     font-size: 18px;
-    -webkit-box-orient։normal;
     font-weight:400;
 }
 .owl-stage-outer{
@@ -423,7 +421,7 @@ footer ul a{
     }
     .new-slider-parent{
         flex-direction:column !important;
-    }-
+    }
     .small-video{
         width:auto;
     }
