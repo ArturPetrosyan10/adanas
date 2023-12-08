@@ -58,8 +58,8 @@ a.wishlist_products_counter {
 
 .fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper{
     position: absolute;
-    top: 60px;
-    left: 31rem;
+    top: 0;
+    left: 22rem;
     width: 100%;
     height: max-content;
     display: none;

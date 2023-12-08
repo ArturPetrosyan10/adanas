@@ -6,6 +6,7 @@ use app\models\AdProduct;
 use app\models\Store;
 use app\models\StoreSearch;
 use Yii;
+use yii\debug\models\search\Base;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,18 +16,14 @@ use yii\filters\VerbFilter;
  */
 class StoreController extends Controller
 {
-    public $layout = '../lte/layouts/store';
 
 
     public function beforeAction($action)
     {
-        if (Yii::$app->fsUser->identity->id || $action->id === 'sign-in') {
-
-            return parent::beforeAction($action);
-        } else {
-            return $this->redirect('sign-in');
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['admin/login']);
         }
-
+        return parent::beforeAction($action);
     }
 
 
@@ -35,6 +32,8 @@ class StoreController extends Controller
      */
     public function behaviors()
     {
+        $this->layout = 'store';
+
         return array_merge(
             parent::behaviors(),
             [
