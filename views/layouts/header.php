@@ -143,7 +143,8 @@ function isMobile() {
                                             <span class="fs-popover-email"><?=Yii::$app->fsUser->identity->email;?></span>
                                         </div>
                                         <div class="fs-profile-popover-body">
-                                            <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'supplier' ?>" class="fs-profile-popover-link showDesctop"><?=$GLOBALS['text']['__profile__popup__']?></a>
+                                            <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'store/index' ?>" class="fs-profile-popover-link showDesctop"><?=$GLOBALS['text']['__profile__popup__']?></a>
+                                            <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'sign-up' ?>" class="fs-profile-popover-link showDesctop">Գրանցել խանութ <?=''; // $GLOBALS['text']['__profile__popup__']?></a>
                                              <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'site/mobile-personal' : 'site/mobile-supplier' ?>" class="fs-profile-popover-link showMobile"><?=$GLOBALS['text']['__profile__popup__']?></a>
                                             <a href="/site/logout/" class="fs-profile-popover-link"><?=$GLOBALS['text']['__profile__popup__exite_']?></a>
                                         </div>
@@ -157,7 +158,7 @@ function isMobile() {
                     <div class="fs-personal-popover">
                     </div>
                 </li>
-                <? if(!Yii::$app->fsUser->isguest) {
+                <?php if(!Yii::$app->fsUser->isguest) {
                     $notifications = Yii::$app->fsUser->identity->notifications;
                     $notificationsAll = Yii::$app->fsUser->identity->allNotifications;
                     ?>
@@ -273,22 +274,22 @@ function isMobile() {
             <?php } ?>
 
             <div class="basket-block d-flex">
-                <div>
+                <!--<div>
                     <div class="position-relative">
                         <a><i class="fs-icon-heart"></i></a>
                         <a class="position-absolute wishlist_products_counter" style="">
                             <span>0</span>
                         </a>
                     </div>
-                </div>
+                </div>-->
                 <div class="">
                     <div class="d-flex">
-                        <div class="position-relative">
+                        <!--<div class="position-relative">
                             <i class="fs-icon-basket"></i>
                             <a class="position-absolute wishlist_products_counter" style="">
                                 <span>0</span>
                             </a>
-                        </div>
+                        </div>-->
                         <span class="price-span">
                             <bdi>0<span class="">֏</span></bdi>
                         </span>

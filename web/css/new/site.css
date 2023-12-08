@@ -1,14 +1,8 @@
 .fs-search-block input+i{
     color:#008A4E !important;
 }
-.fs-product-slider .owl-dots .owl-dot.active span, .fs-product-slider .owl-dots .owl-dot:hover span{
-    background:#008A4E;
-}
-.fs-weekly-supplier .owl-dots .owl-dot.active span,.fs-weekly-supplier .owl-dots .owl-dot:hover span{
-    background:#008A4E;
-}
-.fs-hero-slider .owl-dots .owl-dot.active span,.fs-hero-slider .owl-dots .owl-dot:hover span{
-    background:#008A4E;
+.owl-dots{
+    display:none !important;
 }
 .fs-logo {
     width: max-content;
@@ -154,8 +148,8 @@ ul li {
 .new-slider-first-half{
     background-repeat: no-repeat;
     background-size: cover;
-    width: 25%;
-    height: 450px;
+    width: 22%;
+    height: 490px;
     overflow: hidden;
     background-position: center !important;
 }
@@ -221,15 +215,17 @@ ul li {
 }
 .right-parent{
     overflow: hidden;
-    height: 450px;
+    height: 490px;
     width:15%;
     min-width:150px;
+    gap:15px;
 }
 .small-video{
     width: 200px;
-    height: 150px;
-    background-size: cover;
-    background-position: center;
+    height: 153px;
+    background-size: cover!important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 .main-suggestions{
     --flexgrid-column-size: 12;
@@ -288,7 +284,9 @@ ul li {
 .fs-product-card{
     padding:1rem 1rem 6.6rem;
 }
-
+.new-slider-parent{
+    gap:2rem;
+}
 .fs-product-card[data-sale]:before{
     content:attr(data-sale);
     position:absolute;
@@ -385,9 +383,71 @@ footer ul h4{
 footer ul a{
     color:white;
 }
+.fs-product-action-block{
+    display:none
+}
+.fs-sign-up-wrapper{
+    width:100%;
+    background-color:#FAF9F9;
+    padding-top:16.2rem;
+    padding-bottom:11rem
+}
+.fs-sign-in-title{
+    width:100%;
+    text-align:center;
+    font-weight:700;
+    font-size:2.4rem;
+    line-height:3.2rem;
+    margin-top:0;
+    margin-bottom:0;
+    color:#8C8370;
+    padding-bottom:3.2rem
+}
 
+.fs-top-profile-abbr{
+    width:3.2rem;
+    height:3.2rem;
+    border-radius:50%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    background-color:#C092DA;
+    color:#fff;
+    font-weight:500;
+    font-size:1.4rem;
+    line-height:1
+}
 
-
+.fs-action-button .fs-profile-popover-window .fs-profile-abbr{
+    position:absolute;
+    top:2rem;
+    left:1.6rem;
+    width:4rem;
+    height:4rem;
+    border-radius:50%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    background-color:#C092DA;
+    color:#fff;
+    text-transform:uppercase;
+    text-align:center;
+    font-size:1.6rem;
+    line-height:2.4rem;
+    font-weight:500
+}
 @media screen and (max-width: 1000px){
      .fs-home-page-banner-list {
         grid-template-columns: repeat(3, calc( 33.33% - 25px ) );

@@ -16,10 +16,7 @@
             <form action="/site/login" id="loginf" method="POST" class="fs-auth-form">
                 <input type="hidden" name="authmod" value="local" />
                 <input type="hidden" name="regmod" value="login" />
-                <label class="fs-auth-input-el">
-                    <span class="fs-auth-input-label"><?= $GLOBALS['text']['__hvhh__'] ?></span>
-                    <input class="fs-auth-input" required type="text" name="company_hvhh"  placeholder="<?= $GLOBALS['text']['__hvhh__'] ?>" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" maxlength="8" min="0" max="99999999" />
-                </label>
+
                 <label class="fs-auth-input-el">
                     <span class="fs-auth-input-label"><?= $GLOBALS['text']["__email__address__user__"] ?></span>
                     <input class="fs-auth-input" autocomplete="new-password" required  name="email" id="heyyoulittlehacker1" type="text" placeholder="<?= $GLOBALS['text']["__email__address__user__"] ?>" />
@@ -38,10 +35,10 @@
                 </div>
                 <button type="submit" class="fs-authorization-submit"><?= $GLOBALS['text']["__enter__"] ?></button>
             </form>
-            <p class="fs-authorized-already">
-                <?= $GLOBALS['text']["__not__registered__yet__"] ?>
-                <a href="/sign-up/"><?= $GLOBALS['text']["__register__"] ?></a>
-            </p>
+            <!--<p class="fs-authorized-already">
+                <?php /*= $GLOBALS['text']["__not__registered__yet__"] */?>
+                <a href="/sign-up/"><?php /*= $GLOBALS['text']["__register__"] */?></a>
+            </p>-->
         </div>
     </div>
 </main>
