@@ -21,7 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             <?= Html::a('+ Ավելացնել', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-
+<!--<pre>-->
+<!--        --><?php
+//        var_dump($dataProvider)
+//        ?>
+<!--</pre>-->
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,

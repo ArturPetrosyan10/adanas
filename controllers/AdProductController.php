@@ -8,6 +8,7 @@ use app\models\AdProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * AdProductController implements the CRUD actions for AdProduct model.
@@ -72,6 +73,7 @@ class AdProductController extends Controller
      */
     public function actionCreate()
     {
+
         $this->layout = 'store';
 
         $model = new AdProduct();
@@ -79,7 +81,13 @@ class AdProductController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['index', 'id' => $model->id]);
+                $last = AdProduct::find()->orderBy(['id' => SORT_DESC])->asArray()->one();
+
+                $modelImg->name = $_FILES['AdProductImg']['name']['name'];
+                $modelImg->productId=$last['id'];
+                $modelImg->active= $modelImg->name;
+                $modelImg->save();
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();

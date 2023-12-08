@@ -9,8 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property int $productId
- * @property string $name
- * @property int|null $active
+ * @property string|null $name
+ * @property string|null $active
  */
 class AdProductImg extends \yii\db\ActiveRecord
 {
@@ -29,8 +29,8 @@ class AdProductImg extends \yii\db\ActiveRecord
     {
         return [
 //            [['productId', 'name'], 'required'],
-            [['productId', 'active'], 'integer'],
-            [['name'], 'string', 'max' => 50],
+            [['productId'], 'integer'],
+            [['name', 'active'], 'string', 'max' => 50],
         ];
     }
 

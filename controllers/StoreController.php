@@ -15,6 +15,21 @@ use yii\filters\VerbFilter;
  */
 class StoreController extends Controller
 {
+    public $layout = '../lte/layouts/store';
+
+
+    public function beforeAction($action)
+    {
+        if (Yii::$app->fsUser->identity->id || $action->id === 'sign-in') {
+
+            return parent::beforeAction($action);
+        } else {
+            return $this->redirect('sign-in');
+        }
+
+    }
+
+
     /**
      * @inheritDoc
      */
@@ -40,7 +55,6 @@ class StoreController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'store';
         $searchModel = new StoreSearch();
 //        $dataProvider = $searchModel->search($this->request->queryParams);
         $dataProvider = Store::find()->asArray()->all();
@@ -140,7 +154,6 @@ class StoreController extends Controller
 
     public function actionProducts()
     {
-        $this->layout = 'store';
 
         if (Yii::$app->user->isGuest) {
             $this->redirect(['admin/login']);
@@ -155,8 +168,6 @@ class StoreController extends Controller
         );
 
     }
-
-
 
 
     /**

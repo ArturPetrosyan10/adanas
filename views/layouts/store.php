@@ -88,9 +88,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <!--                      <li>-->
                     <!--                         <a href="/admin/stores"><i class="menu-icon fa fa-archive"></i>Խանութներ</a>-->
                     <!--                     </li>-->
-                    <li>
-                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>
-                    </li>
+
+                    <!--                    <li>-->
+                    <!--                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>-->
+                    <!--                    </li>-->
+
                     <!--                     <li>-->
                     <!--                         <a href="/admin/partners"><i class="menu-icon fa fa-user"></i>Գործընկերներ</a>-->
                     <!--                     </li>-->
