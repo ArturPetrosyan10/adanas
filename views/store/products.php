@@ -15,23 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
     <div class="card-body">
-
-        <h1><?= Html::encode($this->title) ?></h1>
-
-        <p>
-            <button class="btn btn-success"
-                    id="createStore">Ստեղծել Խանութ
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h1><?= Html::encode($this->title) ?></h1>
+            <button class="btn btn-success "
+                    id="">+ Ավելացնել
             </button>
-            <!--            <span class="buttons">-->
-            <!--                <span class="overlay show_" style="width:99px;"></span>-->
-            <!--                <button class="btn btn-sm btn-default" style="margin-left:30px;"-->
-            <!--                        id="copyStore"><i class="fa fa-copy"></i></button>-->
-            <!--                <button class="btn btn-sm btn-default" id="editeStore"><i-->
-            <!--                            class="fa fa-pencil"></i></button>-->
-            <!--                <button class="btn btn-sm btn-danger" id="disableStore"><i-->
-            <!--                            class="fa fa-trash"></i></button>-->
-            <!--            </span>-->
-        </p>
+        </div>
 
         <div class="tbl">
             <table class="table table-bordered ">
@@ -39,9 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Անուն</th>
-                    <th scope="col">Հասցե</th>
-                    <th scope="col">Գտնվելու վայրը</th>
-                    <th scope="col">Համար</th>
+                    <th scope="col">Նկարագրություն</th>
+                    <th scope="col">Չափային տվյալներ </th>
                 </tr>
                 </thead>
                 <tbody class="sortableTable" id="sortable">
@@ -55,9 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
 
                             <td scope="col"><?php echo $store['name']; ?></td>
-                            <td scope="col"><?php echo $store['address']; ?></td>
-                            <td scope="col"><?php echo $store['location']; ?></td>
-                            <td scope="col"><?php echo $store['number']; ?></td>
+                            <td scope="col"><?php echo $store['description']; ?></td>
+                            <td scope="col"><?php echo $store['q_t']; ?></td>
 
                         </tr>
                     <?php }

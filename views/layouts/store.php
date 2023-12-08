@@ -33,7 +33,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>FOS Admin</title>
     <meta name="description" content="FOS Admins">
@@ -60,81 +60,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
           integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous"/>
-    <style>
-        .page-item.active .page-link {
-            background: #008A4E !important;
-        }
-
-        .btn-succ {
-            background: #008A4E;
-        }
-
-        .left, .right {
-            background: #008A4E;
-        }
-
-        aside.left-panel, .navbar {
-            background: #008A4E !important;
-        }
-
-        .navbar .navbar-nav li > a {
-            /*color: #4A4640;*/
-            color: #FFF;
-            font-size: 17px;
-        }
-
-        .navbar .navbar-nav li > a .menu-icon {
-            margin-top: 4px;
-            font-weight: bold;
-            color: white;
-            width: 30px;
-        }
-
-        .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
-            color: white;
-        }
-
-        .modal-body .form-control {
-            margin-bottom: 5px;
-        }
-
-        .frmfirst {
-            margin-left: 20px;
-        }
-
-        .sortable div.active {
-            background: #FAF9F9 !important;
-        }
-
-        .sortable .fa-close {
-            position: absolute;
-            left: 30px;
-            top: 9px;
-        }
-
-        .buttons {
-            position: relative;
-        }
-
-        .buttons .show_ {
-            display: inline-block;
-            position: absolute;
-            background: #cfcfcf;
-            opacity: 0.6;
-            width: 132px;
-            left: 32px;
-            top: -3px;
-            height: 31px;
-        }
-
-        .active > a {
-            color: #008A4E !important;
-        }
-
-        .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before, .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
-            color: #008A4E !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../../web/css/new/adStore.css">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -162,9 +88,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <!--                      <li>-->
                     <!--                         <a href="/admin/stores"><i class="menu-icon fa fa-archive"></i>Խանութներ</a>-->
                     <!--                     </li>-->
-                    <li>
-                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>
-                    </li>
+
+                    <!--                    <li>-->
+                    <!--                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>-->
+                    <!--                    </li>-->
+
                     <!--                     <li>-->
                     <!--                         <a href="/admin/partners"><i class="menu-icon fa fa-user"></i>Գործընկերներ</a>-->
                     <!--                     </li>-->
@@ -185,9 +113,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <!--                     <li>-->
                     <!--                         <a href="/admin/banners"><i class="menu-icon fa fa-picture-o"></i>Պաստառներ</a>-->
                     <!--                     </li>-->
+                    <!--                    <li>-->
+                    <!--                        <a href="/admin/products"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>-->
+                    <!--                    </li>  -->
 
                     <li>
-                        <a href="/admin/products"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
+                        <a href="/ad-product"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
                     </li>
                     <!--                     <li>-->
                     <!--                         <a href="/admin/categories"><i class="menu-icon fa fa-bars"></i>Կատեգորիաներ </a>-->
@@ -280,7 +211,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="/web/js/lib/chosen/chosen.jquery.min.js"></script>
 <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/inputmask.js"></script>
-
+<script src="/web/js/main.js"></script>
 
 <script>
     window.onload = function () {
@@ -288,7 +219,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         jQuery('#main-menu li a').each(function () {
             var $this = jQuery(this);
             // if the current path is like this link, make it active
-            if ($this.attr('href').indexOf(current) !== -1) {
+            if (current.indexOf($this.attr('href')) !== -1) {
                 $this.parent().addClass('active');
             }
         })
@@ -390,9 +321,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         });
     }
 </script>
-<script src="/web/js/main.js"></script>
-
-<script src="/web/js/new/store.js"></script>
+<!--<script type="module" src="../../web/js/new/geolocation.js" ></script>-->
+<script type="module" src="/web/js/main.js"></script>
+<script type="module" src="/web/js/new/store.js"></script>
 
 <?php $this->endBody() ?>
 <style>

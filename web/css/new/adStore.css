@@ -1,0 +1,77 @@
+.page-item.active .page-link {
+    background: #008A4E !important;
+}
+
+.btn-succ {
+    background: #008A4E;
+}
+
+.left, .right {
+    background: #008A4E;
+}
+
+aside.left-panel, .navbar {
+    background: #008A4E !important;
+}
+
+.navbar .navbar-nav li > a {
+    /*color: #4A4640;*/
+    color: #FFF;
+    font-size: 17px;
+}
+
+.navbar .navbar-nav li > a .menu-icon {
+    margin-top: 4px;
+    font-weight: bold;
+    color: white;
+    width: 30px;
+}
+
+.navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
+    color: white;
+}
+
+.modal-body .form-control {
+    margin-bottom: 5px;
+}
+
+.frmfirst {
+    margin-left: 20px;
+}
+
+.sortable div.active {
+    background: #FAF9F9 !important;
+}
+
+.sortable .fa-close {
+    position: absolute;
+    left: 30px;
+    top: 9px;
+}
+
+.buttons {
+    position: relative;
+}
+
+.buttons .show_ {
+    display: inline-block;
+    position: absolute;
+    background: #cfcfcf;
+    opacity: 0.6;
+    width: 132px;
+    left: 32px;
+    top: -3px;
+    height: 31px;
+}
+
+.active > a {
+    color: #008A4E !important;
+}
+
+.navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before, .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
+    color: #008A4E !important;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
