@@ -40,55 +40,63 @@ class SiteController extends Controller
     public $layout = '../lte/layouts/site';
     public function beforeAction($action)
     {
-        if (!isset($_COOKIE['language'])) {
-            setcookie('language', 'hy', time() + (365 * 24 * 60 * 60));
-            $lng = 'am';
-            $this->refresh();
+        if(Yii::$app->fsUser->identity->id || $action->id === 'sign-in') {
+            if (!isset($_COOKIE['language'])) {
+                setcookie('language', 'hy', time() + (365 * 24 * 60 * 60));
+                $lng = 'am';
+                $this->refresh();
+            }
+            if ($_COOKIE['language'] == 'hy') {
+                $lng = 'am';
+            } else if (isset($_COOKIE['language'])) {
+                $lng = $_COOKIE['language'];
+            } else {
+                $_COOKIE['language'] = 'hy';
+                $lng = 'am';
+            }
+            $GLOBALS['lang_'] = $lng;
+            $txt = FsTexts::find()->all();
+            $txt = ArrayHelper::map($txt, 'slug', 'text_' . $lng);
+            $GLOBALS['text'] = $txt;
+            $this->enableCsrfValidation = false;
+            return parent::beforeAction($action);
+        }else{
+            return $this->redirect('sign-in');
         }
-       
-        if($_COOKIE['language'] == 'hy'){
-            $lng= 'am';
-        } else if(isset($_COOKIE['language'])){
-            $lng=$_COOKIE['language'];
-        } else {
-           $_COOKIE['language'] = 'hy'; 
-           $lng = 'am';
-        }
-        $GLOBALS['lang_'] = $lng;
-        $txt = FsTexts::find()->all();
-        $txt = ArrayHelper::map($txt,'slug','text_'.$lng);
-        $GLOBALS['text'] = $txt;
-        $this->enableCsrfValidation = false;
-      
-        return parent::beforeAction($action);
-      
     }
 
     /**
      * {@inheritdoc}
      */
-    // public function behaviors()
-    // {
-    //     return [
-    //         'access' => [
-    //             'class' => AccessControl::class,
-    //             'only' => ['logout'],
-    //             'rules' => [
-    //                 [
-    //                     'actions' => ['logout'],
-    //                     'allow' => true,
-    //                     'roles' => ['@'],
-    //                 ],
-    //             ],
-    //         ],
-    //         'verbs' => [
-    //             'class' => VerbFilter::class,
-    //             'actions' => [
-    //                 'logout' => ['post','get'],
-    //             ],
-    //         ],
-    //     ];
-    // }
+//    public function behaviors()
+//    {
+//        return [
+//            'access' => [
+//                'class' => AccessControl::class,
+//                'except' => ['login'],
+//                'rules' => [
+//                    [
+//                        'allow' => false,
+////                        'actions' => ['index', 'create','ApiOrder'],
+//                        'roles' => ['?'], // Запретить доступ для гостей (неавторизованных пользователей)
+//                    ],
+//                    [
+//                        'allow' => true,
+//                        'roles' => ['@'], // Разрешить доступ для авторизованных пользователей
+//                    ],
+//                ],
+//                'denyCallback' => function ($rule, $action) {
+//                    return $this->redirect(['site/login']);
+//                },
+//            ],
+//            'verbs' => [
+//                'class' => VerbFilter::class,
+//                'actions' => [
+//                    'delete' => ['POST'],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      * {@inheritdoc}
@@ -191,12 +199,9 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
      */
     public function actionLogin()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            return $this->goHome();
-        }
         $model = new FsLoginForm();
         if ($model->load(Yii::$app->request->post(), '') && $model->login()) {
-            return $this->redirect([(Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'supplier')]);
+            return $this->redirect([(Yii::$app->fsUser->identity->is_buyer == 1 ? '/' : '/')]);
         } else {
             return $this->redirect('/sign-in?wrong_password');
         }
@@ -1436,7 +1441,7 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
        public function actionSignIn()
     {
-        $this->layout = 'site';        
+        $this->layout = 'site';
         return $this->render('sign-in');
     }
 

@@ -41,24 +41,28 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <?php $this->beginBody() ?>
 <div id="page">
-<?php include('header.php'); ?>
-    <?php $urls = [0=>['url' => '/','name'=> $GLOBALS['text']['__home__page__'] ],
-        1=>['name'=>$GLOBALS['text']['__shop__']],
-        2=>['name'=>$GLOBALS['text']['__categories__']],
-        3=>['name'=>$GLOBALS['text']['__brands__']],
-        4=>['name'=>$GLOBALS['text']['__news__']],
-        5=>['name'=>$GLOBALS['text']['__contact__']]] ?>
+    <?php if(Yii::$app->controller->action->id !== 'sign-in'){
+//             include('header.php');
+            echo $this->render('header.php');
 
-    <div class="fs-container">
-        <ul class="d-flex p-0" style="align-items:center;height:75px">
-            <?php foreach ($urls as $index => $url) { ?>
-                <li class="item">
-                    <a class="navbar url-item" href="<?= $url['url'] ?>"><?= $url['name'] ?></a>
-                </li>
-            <?php } ?>
-        </ul>
-    </div>
-    <hr>
+        $urls = [0=>['url' => '/','name'=> $GLOBALS['text']['__home__page__'] ],
+            1=>['name'=>$GLOBALS['text']['__shop__']],
+            2=>['name'=>$GLOBALS['text']['__categories__']],
+            3=>['name'=>$GLOBALS['text']['__brands__']],
+            4=>['name'=>$GLOBALS['text']['__news__']],
+            5=>['name'=>$GLOBALS['text']['__contact__']]] ?>
+        <div class="fs-container">
+            <ul class="d-flex p-0" style="align-items:center;height:75px">
+                <?php foreach ($urls as $index => $url) { ?>
+                    <li class="item">
+                        <a class="navbar url-item" href="<?= $url['url'] ?>"><?= $url['name'] ?></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <hr>
+    <?php } ?>
+
     <div id="content">
         <main id="main"  role="main">
             <div class="fs-container">
@@ -70,7 +74,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </div>
         </main>
     </div>
-<?php include('footer.php'); ?>
+    <?php if(Yii::$app->controller->action->id !== 'sign-in'){
+        include('footer.php');
+    } ?>
     <script src="/web/js/new-adanas/app.js"></script>
 <?php $this->endBody() ?>
 
