@@ -2641,3 +2641,8 @@ footer.site-footer {
        .show{
         display: block !important;
        }
+
+
+.showSearch{
+  display:none !important;
+}

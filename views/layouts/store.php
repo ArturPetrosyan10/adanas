@@ -88,11 +88,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <!--                      <li>-->
                     <!--                         <a href="/admin/stores"><i class="menu-icon fa fa-archive"></i>Խանութներ</a>-->
                     <!--                     </li>-->
-
-                    <!--                    <li>-->
-                    <!--                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>-->
-                    <!--                    </li>-->
-
+<!--                    <li>-->
+<!--                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>-->
+<!--                    </li>-->
                     <!--                     <li>-->
                     <!--                         <a href="/admin/partners"><i class="menu-icon fa fa-user"></i>Գործընկերներ</a>-->
                     <!--                     </li>-->
@@ -161,7 +159,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <div class="top-right">
             <div class="header-menu">
                 <div class="header-left">
-                    <button class="search-trigger"><i class="fa fa-search"></i></button>
+                    <button class="search-trigger showSearch"><i class="fa fa-search"></i></button>
                     <div class="form-inline">
                         <form class="search-form">
                             <input class="form-control mr-sm-2" type="text" placeholder="Search ..."
