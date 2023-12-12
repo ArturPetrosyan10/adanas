@@ -41,15 +41,7 @@ function isMobile() {
                 ?>
                 <ul class="fs-hidden-menu-list-wrapper-ul d-none"  >
                     <?php
-                    if(Yii::$app->fsUser->identity) {
-                        $cats = Yii::$app->fsUser->identity->categories;
-                        if ($cats) {
-                            $cats = explode(';', $cats);
-                        }
-                        $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
-                    } else {
-                        $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
-                    }
+                    $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
                     foreach ($cats as $category):  $categoryMenu = generateCategoryMenu($category->id); ?>
                         <li class="fs-hidden-menu-list-wrapper">
                             <a data-level='1'

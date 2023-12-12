@@ -47,11 +47,14 @@
                 </a>
             </div>
             <div class="fs-home-page-banner-list">
-                <?php foreach ($offers as $offer){ ?>
-                   <?php if($offer->url){ $tag = 'a'; } else { $tag = 'span';} ?>
-                    <<?=$tag;?> href="<?= $offer->url ?>" class="fs-home-page-banner macro-banner position-relative">
-                        <img src="/<?= $offer->image ?>" alt="" />
-                        <span class="position-absolute title"><?= $offer->title_am ?><?= ($_COOKIE['language'] ? ($_COOKIE['language'] == 'ru' ? $offer->title_ru : $offer->title_en) : $offer->title_am) ?></span>
+            <?php foreach ($categories as $category){ ?>
+                   <?php if($category->url){ $tag = 'a'; }
+                   else { $tag = 'span';} ?>
+                    <<?=$tag;?> href="/categories/<?= $category->url ?>" class="fs-home-page-banner macro-banner position-relative">
+                        <img src="/<?= $category->photo ?>" alt="" />
+                        <span class="position-absolute title">
+                            <?= $category->name ?>
+                        </span>
                     </<?=$tag;?>>
                 <?php }; ?>
             </div>
@@ -86,7 +89,9 @@
     <section class="fs- last-viewed-section fs-main-section-el" id="last" data-dom-el="section" >
         <div class="fs-container">
             <div class="d-flex justify-content-between">
-                <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_3_']?></h2>
+                <h2 class="fs-section-title">
+                    <?=$GLOBALS['text']['_main_page_title_3_']?>
+                </h2>
                 <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
                     <?= $GLOBALS['text']['__view__all__'] ?>
                     <i class="fa fa-long-arrow-alt-right"></i>

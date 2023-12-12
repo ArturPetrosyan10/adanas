@@ -14,7 +14,6 @@ body{
 #main{
 	box-sizing: border-box;
  	min-height: 100%;
- 	padding-bottom: 90px;
 }
 
 
@@ -2639,31 +2638,8 @@ body{
     cursor:pointer;
     margin-right:2.4rem
 }
-.fs-nav-burger span{
-    display:block;
-    width:2.2rem;
-    height:0.3rem;
-    border-radius:0.3rem;
-    background-color:#9B958C;
-    -webkit-transition:background-color 240ms;
-    transition:background-color 240ms;
-    position:absolute;
-    top:50%;
-    left:50%;
-    -webkit-transform:translate(-50%, -50%);
-    transform:translate(-50%, -50%)
-}
-.fs-nav-burger span:after,.fs-nav-burger span:before{
-    content:"";
-    position:absolute;
-    left:0;
-    width:100%;
-    height:100%;
-    border-radius:0.3rem;
-    background-color:#9B958C;
-    -webkit-transition:background-color 240ms;
-    transition:background-color 240ms
-}
+
+
 .fs-nav-burger span:after{
     top:-0.7rem
 }
@@ -3097,9 +3073,7 @@ body{
 .fs-action-button:nth-child(2n)>a,.fs-action-button:nth-child(2n)>button{
     font-size:2.2rem
 }
-.fs-action-button>a,.fs-action-button>button{
-    color:#D7D4D1
-}
+
 .fs-action-button>button{
     background-color:transparent;
     border:none;
@@ -5393,7 +5367,7 @@ body{
     outline:none;
     font-size:1rem
 }
-.fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper{
+/*.fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper{
     position:absolute;
     top:60px;
     left:31rem;
@@ -5403,7 +5377,7 @@ body{
     overflow-x:hidden;
     overflow-y:auto;
     pointer-events:none
-}
+}*/
 .fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper .fs-hidden-menu-sublist-wrapper{
     position:absolute;
     top:0;

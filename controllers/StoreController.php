@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
  */
 class StoreController extends Controller
 {
-    public $layout = '../lte/layouts/store';
+    public $layout = 'store';
 
 
     public function beforeAction($action)

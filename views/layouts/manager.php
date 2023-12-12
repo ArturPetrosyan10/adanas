@@ -353,7 +353,7 @@ th {
 }
 </style>
 <script>
-var idleTimer = null;
+/*var idleTimer = null;
 var idleState = false; // состояние отсутствия
 var idleWait = 1000*60*10; // время ожидания в мс. (1/1000 секунды)
 
@@ -369,7 +369,7 @@ jQuery(document).ready( function(){
   });
 
     jQuery("body").trigger("mousemove"); // сгенерируем ложное событие, для запуска скрипта
-});
+});*/
 </script>
 </body>
 </html>

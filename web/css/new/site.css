@@ -1,3 +1,10 @@
+*{
+    font-family: system-ui;
+}
+.active-url a{
+    color:#007aff !important;
+}
+
 .fs-search-block input+i{
     color:#008A4E !important;
 }
@@ -52,8 +59,8 @@ a.wishlist_products_counter {
 
 .fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>.fs-hidden-menu-sublist-wrapper{
     position: absolute;
-    top: 60px;
-    left: 31rem;
+    top: 0px;
+    left: 15%;
     width: 100%;
     height: max-content;
     display: none;
@@ -63,7 +70,7 @@ a.wishlist_products_counter {
 }
 .fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper>a {
     width: 100%;
-    max-width: 300px;
+    min-width: 300px;
     min-height: 4.6rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -85,14 +92,18 @@ a.wishlist_products_counter {
     font-weight: 500;
     color: #4A4640;
 }
+.fs-hidden-menu-list-wrapper-ul .fs-hidden-menu-list-wrapper{
+    width:min-content;
+}
 .fs-hidden-menu-list-wrapper-ul{
     position: absolute;
     height: max-content;
     top: 18px;
     overflow: visible;
+    width:100%;
 }
 ul li {
-    list-style:none''
+    list-style:none;
 }
 .url-item{
     font-size: 18px;
@@ -359,10 +370,10 @@ ul li {
 }
 /*//*/
 footer{
-    background:#C092DA;
+    background:#f7f8f9;
     width:100%;
     height:max-content;
-    color:white;
+    color:black;
 }
 footer ul{
     width:max-content;
@@ -381,7 +392,7 @@ footer ul h4{
     font-size: 18px;
 }
 footer ul a{
-    color:white;
+    color:black;
 }
 .fs-product-action-block{
     display:none
@@ -447,6 +458,37 @@ footer ul a{
     font-size:1.6rem;
     line-height:2.4rem;
     font-weight:500
+}
+.fs-nav-burger span:after,.fs-nav-burger span:before{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:100%;
+    border-radius:0.3rem;
+    background-color:black;
+    -webkit-transition:background-color 240ms;
+    transition:background-color 240ms
+}
+.fs-nav-burger span{
+    display:block;
+    width:2.2rem;
+    height:0.3rem;
+    border-radius:0.3rem;
+    background-color: black;
+    -webkit-transition:background-color 240ms;
+    transition:background-color 240ms;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%)
+}
+.fs-action-button>a,.fs-action-button>button{
+    color:black;
+}
+a:hover {
+    text-decoration: none;
 }
 @media screen and (max-width: 1000px){
      .fs-home-page-banner-list {

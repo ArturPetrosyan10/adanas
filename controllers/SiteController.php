@@ -11,7 +11,7 @@ use app\models\FsUserToBrand;
 use app\models\FsViewHistory;
 use app\models\FsProductParams;
 use mysql_xdevapi\Exception;
-use Yii; 
+use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -175,16 +175,13 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     public function actionIndex()
     {
         $this->layout = 'site';
-        if(Yii::$app->fsUser->identity){
-            $cats = Yii::$app->fsUser->identity->categories;
-            if($cats){
-                $cats = explode(';',$cats);
-                $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
-            }
-        } else {
+        $cats = Yii::$app->fsUser->identity->categories;
+        if($cats && false){
+            $cats = explode(';',$cats);
+            $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
+        }else{
             $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
         }
-
         $banners = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 0])->orderBy(['order_num' => SORT_ASC])->all();
         $offers = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 1])->orderBy(['order_num' => SORT_ASC])->all();
         $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
@@ -266,15 +263,17 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     }
     public function actionMobileSupplier()
     {
-
-        if (!Yii::$app->fsUser->isGuest) {
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        return $this->render('personal_mobile', ['user' => $user, 'categories' => $categories]);
+    }
+    public function actionNews()
+    {
             $this->layout = 'site';
             $user = Yii::$app->fsUser->identity;
-            return $this->render('personal_mobile', ['user' => $user, 'categories' => $categories]);
-        }
-
-        return $this->redirect(['sign-in']);
+            return $this->render('news', ['user' => $user]);
     }
+
     public function actionPersonalHistory($page = 1, $state = null, $fromdate = null, $todate = null)
     {
         if (!Yii::$app->fsUser->isGuest) {
@@ -794,6 +793,7 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
                 }
             }
             $ids_all[] = $category->id;
+
             $paramsToCategory = FsParamToCategory::find()->where(['category_id' => $ids_all])->groupBy('param_id')->asArray()->all();
 
             if(isset($_GET['page'])){
@@ -802,22 +802,15 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
                 $page = 0;
             }
 
-            if(Yii::$app->fsUser->identity) {
-                $view_history  = FsViewHistory::find()->select('product_id')->where(['user_id'=>Yii::$app->fsUser->identity->id])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
-                $cats = Yii::$app->fsUser->identity->categories;
-                $cats = explode(';', $cats);
-                if (in_array($ids_all[0], $cats)) {
-                    $data = $category->products($category->id, $page, $_GET);
-                }
-            } else{
-                $view_history  = FsViewHistory::find()->select('product_id')->where(['ip'=>Yii::$app->getRequest()->getUserIP()])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
+            $view_history  = FsViewHistory::find()->select('product_id')->where(['user_id'=>Yii::$app->fsUser->identity->id])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
+            $cats = Yii::$app->fsUser->identity->categories;
+            $cats = explode(';', $cats);
+            if (in_array($ids_all[0], $cats)) {
                 $data = $category->products($category->id, $page, $_GET);
             }
-
-
-            $products = $data['data'];
-            $maxPrice = $data['maxprice'];
-            $total = $data['total'];
+            $products = @$data['data'];
+            $maxPrice = @$data['maxprice'];
+            $total = @$data['total'];
             return $this->render('list', ['view_history'=>$view_history,'category' => $category,'paramsToCategory'=> $paramsToCategory,'maxPrice'=>$maxPrice,'products'=>$products,'total'=>$total]);
         }
 
@@ -828,10 +821,7 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
                 array_pop($cats);
                 $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
             }
-        } else {
-            $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
         }
-
         return $this->render('catlist', ['categories' => $categories]);
     }
     public function actionSearch()
@@ -975,6 +965,11 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
                 $r = $view_->save(false);
        
         }
+        return $this->render('product', ['product' => $product]);
+    }
+    public function actionShop(){
+        $this->layout = 'site';
+        $product = FsProducts::find()->all();
         return $this->render('product', ['product' => $product]);
     }
 

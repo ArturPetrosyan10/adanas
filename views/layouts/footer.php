@@ -44,15 +44,7 @@ use app\models\FsPages;
 
 
                         <?php
-                        if(Yii::$app->fsUser->identity) {
-                            $cats = Yii::$app->fsUser->identity->categories;
-                            if ($cats) {
-                                $cats = explode(';', $cats);
-                            }
-                            $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
-                        } else {
-                            $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
-                        }
+                        $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
                         foreach ($cats as $category):  $categoryMenu = generateCategoryMenu($category->id); ?>
                             <li>
                                 <a  style="display:inline-block;"
@@ -108,18 +100,19 @@ use app\models\FsPages;
             <p><img class="alignnone wp-image-828 size-full" src="https://adanas.am/wp-content/uploads/2023/08/Adanas-logo-140x32-1.png" alt="" width="140" height="32"></p>
         </div>
         <div>
-            <p>Copyright © 2023 Adanas | All Rights Reserved | Website by&nbsp;<a href="https://dimark.am/">Dimark</a></p>
+            <p>Copyright © 2023 Adanas | All Rights Reserved | Website by&nbsp;<a target="_blank" href="https://codewave.am/">CodeWave</a></p>
         </div>
         <div >
             <p><img  src="https://adanas.am/wp-content/uploads/2023/02/payment.png" alt="" width="179" height="32"></p>
         </div>
     </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  
+<?php if(isMobile()){ ?>
 <script src="/web/site/assets/source/js/libs_n_plugins/jquery/jquery.min.js?v3"></script>
 <script src="/web/site/assets/source/js/mmenu.js?v3"></script>
-
+<?php } ?>
 <script>
     $('.fs-hidden-menu-close-btn').click(function () {
         $(this).closest('.fs-hidden-menu-sublist-wrapper').hide();
@@ -151,6 +144,8 @@ use app\models\FsPages;
   -o-transition: none 0.0s ease;
 }
 </style>
+
+
 <script src="/web/site/assets/source/js/libs_n_plugins/owl_carousel/owl.carousel.min.js?v3"></script>
 <!--<script src="/web/site/assets/source/js/libs_n_plugins/video/video.min.js?v3"></script>-->
 <!--<script-->
@@ -163,7 +158,8 @@ use app\models\FsPages;
 <script src="/web/js/bootstrap-datepicker.min.js"></script>
 <script src="/web/js/bootstrap-datepicker.hy.min.js"></script>
 <script src="/web/site/assets/source/js/script.js?v=3"></script>
-<script src="/web/site/sadmin/libs/ajax_lib.js??v3"></script>
-<script src="/web/site/sadmin/js/t_lib.js??v3"></script>
+<script src="/web/site/sadmin/libs/ajax_lib.js?v3"></script>
+<script src="/web/site/sadmin/js/t_lib.js?v3"></script>
+<script src="/web/js/new/app.js"></script>
 
 
