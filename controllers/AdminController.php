@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 use app\models\FsBanners;
+use app\models\FsBlogs;
 use app\models\FsBrands;
 use app\models\FsBrandToCategory;
 use app\models\FsCart;
@@ -594,6 +595,37 @@ class AdminController extends Controller {
         }
         $pages = FsPages::find()->orderBy(['order_num' => SORT_ASC])->all();
         return $this->render('pages', ['pages' => $pages]);
+    }
+    /*BLOG PAGES PAGE ACTION EDITE|DELETE|CREATE|COPY*/
+    public function actionBlogs() {
+
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['admin/login']);
+        }
+        $post = Yii::$app->request->post();
+        if ($post && $post['add']) {
+            $blog = new FsBlogs();
+            $blog->load($post);
+            $blog->url =  $this->transLateURRL($blog->page_name_am);
+            if (!empty($_FILES['img']) && $_FILES['img']['tmp_name']) {
+                $tmp_name = $_FILES["img"]["tmp_name"];
+                $name = time() . basename($_FILES["img"]["name"]);
+                move_uploaded_file($tmp_name, "web/uploads/$name");
+                $blog->img = "web/uploads/$name";
+            }
+            $blog->save(false);
+            $this->redirect(['blogs', 'success' => 'true', 'id' => 'key' .$blog->id]);
+        }
+        else if ($post && $post['edite']) {
+            $blog = FsBlogs::findOne(['id' => intval($post['id']) ]);
+            $blog->load($post);
+            $blog->url =  $this->transLateURRL($blog->page_name_am);
+            $blog->save(false);
+            $this->redirect(['blogs', 'success' => 'true', 'id' => 'key' .  $blog->id]);
+        }
+        $blogs = FsBlogs::find()->orderBy(['order_num' => SORT_ASC])->all();
+        $categories = FsCategories::find()->select('id,name')->where(['parent_id'=>244,'status'=>1])->orderBy(['order_num' => SORT_ASC])->all();
+        return $this->render('blogs', ['blogs' => $blogs,'categories'=>$categories]);
     }
     /*STORES PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionStores() {
@@ -1264,6 +1296,15 @@ class AdminController extends Controller {
         $page = FsPages::findOne(['id' => $id]);
         return $this->renderAjax('page-copy-popup', ['page' => $page]);
     }
+    public function actionBlogCopy() {
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['admin/login']);
+        }
+        $id = intval($_GET['id']);
+        $blog = FsBlogs::findOne(['id' => $id]);
+        $categories = FsCategories::find()->select('id,name')->where(['parent_id'=>244,'status'=>1])->orderBy(['order_num' => SORT_ASC])->all();
+        return $this->renderAjax('blog-copy-popup', ['blog' => $blog,'categories'=>$categories]);
+    }
     public function actionBannerCopy() {
         if (Yii::$app->user->isGuest) {
             $this->redirect(['admin/login']);
@@ -1363,6 +1404,15 @@ class AdminController extends Controller {
         $page = FsPages::findOne(['id' => $id]);
         return $this->renderAjax('page-edite-popup', ['page' => $page]);
     }
+    public function actionBlogEdite() {
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['admin/login']);
+        }
+        $id = intval($_GET['id']);
+        $blog = FsBlogs::findOne(['id' => $id]);
+        $categories = FsCategories::find()->select('id,name')->where(['parent_id'=>244,'status'=>1])->orderBy(['order_num' => SORT_ASC])->all();
+        return $this->renderAjax('blog-edite-popup', ['blog' => $blog,'categories'=>$categories]);
+    }
     public function actionStoreEdite() {
         if (Yii::$app->user->isGuest) {
             $this->redirect(['admin/login']);
@@ -1456,6 +1506,18 @@ class AdminController extends Controller {
     public function actionPageDisable() {
         $id = intval($_GET['id']);
         $item = FsPages::findOne(['id' => $id]);
+        if ($item->status) {
+            $item->status = 0;
+        }
+        else {
+            $item->status = 1;
+        }
+        $item->save(false);
+        return true;
+    }
+    public function actionBlogDisable() {
+        $id = intval($_GET['id']);
+        $item = FsBlogs::findOne(['id' => $id]);
         if ($item->status) {
             $item->status = 0;
         }

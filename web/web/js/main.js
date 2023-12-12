@@ -118,7 +118,16 @@ function disablePage(id) {
 		});
 	}
 }
-
+function disableBlog(id) {
+	if (id) {
+		jQuery.ajax({
+			url: "/admin/blog-disable?id=" + id,
+			success: function(result) {
+				window.location.reload();
+			}
+		});
+	}
+}
 function copyCategory(id) {
 	if (id) {
 		jQuery.ajax({
@@ -160,7 +169,16 @@ function copyPage(id) {
 		});
 	}
 }
-
+function copyBlog(id) {
+	if (id) {
+		jQuery.ajax({
+			url: "/admin/blog-copy?id=" + id,
+			success: function(result) {
+				jQuery(".modals").html(result);
+			}
+		});
+	}
+}
 function editeParams(id) {
 	if (id) {
 		jQuery.ajax({
@@ -244,7 +262,16 @@ function editePage(id) {
 		});
 	}
 }
-
+function editeBlog(id) {
+	if (id) {
+		jQuery.ajax({
+			url: "/admin/blog-edite?id=" + id,
+			success: function(result) {
+				jQuery(".modals").html(result);
+			}
+		});
+	}
+}
 function editeBanner(id) {
 	if (id) {
 		jQuery.ajax({
@@ -746,6 +773,10 @@ jQuery(document).ready(function($) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		editePage(id);
 	});
+	$('body').on('click', '#editeBlog', function(event) {
+		var id = $('.sortableTable tr.active').attr('data-id');
+		editeBlog(id);
+	});
 	$('body').on('click', '#editeManager', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		editeManager(id);
@@ -757,6 +788,10 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '#copyPage', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		copyPage(id);
+	});
+	$('body').on('click', '#copyBlog', function(event) {
+		var id = $('.sortableTable tr.active').attr('data-id');
+		copyBlog(id);
 	});
 	$('body').on('click', '#copyBrand', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');
@@ -781,6 +816,10 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '#disablePage', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		disablePage(id);
+	});
+	$('body').on('click', '#disableBlog', function(event) {
+		var id = $('.sortableTable tr.active').attr('data-id');
+		disableBlog(id);
 	});
 	$('body').on('click', '#disableBanner', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');

@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=fos_db',
+    'dsn' => 'mysql:host=localhost;dbname=adanas',
 //    'username' => 'fos_user',
 //    'password' => ']1[KjqmGYvtw',
      'username' => 'root',

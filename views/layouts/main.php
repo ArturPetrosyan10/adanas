@@ -28,8 +28,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FOS Admin</title>
-    <meta name="description" content="FOS Admins">
+    <title>Adanas Admin</title>
+    <meta name="description" content="Adanas Admin Panel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -149,6 +149,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                      <li>
                          <a href="/admin/pages"><i class="menu-icon fa fa-file"></i>Էջեր</a>
                      </li>
+                    <li>
+                        <a href="/admin/blogs"><i class="menu-icon fa fa-rss"></i>Նորություններ</a>
+                    </li>
                     <li>
                         <a href="/admin/texts"><i class="menu-icon fa fa-font"></i>Տեքստեր</a>
                     </li>
