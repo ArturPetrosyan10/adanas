@@ -78,14 +78,20 @@ class AdProductController extends Controller
 
         $model = new AdProduct();
         $modelImg = new AdProductImg();
-
+//        echo '<pre>';
+//        var_dump($_FILES);
+//        die;
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) && $_FILES['AdProductImg']['name']['nameImg'] && $model->save()) {
                 $last = AdProduct::find()->orderBy(['id' => SORT_DESC])->asArray()->one();
 
-                $modelImg->name = $_FILES['AdProductImg']['name']['name'];
-                $modelImg->productId=$last['id'];
-                $modelImg->active= $modelImg->name;
+                $uploaddir = 'web/adImg/';
+                $uploadfile = $uploaddir . time() . basename($_FILES['AdProductImg']['name']['nameImg']);
+                move_uploaded_file($_FILES['AdProductImg']['tmp_name']['nameImg'], $uploadfile);
+                $modelImg->nameImg = $uploadfile;
+
+                $modelImg->productId = $last['id'];
+                $modelImg->active = $modelImg->nameImg;
                 $modelImg->save();
                 return $this->redirect(['index']);
             }
@@ -95,7 +101,7 @@ class AdProductController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'modelImg'=>$modelImg
+            'modelImg' => $modelImg
         ]);
     }
 
@@ -111,13 +117,18 @@ class AdProductController extends Controller
         $this->layout = 'store';
 
         $model = $this->findModel($id);
+        $modelImg=AdProductImg::find()
+            ->where(['productId' => $id ])
+            ->one();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+
         return $this->render('update', [
             'model' => $model,
+            'modelImg'=>$modelImg
         ]);
     }
 
