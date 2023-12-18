@@ -310,7 +310,7 @@ use app\models\FsProducts;
         color:#8C8370;
     }
     .pagination li.active{
-        background:#DAA520;
+        background:#ffbd27;
     }
     .pagination li.active a{
         color:white;
@@ -319,16 +319,16 @@ use app\models\FsProducts;
         display:none !important;
     }
     .irs-bar,.irs--round .irs-handle{
-        background-color:#DAA520 !important;
-        color:#DAA520;
-        border-color:#DAA520 !important;
+        background-color:#ffbd27 !important;
+        color:#ffbd27;
+        border-color:#ffbd27 !important;
     }
     .extra-controls{
         margin-top:20px;
     }
     .extra-controls input{
         display:inline-block;
-        background:#DAA520;
+        background:#ffbd27;
         color:white;
         width:120px;
         margin-right:10px;

@@ -156,7 +156,7 @@ use app\models\FsParams;
         }
         .m-only{
             display:inline-block;
-            color:#DAA520;
+            color:#ffbd27;
             font-size:14px;
             margin-top:10px;
             float:right;

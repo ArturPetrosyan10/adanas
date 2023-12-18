@@ -36,7 +36,7 @@ p,a,span,h4,button,b{
   max-width:80% !important;
 }
 .page-item.active .page-link{
-  background: #DAA520 !important;
+  background: #ffbd27 !important;
   color:white  !important;
   border-color:black !important;
 }
@@ -74,12 +74,12 @@ button.close {
   background-position: 0 8px !important;
 }
 .chosen-container .chosen-results li.highlighted{
-    background: #DAA520 !important;
+    background: #ffbd27 !important;
 }
 input[type=file]::file-selector-button {
   margin-right: 20px;
   border: none;
-  background: #DAA520;
+  background: #ffbd27;
   padding: 10px 20px;
   border-radius: 5px;
   color: #fff;
@@ -2579,16 +2579,16 @@ footer.site-footer {
 /*# sourceMappingURL=style.css.map */
 
       .btn-succ{
-                        background: #DAA520;
+                        background: #ffbd27;
                         color:white;
                         float: right;
                         margin-right: 5px;
                     }
                     .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:focus, .navbar .navbar-nav > .active > a:hover{
-                        color: #DAA520;
+                        color: #ffbd27;
                     }
                     .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before, .navbar .navbar-nav li .toggle_nav_button.nav-open:before{
-                         color: #DAA520;
+                         color: #ffbd27;
                     }
                     body{
                         background: #f1f2f7;

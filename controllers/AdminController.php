@@ -83,7 +83,7 @@ class AdminController extends Controller {
             $product->provider_id = Yii::$app->user->id;
             $product->user_id = Yii::$app->user->id;
             $product->price = $post['price'];
-            $product->brand_id = $post['brand_id'];
+            $product->store_id = $post['brand_id'];
             $product->is_aah = $post['is_aah'];
             $product->is_tax = $post['is_tax'];
             $product->tax_procent = $post['tax_procent'];
@@ -177,7 +177,7 @@ class AdminController extends Controller {
             $product->description_en = $post['description_en'];
             $product->send_notice = $post['is_new'];
             $product->is_aah = $post['is_aah'];
-            $product->brand_id = $post['brand_id'];
+            $product->store_id = $post['brand_id'];
             $product->is_tax = $post['is_tax'];
             $product->tax_procent = $post['tax_procent'];
             $product->is_env = $post['is_env'];
@@ -283,7 +283,7 @@ class AdminController extends Controller {
                 $condCategory = ['category_id' => $_GET['category_id']]; 
             }
             if (!empty($_GET['brand_id'])) {
-                $condBrand = ['brand_id' => $_GET['brand_id']]; 
+                $condBrand = ['store_id' => $_GET['brand_id']];
             }
 
             $products = FsProducts::find()->where($cond)->andWhere($condAnd)->andWhere($condCategory)->andWhere($condBrand)->all();
@@ -966,6 +966,7 @@ class AdminController extends Controller {
         }
         $post = Yii::$app->request->post();
         if ($post && $post['edite']) {
+
             $settings = FsSettings::findOne(['id' => 1]);
             $settings->load($post);
             if (isset($_FILES['img'])) {
@@ -982,6 +983,12 @@ class AdminController extends Controller {
                     $settings->sitemap = $uploadfile;
                 }
             }
+            if($post['FsSettings']['address']){
+                $settings->address = $post['FsSettings']['address'];
+            }
+            if($post['FsSettings']['number']){
+                $settings->number = $post['FsSettings']['number'];
+            }
             $settings->save(false);
             $this->redirect(['settings', 'success' => 'true', 'id' => 'key1']);
         }
@@ -992,7 +999,8 @@ class AdminController extends Controller {
             $user->auth_key = substr($user->password, 0, 30);
             $user->save(false);
             $this->redirect(['settings', 'success' => 'true', 'id' => 'key1']);
-        }  else if ($post && $post['edite_sec']) {
+        }
+        else if ($post && $post['edite_sec']) {
             $user = Users::findOne(['id'=>intval($post['id'])]);
             $user->load($post);
             if($post['Users']['password']) {
@@ -1000,7 +1008,8 @@ class AdminController extends Controller {
             }
             $user->save(false);
             $this->redirect(['settings', 'success' => 'true', 'id' => 'key1']);
-        } else if ($post && $post['add_sec']) {
+        }
+        else if ($post && $post['add_sec']) {
             $user = new Users();
             $user->load($post);
             if($post['Users']['password']) {
@@ -1012,6 +1021,7 @@ class AdminController extends Controller {
             $user->save(false);
             $this->redirect(['settings', 'success' => 'true', 'id' => 'key1']);
         }
+
         $id = intval(1);
         $settings = FsSettings::findOne(['id' => $id]);
         $users = Users::find()->all();

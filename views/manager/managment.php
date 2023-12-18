@@ -84,7 +84,7 @@ if(isset($_GET['success']) &&$_GET['success'] == 'true'){ ?>
 
     <style>
         legend {
-            background-color: #DAA520;
+            background-color: #ffbd27;
             color: white;
             padding: 10px;
             font-size:18px;

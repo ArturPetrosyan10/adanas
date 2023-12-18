@@ -112,7 +112,7 @@
     <section style="margin-top:20px;">
         <img src="/web/images/home-page1.webp" alt="">
     </section>
-    <section class="fs-weekly-supplier fs-main-section-el" id="weekly" data-dom-el="section" style="margin-bottom: 14.6rem">
+    <section class="fs-weekly-supplier fs-main-section-el" id="weekly" data-dom-el="section">
         <div class="fs-container">
             <div class="d-flex justify-content-between">
                 <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_1_']?></h2>

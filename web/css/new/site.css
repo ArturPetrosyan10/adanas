@@ -178,10 +178,24 @@ ul li {
 .fs-home-page-banner:hover {
     transform: scale(1.05);
 }
+.fs-contact-us-submit-btn-wrapper button:hover {
+    color: black;
+}
+.read-more-news a:hover {
+    font-size: 17px;
+    color:blue;
+}
 .fs-product-card:hover {
     transform: scale(1.05);
 }
-
+.news-block .news-img:hover {
+    opacity:0.9;
+    transform: scale(1.05);
+}
+.read-more-news a{
+    font-size:15px;
+    color:black;
+}
 
 .fs-section-title{
     padding-top: 11rem;
@@ -490,6 +504,221 @@ footer ul a{
 a:hover {
     text-decoration: none;
 }
+.news-menu ul li a{
+    color:black !important;
+    font-size: 16px;
+    font-weight: 600;
+}
+.news-menu ul{
+    align-items:center;
+    height:7px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+.all-news{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.news-block{
+    width:49%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-top:20px;
+}
+.news-img-parent{
+    max-width:100%;
+    overflow:hidden;
+    border-radius: 4px;
+    background:#222;
+}
+.news-block .news-img{
+    height:391px;
+    width:100%;
+    background-size:cover !important;
+    background-repeat:no-repeat;
+    border-radius: 4px;
+}
+.news-block h4{
+    font-family: inherit;
+    font-size: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    line-height: 33px;
+}
+.about-news{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    margin-top: 10px;
+    font-size: 15px;
+}
+button:focus {
+     outline: none;
+}
+.fs-product-add-to-fav{
+    position:absolute;
+    top:0;
+    left:10px;
+    width:2.4rem;
+    height:2.4rem;
+    padding:0;
+    font-size:1.8rem;
+    background-color:transparent;
+    border:none;
+    outline:none;
+    color:#9B958C;
+    cursor:pointer
+}
+.fs-product-add-to-fav.active{
+    color:#008A4E
+}
+.fs-product-add-to-fav.active:before{
+    content:"\e913"
+}
+.fs-filter-reset-btn-wrapper .fs-filter-reset-btn{
+    height: 4.6rem;
+    min-width: 10.8rem;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 0.1rem solid #B9AF9D;
+    background-color: transparent;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #8C8370;
+    border-radius: 0.4rem;
+}
+.fs-filter-reset-btn-wrapper{
+    width:100%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:space-between;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    padding-top:3.2rem
+}
+.fs-contact-us-textarea-field {
+    display: block;
+    width: 100%;
+}
+.fs-contact-us-submit-btn-wrapper button{
+    background-color:#ffbd27;
+    font-size:1.6rem;
+    line-height:2.4rem;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    border:none;
+    border-radius:4px;
+    padding: 6px 1.6rem;
+}
+.fs-contact-us-textarea-field textarea{
+    height: 150px;
+    border-color: #e5e8ec;
+    border-radius: 4px;
+    background: transparent;
+    padding: 10px !important;
+    color: #021523;
+    resize: none;
+    width:100%;
+    font-size:15px;
+}
+.fs-contact-us-input-field input{
+    width: 100%;
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6em;
+    padding-left: 1.6rem;
+    height: 40px;
+    border-radius: 4px;
+    border: solid 1px #e5e8ec;
+}
+.fs-contact-us-wrapper{
+    width:60%;
+    padding-bottom:4.6rem
+}
+.info-icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #febb3e;
+    font-size: 26px;
+    color: #021523;
+}
+.contact-info-contacts .contact-block{
+    width: max-content;
+    gap: 35px;
+    padding-left: 2.6rem;
+}
+.contact-info-contacts .contact-infos{
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background: #F7F8F9;
+    border-radius: 4px;
+}.contact-info-contacts .info-title {
+     font-size: 16px;
+     font-weight: bold;
+ }
+.contact-info-contacts .info-description {
+     font-size: 14px;
+     font-weight: 400;
+ }
+.w-33{
+    width:33% !important;
+}
+.fs-page-title h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 3rem;
+    line-height: 4rem;
+    color: #0a0a0a;
+    padding-bottom: 3.2rem;
+    font-family: math;
+}
+.fs-contact-us-submit-btn-wrapper{
+    width:100%;
+    display:flex;
+    -ms-flex-pack:end;
+    align-items:center;
+    margin-top:3.2rem
+}
+#main{
+    box-sizing: border-box;
+    min-height: 100%;
+    margin-bottom: 10rem;
+}
+
 @media screen and (max-width: 1000px){
      .fs-home-page-banner-list {
         grid-template-columns: repeat(3, calc( 33.33% - 25px ) );

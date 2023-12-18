@@ -70,15 +70,15 @@
                   <div class="col-lg-12">
                      <div class="">
                         <table class="table" id="discountTable">
-                           <thead style="background:#DAA520;color:white !important;">
+                           <thead style="background:#ffbd27;color:white !important;">
                               <tr>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Անվանում</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Կարգավիճակ</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Սկիզբ</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Ավարտ</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Տիպ</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Պայման</th>
-                                 <th scope="col" style="background:#DAA520 !important;color:white !important;">Խմբի տեսակ</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Անվանում</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Կարգավիճակ</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Սկիզբ</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Ավարտ</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Տիպ</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Պայման</th>
+                                 <th scope="col" style="background:#ffbd27 !important;color:white !important;">Խմբի տեսակ</th>
                               </tr>
                            </thead>
                            <tbody class="sortableTable" id="sortable">
@@ -396,7 +396,7 @@
                         <button class="btn-add btn-add-type" type="button">+ Ավելացնել</button>
                         <br>
                         <table class="table" style="border:1px solid lightgray;margin-left: -10px;">
-                            <thead style="background: #DAA520;color: white !important;border-radius: 10px 5px 0px 0px;">
+                            <thead style="background: #ffbd27;color: white !important;border-radius: 10px 5px 0px 0px;">
                                 <tr>
                                     <td>N</td>
                                     <td>ԶԵՂՉԻ ՊԱՅՄԱՆ</td>
@@ -423,7 +423,7 @@
                           </span>
                         <br>
                         <table class="table" style="border:1px solid lightgray;margin-left: -10px;">
-                            <thead style="background: #DAA520;color: white !important;border-radius: 10px 5px 0px 0px;">
+                            <thead style="background: #ffbd27;color: white !important;border-radius: 10px 5px 0px 0px;">
                                 <tr>
                                     <td>Տեսականի</td>
                                     <td>Համեմատության տեսակ</td>
@@ -438,7 +438,7 @@
                            <button class="btn-add btn-add-partner" type="button">+ Ավելացնել</button>
                            <br>
                             <table class="table" style="border:1px solid lightgray;margin-left: -10px;">
-                                <thead style="background: #DAA520;color: white !important;border-radius: 10px 5px 0px 0px;">
+                                <thead style="background: #ffbd27;color: white !important;border-radius: 10px 5px 0px 0px;">
                                     <tr>
                                         <td>Գործընկեր</td>
                                         <td>Համեմատության տեսակ</td>
@@ -605,7 +605,7 @@
                              <button class="btn-add btn-add-cond-second" type="button">+ Ավելացնել</button>
                              <br>
                              <table class="table" style="border:1px solid lightgray;margin-left: -10px;">
-                                 <thead style="background: #DAA520;color: white !important;border-radius: 10px 5px 0px 0px;">
+                                 <thead style="background: #ffbd27;color: white !important;border-radius: 10px 5px 0px 0px;">
                                  <tr>
                                      <td>Տեսականի</td>
                                      <td>Համեմատության տեսակ</td>

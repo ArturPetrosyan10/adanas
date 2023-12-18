@@ -26,7 +26,7 @@
         background: #4A4640 !important;
     }
     .btn-succ{
-        background: #DAA520;
+        background: #ffbd27;
         color:white;
     }
 </style>

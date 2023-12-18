@@ -57,7 +57,7 @@ if(!empty($paramsToCategory)){
         color:#8C8370;
     }
     .pagination li.active{
-        background:#DAA520;
+        background:#ffbd27;
     }
     .pagination li.active a{
         color:white;

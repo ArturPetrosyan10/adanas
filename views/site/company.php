@@ -105,9 +105,6 @@
                                         </button>
                                     </div>
                                     <form class="fs-mobile-filter-body">
-                                      
-                                        <br>
-
                                         <div class="fs-mobile-filter-wrapper">
                                             <?php if(!empty($paramsToCategory)){ ?>
                                             <?php  echo $this->renderFile('@app/views/site/get-param.php', ['paramsToCategory' => $paramsToCategory]);?>
@@ -230,7 +227,7 @@
         color:#8C8370;
     }
     .pagination li.active{
-        background:#DAA520;
+        background:#ffbd27;
     }
     .pagination li.active a{
         color:white;
@@ -239,16 +236,16 @@
         display:none !important;
     }
     .irs-bar,.irs--round .irs-handle{
-        background-color:#DAA520 !important;
-        color:#DAA520;
-        border-color:#DAA520 !important;
+        background-color:#ffbd27 !important;
+        color:#ffbd27;
+        border-color:#ffbd27 !important;
     }
     .extra-controls{
         margin-top:20px;
     }
     .extra-controls input{
         display:inline-block;
-        background:#DAA520;
+        background:#ffbd27;
         color:white;
         width:120px;
         margin-right:10px;
@@ -258,16 +255,7 @@
     }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/ion-rangeslider@2.3.0/js/ion.rangeSlider.min.js"></script>
-<?php $fromPrice =0;
-$toPrice =$maxPrice = 500000;
-$fromPrice = 0;
-if(isset($_GET['price'])){
-    $price_range = explode(';',$_GET['price']);
-    $fromPrice = $price_range[0];
-    $toPrice = $price_range[1];
-}
 
-?>
 <script>
         setTimeout(function(){
 

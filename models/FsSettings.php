@@ -16,9 +16,11 @@ use Yii;
  * @property int $delivery_free_start_price_regions
  * @property int $is_free_delivery
  * @property int $is_brand
- * @property string $admin_email
  * @property string $site_logo
  * @property string $sitemap
+ * @property string $admin_email
+ * @property string $number
+ * @property string $address
  */
 class FsSettings extends \yii\db\ActiveRecord
 {

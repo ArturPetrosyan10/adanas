@@ -1,5 +1,5 @@
 legend {
-    background-color: #DAA520;
+    background-color: #ffbd27;
     color: white;
     padding: 10px;
     font-size:18px;
@@ -63,7 +63,7 @@ label{
     top: 20px;
 }
 .btn-succ input:checked + label ,#addnew input:checked + label.swtch{
-    background: #DAA520;
+    background: #ffbd27;
 }
 .btn-succ input:checked + label:after,#addnew input:checked + label.swtch:after{
     left: calc(100% - 5px);
@@ -99,10 +99,10 @@ table.dataTable thead>tr>th.sorting:before{
     border:0px !important;
 }
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
-    background: #DAA520 !important;
+    background: #ffbd27 !important;
 }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
-    background: #DAA520 !important;
+    background: #ffbd27 !important;
 }
 .ui-datepicker-prev span {
     background-image: url(/web/images/left.png) !important;
@@ -146,11 +146,11 @@ table.dataTable thead>tr>th.sorting:before{
 }
    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
        border:0px;
-       border-bottom: 2px solid #DAA520;
+       border-bottom: 2px solid #ffbd27;
    }
    .nav-tabs .nav-link:hover,.nav-tabs .nav-link:focus{
         border:0px;
-       border-bottom: 2px solid #DAA520;
+       border-bottom: 2px solid #ffbd27;
    }
    .nav-tabs .nav-link {
         border-top: 0px  !important;
@@ -162,7 +162,7 @@ table.dataTable thead>tr>th.sorting:before{
    }
    .checkbox-block{
        padding: 0px 10px 25px 15px;
-      background-image: repeating-linear-gradient(0deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(90deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(180deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(270deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px);
+      background-image: repeating-linear-gradient(0deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(90deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(180deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(270deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px);
 background-size: 2px 100%, 100% 2px, 2px 100% , 100% 2px;
 background-position: 0 0, 0 0, 100% 0, 0 100%;
 background-repeat: no-repeat;
@@ -318,7 +318,7 @@ input[type='radio']{
 input[type='radio']:checked{
     border: double 3px #fff;
  content: '';
- background: #DAA520;
+ background: #ffbd27;
 }
 
 input[type='radio']:after{
@@ -399,8 +399,8 @@ label.checkbox input[type=checkbox]:focus:checked ~ span {
 }
 label.checkbox input[type=checkbox]:checked ~ span {
     color: #FFFFFF;
-    background: #DAA520 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHdpZHRoPSIxMiIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgMTIgOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPHBhdGggZD0iTTQuNTc1IDguOTc3cy0uNDA0LS4wMDctLjUzNi0uMTY1TC4wNTcgNS42NGwuODI5LTEuMjI3TDQuNDcgNy4yNjggMTAuOTIxLjA4NmwuOTIzIDEuMTAzLTYuODYzIDcuNjRjLS4xMzQtLjAwMy0uNDA2LjE0OC0uNDA2LjE0OHoiIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPg0KPC9zdmc+) 50% 40% no-repeat;
-    border: 2px solid #DAA520;
+    background: #ffbd27 url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHdpZHRoPSIxMiIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgMTIgOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPHBhdGggZD0iTTQuNTc1IDguOTc3cy0uNDA0LS4wMDctLjUzNi0uMTY1TC4wNTcgNS42NGwuODI5LTEuMjI3TDQuNDcgNy4yNjggMTAuOTIxLjA4NmwuOTIzIDEuMTAzLTYuODYzIDcuNjRjLS4xMzQtLjAwMy0uNDA2LjE0OC0uNDA2LjE0OHoiIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPg0KPC9zdmc+) 50% 40% no-repeat;
+    border: 2px solid #ffbd27;
 }
 label.checkbox span {
     border-radius: 3px;

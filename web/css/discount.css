@@ -162,7 +162,7 @@ table.dataTable thead>tr>th.sorting:before{
    }
    .checkbox-block{
         padding: 0px 10px 25px 15px;
-        background-image: repeating-linear-gradient(0deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(90deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(180deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px), repeating-linear-gradient(270deg, #daa520, #daa520 11px, transparent 11px, transparent 21px, #daa520 21px);
+        background-image: repeating-linear-gradient(0deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(90deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(180deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px), repeating-linear-gradient(270deg, #ffbd27, #ffbd27 11px, transparent 11px, transparent 21px, #ffbd27 21px);
         background-size: 2px 100%, 100% 2px, 2px 100% , 100% 2px;
         background-position: 0 0, 0 0, 100% 0, 0 100%;
         background-repeat: no-repeat;

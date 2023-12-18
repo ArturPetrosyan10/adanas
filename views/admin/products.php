@@ -75,7 +75,7 @@
                                                                     <td scope="col"> <?php echo $product->name;?></td>
                                                                     <td scope="col">
                                                                         <?php
-                                                                        $br = \app\models\FsBrands::findOne(['id'=>$product->brand_id]);
+                                                                        $br = \app\models\FsBrands::findOne(['id'=>$product->store_id]);
                                                                         echo $br->name;?></td>
                                                                     <td scope="col"><?php echo $product->provider->name;?></td>
                                                                     <td scope="col"> <?php echo $product->category->name;?></td>

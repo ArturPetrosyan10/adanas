@@ -348,7 +348,7 @@ use app\models\FsRequests;
         list-style:none;
     }
     .date__ span{
-        color:#DAA520;
+        color:#ffbd27;
         padding:5px;
         font-size:15px;
         cursor:pointer;

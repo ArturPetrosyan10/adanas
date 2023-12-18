@@ -2,10 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\FsBlogs;
 use app\models\FsCategoriesLang;
 use app\models\FsDiscounts;
 use app\models\FsParamToCategory;
 use app\models\FsSettings;
+use app\models\FsStores;
 use app\models\FsTexts;
 use app\models\FsUserToBrand;
 use app\models\FsViewHistory;
@@ -267,11 +269,17 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         $user = Yii::$app->fsUser->identity;
         return $this->render('personal_mobile', ['user' => $user, 'categories' => $categories]);
     }
-    public function actionNews()
+    public function actionNews($url = null)
     {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            return $this->render('news', ['user' => $user]);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        if($url){
+            $news = FsBlogs::find()->where(['url'=>$url])->one();
+            return $this->render('news-block', ['user' => $user, 'item' => $news]);
+        }else{
+            $news = FsBlogs::find()->all();
+            return $this->render('news', ['user' => $user, 'news' => $news]);
+        }
     }
 
     public function actionPersonalHistory($page = 1, $state = null, $fromdate = null, $todate = null)
@@ -675,6 +683,29 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         return $this->redirect('/personal');
     }
 
+    public function actionBrands($id = null){
+        //companydetails
+        $this->layout = 'site';
+        if($id){
+            $brand = FsStores::findOne($id);
+            if(!$brand){
+                $this->redirect('/404');
+            }
+            $products = FsProducts::find()->where(['store_id' => $id]);
+            if(isset($_GET['price'])){
+                $price_range = explode(';',$_GET['price']);
+                $fromPrice = $price_range[0];
+                $toPrice = $price_range[1];
+                $cond_comp= ['BETWEEN','price',$fromPrice,$toPrice];
+                $products->andWhere($cond_comp);
+            }
+            $products = $products->all();
+            return $this->render('one-brand',['brand'=> $brand , 'products' => $products]);
+        }else{
+            $brands = FsStores::find()->where(['parent_id' => null])->all();
+            return $this->render('brand',['brands'=> $brands]);
+        }
+    }
     public function actionCompanyDetails($id)
     {
         $this->layout = 'site';
@@ -969,8 +1000,28 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     }
     public function actionShop(){
         $this->layout = 'site';
-        $product = FsProducts::find()->all();
-        return $this->render('product', ['product' => $product]);
+        $products = FsProducts::find();
+        if(isset($_GET['price'])){
+            $price_range = explode(';',$_GET['price']);
+            $fromPrice = $price_range[0];
+            $toPrice = $price_range[1];
+            $cond_comp= ['BETWEEN','price',$fromPrice,$toPrice];
+            $products->andWhere($cond_comp);
+        }
+
+        $total_count = clone $products;
+        $total_count = $total_count->select('count(id)');
+        $total_count = $total_count->asArray();
+        $total_count = $total_count->one();
+        $total_count = $total_count['count(id)'];
+        if(isset($_GET['page'])){
+            $pageSize = 20;
+            $products->limit(20);
+            $offset = ($_GET['page']) * $pageSize;
+            $products->offset($offset);
+        }
+        $products = $products->all();
+        return $this->render('shop',['products'=>$products,'total_count' => $total_count]);
     }
 
     public function actionCart()
@@ -1309,7 +1360,7 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
      *
      * @return Response|string
      */
-    public function actionContact()
+/*    public function actionContact()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
@@ -1320,7 +1371,7 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         return $this->render('contact', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Displays about page.
@@ -1332,7 +1383,8 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     {
         $this->layout = 'site';
         $user = Yii::$app->fsUser->identity;
-        return $this->render('contacts', ['user' => $user]);
+        $info = FsSettings::findOne(1);
+        return $this->render('contacts', ['user' => $user,'info' => $info]);
     }
 
 

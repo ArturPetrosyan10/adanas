@@ -74,46 +74,65 @@
                         <form action="" method="post" enctype="multipart/form-data" style="padding:15px;width:100% !important;" class="row">
 
                             <fieldset class="scheduler-border">
-                                <legend class="scheduler-border">Առաքման կարգավորումներ</legend>
+                                <legend class="scheduler-border">Կոնտակտների Կարգավորումներ</legend>
                                 <input type="hidden" name="<?= $this->renderDynamic('return Yii::$app->request->csrfParam;'); ?>" value="<?= $this->renderDynamic('return Yii::$app->request->csrfToken;'); ?>" />
-
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Առաքման գինը Երևանում</span>
-                                        <input type="text" name="FsSettings[delivery_price_yerevan]" value="<?php echo $settings->delivery_price_yerevan;?>" placeholder="Առաքման գինը Երևանում" class="form-control">
-                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Արագ առաքման գինը Երևանում</span>
-                                        <input type="text" name="FsSettings[delivery_fast_price_yerevan]" value="<?php echo $settings->delivery_fast_price_yerevan;?>" placeholder="Արագ առաքման գինը Երևանում" class="form-control">
-                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Անվճար առաքման սկզբնական գինը Երևանում</span>
-                                        <input type="text" name="FsSettings[delivery_free_start_price_yerevan]" value="<?php echo $settings->delivery_free_start_price_yerevan;?>" placeholder="Անվճար առաքման սկզբնական գինը Երևանում" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Հեռախոսահամար</span>
+                                        <input type="text" name="FsSettings[number]" value="<?php echo $settings->number;?>" placeholder="Հեռախոսահամար" class="form-control">
                                     </div>
                                     <div class="col-sm-4">
-                                        <span style="margin-bottom: 4px;color: #878787;">Առաքման գինը Մարզերում</span>
-                                        <input type="text" name="FsSettings[delivery_price_regions]" placeholder="Առաքման գինը Մարզերում" value="<?php echo $settings->delivery_price_regions;?>" class="form-control">
-                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Արագ առաքման գինը Մարզերում</span>
-                                        <input type="text" name="FsSettings[delivery_fast_price_regions]" value="<?php echo $settings->delivery_fast_price_regions;?>" placeholder="Արագ առաքման գինը Մարզերում" class="form-control">
-                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Անվճար առաքման սկզբնական գինը Մարզերում</span>
-                                        <input type="text" name="FsSettings[delivery_free_start_price_regions]" value="<?php echo $settings->delivery_free_start_price_regions;?>" placeholder="Անվճար առաքման սկզբնական գինը Մարզերում" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Հասցե</span>
+                                        <input type="text" name="FsSettings[address]" value="<?php echo $settings->address;?>" placeholder="Արագ առաքման գինը Երևանում" class="form-control">
                                     </div>
                                     <div class="col-sm-4">
                                         <span style="margin-bottom: 4px;color: #878787;">Ադմինիստրատորի էլ․ փոստ</span>
                                         <input type="text" name="FsSettings[admin_email]" placeholder="Ադմինիստրատորի էլ․ փոստ" value="<?php echo $settings->admin_email;?>" class="form-control">
-                                        <div>
-                                           <input id="prop_new" <?php if($settings->is_free_delivery){ echo 'checked';}?>  type="checkbox" name="FsSettings[is_free_delivery]" value="1">
-                                           <label for="prop_new"  style="color: #878787;padding-left:0px;">Անվճար առաքում</label>
-                                       </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <span style="margin-bottom: 4px;color: #878787;">Լոգո</span>
                                         <?php if(!empty($settings->site_logo)){?>
-                                                <img src="/<?php echo $settings->site_logo;?>" height="45" alt="" style="border:1px solid lightgray;margin:5px;">
+                                            <img src="/<?php echo $settings->site_logo;?>" height="45" alt="" style="border:1px solid lightgray;margin:5px;">
                                         <?php } ?>
                                         <input type="file" multiple name="img">
-                                        <span style="margin-bottom: 4px;color: #878787;">Կայքի քարտեզ ( sitemap.xml )</span>
-                                        <?php if(!empty($settings->sitemap)){?>
-                                            <a href="/<?php echo $settings->sitemap;?>" target="_blank" style="border:1px solid lightgray;margin:5px;">Sitemap</a>
-                                        <?php } ?>
-                                        <input type="file" multiple name="sitemap">
                                     </div>
-                                    <br>
-                                <button type="submit" class="btn btn-succ" name="edite" value="true" style="margin-left:20px;margin-top:20px;">Գրանցել</button>
+
+
+
+                                    <!--<div class="col-sm-4">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Առաքման գինը Երևանում</span>
+                                        <input type="text" name="FsSettings[delivery_price_yerevan]" value="<?php /*echo $settings->delivery_price_yerevan;*/?>" placeholder="Առաքման գինը Երևանում" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Արագ առաքման գինը Երևանում</span>
+                                        <input type="text" name="FsSettings[delivery_fast_price_yerevan]" value="<?php /*echo $settings->delivery_fast_price_yerevan;*/?>" placeholder="Արագ առաքման գինը Երևանում" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Անվճար առաքման սկզբնական գինը Երևանում</span>
+                                        <input type="text" name="FsSettings[delivery_free_start_price_yerevan]" value="<?php /*echo $settings->delivery_free_start_price_yerevan;*/?>" placeholder="Անվճար առաքման սկզբնական գինը Երևանում" class="form-control">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <span style="margin-bottom: 4px;color: #878787;">Առաքման գինը Մարզերում</span>
+                                        <input type="text" name="FsSettings[delivery_price_regions]" placeholder="Առաքման գինը Մարզերում" value="<?php /*echo $settings->delivery_price_regions;*/?>" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Արագ առաքման գինը Մարզերում</span>
+                                        <input type="text" name="FsSettings[delivery_fast_price_regions]" value="<?php /*echo $settings->delivery_fast_price_regions;*/?>" placeholder="Արագ առաքման գինը Մարզերում" class="form-control">
+                                        <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Անվճար առաքման սկզբնական գինը Մարզերում</span>
+                                        <input type="text" name="FsSettings[delivery_free_start_price_regions]" value="<?php /*echo $settings->delivery_free_start_price_regions;*/?>" placeholder="Անվճար առաքման սկզբնական գինը Մարզերում" class="form-control">
+                                    </div>-->
+                                    <!--<div class="col-sm-4">
+                                        <span style="margin-bottom: 4px;color: #878787;">Ադմինիստրատորի էլ․ փոստ</span>
+                                        <input type="text" name="FsSettings[admin_email]" placeholder="Ադմինիստրատորի էլ․ փոստ" value="<?php /*echo $settings->admin_email;*/?>" class="form-control">
+                                        <div>
+                                           <input id="prop_new" <?php /*if($settings->is_free_delivery){ echo 'checked';}*/?>  type="checkbox" name="FsSettings[is_free_delivery]" value="1">
+                                           <label for="prop_new"  style="color: #878787;padding-left:0px;">Անվճար առաքում</label>
+                                       </div>
+
+                                        <span style="margin-bottom: 4px;color: #878787;">Կայքի քարտեզ ( sitemap.xml )</span>
+                                        <?php /*if(!empty($settings->sitemap)){*/?>
+                                            <a href="/<?php /*echo $settings->sitemap;*/?>" target="_blank" style="border:1px solid lightgray;margin:5px;">Sitemap</a>
+                                        <?php /*} */?>
+                                        <input type="file" multiple name="sitemap">
+                                    </div>-->
+
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-succ" name="edite" value="true" style="margin-left:20px;margin-top:20px;">Գրանցել</button>
+                                    </div>
                                 </div>
                             </fieldset>
                             </form>

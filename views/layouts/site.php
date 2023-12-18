@@ -31,12 +31,10 @@ $action_id = Yii::$app->controller->action->id;
     <?php $this->head()  ?>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
-
     <link rel="stylesheet" href="/web/css/plugins/fontawesome-free/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/web/css/new/site.css">
     <link rel="stylesheet" href="">
-
 </head>
 
 <?php $this->beginBody() ?>
@@ -48,9 +46,9 @@ $action_id = Yii::$app->controller->action->id;
         $urls = [0=>['action'=>'index','url' => '/','name'=> $GLOBALS['text']['__home__page__'] ],
             1=>['action'=>'shop','url'=>'/shop','name'=>$GLOBALS['text']['__shop__']],
             2=>['action'=>'categories','url'=>'/categories','name'=>$GLOBALS['text']['__categories__']],
-            3=>['action'=>'','name'=>$GLOBALS['text']['__brands__']],
+            3=>['action'=>'brands','url'=>'/brands','name'=>$GLOBALS['text']['__brands__']],
             4=>['action'=>'news','url'=>'/news','name'=>$GLOBALS['text']['__news__']],
-            5=>['action'=>'','name'=>$GLOBALS['text']['__contact__']]] ?>
+            5=>['action'=>'contacts','url'=>'/contacts','name'=>$GLOBALS['text']['__contact__']]] ?>
         <div class="fs-container">
             <ul class="d-flex p-0" style="align-items:center;height:75px">
                 <?php foreach ($urls as $index => $url) { ?>
