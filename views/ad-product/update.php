@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\AdProduct $model */
+/** @var app\models\AdProductImg $modelImg */
 
 $this->title = 'Թարմացնել : ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Ad Products', 'url' => ['index']];
@@ -18,6 +19,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
             <?= $this->render('_form', [
                 'model' => $model,
+                'modelImg'=>$modelImg
             ]) ?>
         </div>
     </div>

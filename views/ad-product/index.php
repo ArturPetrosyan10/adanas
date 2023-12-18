@@ -21,19 +21,25 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             <?= Html::a('+ Ավելացնել', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-<!--<pre>-->
-<!--        --><?php
-//        var_dump($dataProvider)
-//        ?>
-<!--</pre>-->
+
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
                 'id',
+                [
+                    'label' => 'Նկար',
+                    'attribute' => 'productId',
+                    'format' => 'html',
+                    'value' => function ($model) {
+                        $img = \app\models\AdProductImg::find()->where(['productId' => $model['id']])->asArray()->one();
+                        return "<img src='../$img[nameImg]' alt='$img[nameImg]' style='width: 50px'>";
+                        },
+                    'contentOptions' => ['class' => 'id-column'],
+                ],
                 'name',
+
                 'description',
                 'q_t',
                 [

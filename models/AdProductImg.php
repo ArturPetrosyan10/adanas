@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $productId
- * @property string|null $name
+ * @property string|null $nameImg
  * @property string|null $active
  */
 class AdProductImg extends \yii\db\ActiveRecord
@@ -28,9 +28,9 @@ class AdProductImg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['productId', 'name'], 'required'],
+            [['nameImg'], 'required'],
             [['productId'], 'integer'],
-            [['name', 'active'], 'string', 'max' => 50],
+            [['nameImg', 'active'], 'string', 'max' => 50],
         ];
     }
 
@@ -42,7 +42,7 @@ class AdProductImg extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'productId' => 'Product ID',
-            'name' => 'Name',
+            'nameImg' => 'Name',
             'active' => 'Active',
         ];
     }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 12, 2023 at 05:06 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Dec 15, 2023 at 03:56 PM
+-- Server version: 10.8.4-MariaDB
+-- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,10 +39,8 @@ CREATE TABLE `ad_product` (
 --
 
 INSERT INTO `ad_product` (`id`, `name`, `description`, `q_t`) VALUES
-(1, 'գետ', 'գետ', '1000 կմ'),
-(2, 'գետ', 'գետ', '1000 կմ'),
-(3, 'գետ', 'գետ', '1000 կմ'),
-(4, 'գետ', 'գետ', '1000 կմ');
+(32, 'գետ', 'գետ', '1000 կմ'),
+(33, 'գետ', 'գետ', '1000 կմ');
 
 -- --------------------------------------------------------
 
@@ -53,9 +51,17 @@ INSERT INTO `ad_product` (`id`, `name`, `description`, `q_t`) VALUES
 CREATE TABLE `ad_product_img` (
   `id` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nameImg` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ad_product_img`
+--
+
+INSERT INTO `ad_product_img` (`id`, `productId`, `nameImg`, `active`) VALUES
+(10, 32, 'web/adImg/1702644590new-logo.png', 0),
+(11, 33, 'web/adImg/1702644917For Honor2023-8-19-1-26-28.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -80,7 +86,7 @@ CREATE TABLE `fs_banners` (
   `status` int(11) DEFAULT 1,
   `type_` int(11) DEFAULT 1,
   `order_num` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_banners`
@@ -125,7 +131,7 @@ CREATE TABLE `fs_blogs` (
   `url` varchar(255) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_blogs`
@@ -145,7 +151,7 @@ CREATE TABLE `fs_brands` (
   `name` varchar(255) DEFAULT NULL,
   `order_num` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_brands`
@@ -168,7 +174,7 @@ CREATE TABLE `fs_brand_to_category` (
   `id` int(11) NOT NULL,
   `brand_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_brand_to_category`
@@ -234,7 +240,7 @@ CREATE TABLE `fs_categories` (
   `parent_id` int(11) DEFAULT NULL,
   `order_num` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_categories`
@@ -270,7 +276,7 @@ CREATE TABLE `fs_categories_lang` (
   `meta_description_en` text NOT NULL,
   `meta_keywords_ru` text NOT NULL,
   `meta_keywords_en` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_categories_lang`
@@ -311,7 +317,7 @@ CREATE TABLE `fs_discounts` (
   `end_date` date DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `order_num` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_discounts`
@@ -332,7 +338,7 @@ CREATE TABLE `fs_discount_assortment` (
   `discount_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -351,7 +357,7 @@ CREATE TABLE `fs_discount_conditions` (
   `for_all` int(11) DEFAULT 1,
   `condition_type_date` int(10) DEFAULT NULL,
   `condition_type_date_count` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_discount_conditions`
@@ -371,7 +377,7 @@ CREATE TABLE `fs_discount_condition_assortment` (
   `discount_condition_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -386,7 +392,7 @@ CREATE TABLE `fs_discount_groups` (
   `user_id` int(11) DEFAULT NULL,
   `order_num` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_discount_groups`
@@ -407,7 +413,7 @@ CREATE TABLE `fs_discount_partners` (
   `id` int(11) NOT NULL,
   `discount_id` int(11) DEFAULT NULL,
   `partner_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -420,7 +426,7 @@ CREATE TABLE `fs_langs` (
   `name` varchar(255) DEFAULT NULL,
   `url` varchar(5) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -436,7 +442,7 @@ CREATE TABLE `fs_measurements` (
   `name_en` varchar(25) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `order_num` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_measurements`
@@ -456,7 +462,7 @@ INSERT INTO `fs_measurements` (`id`, `code_`, `name`, `name_ru`, `name_en`, `sta
 
 CREATE TABLE `fs_notifications` (
   `id` int(11) NOT NULL,
-  `message` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `message` varchar(255) CHARACTER SET utf8mb3 DEFAULT NULL,
   `message_en` varchar(255) DEFAULT NULL,
   `message_ru` varchar(255) DEFAULT NULL,
   `sender_id` int(11) NOT NULL,
@@ -597,7 +603,7 @@ CREATE TABLE `fs_orders` (
   `shipping_date` date DEFAULT NULL,
   `cart_id` varchar(255) DEFAULT NULL,
   `seller_quantity` int(11) DEFAULT NULL,
-  `comment` text CHARACTER SET utf8 DEFAULT NULL,
+  `comment` text CHARACTER SET utf8mb3 DEFAULT NULL,
   `manager_id` int(11) DEFAULT NULL,
   `is_store` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -627,7 +633,7 @@ CREATE TABLE `fs_pages` (
   `create_date` timestamp NULL DEFAULT current_timestamp(),
   `status` int(11) DEFAULT 1,
   `url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_pages`
@@ -653,7 +659,7 @@ CREATE TABLE `fs_params` (
   `parent_id` int(11) DEFAULT NULL,
   `type_` varchar(15) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_params`
@@ -680,7 +686,7 @@ CREATE TABLE `fs_param_to_category` (
   `id` int(11) NOT NULL,
   `param_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_param_to_category`
@@ -728,7 +734,7 @@ CREATE TABLE `fs_products` (
   `order_num` int(11) NOT NULL DEFAULT 0,
   `orders_count` int(11) DEFAULT 0,
   `atg` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_products`
@@ -769,7 +775,7 @@ CREATE TABLE `fs_product_params` (
   `product_id` int(11) NOT NULL,
   `param_id` int(11) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_product_params`
@@ -799,7 +805,7 @@ CREATE TABLE `fs_product_variations` (
   `param_id` int(11) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `price` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -846,7 +852,7 @@ CREATE TABLE `fs_settings` (
   `sitemap` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `is_brand` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_settings`
@@ -875,7 +881,7 @@ CREATE TABLE `fs_stores` (
   `status` int(11) DEFAULT 1,
   `parent_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_stores`
@@ -898,7 +904,7 @@ CREATE TABLE `fs_templates` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `seller_id` int(11) DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 DEFAULT NULL,
   `cart_id` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -922,7 +928,7 @@ CREATE TABLE `fs_texts` (
   `text_am` varchar(255) DEFAULT NULL,
   `text_ru` varchar(255) DEFAULT NULL,
   `text_en` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_texts`
@@ -1213,7 +1219,7 @@ CREATE TABLE `fs_users` (
   `order_num` int(11) DEFAULT 0,
   `active_date` datetime DEFAULT NULL,
   `status` int(11) DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_users`
@@ -1253,7 +1259,7 @@ CREATE TABLE `fs_user_to_brand` (
   `customer_id` int(11) DEFAULT NULL,
   `company_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -1265,7 +1271,7 @@ CREATE TABLE `fs_user_to_category` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -1278,7 +1284,7 @@ CREATE TABLE `fs_view_history` (
   `user_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `ip` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `fs_view_history`
@@ -1407,18 +1413,18 @@ INSERT INTO `store` (`id`, `name`, `address`, `location`, `number`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `auth_key` varchar(32) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb3_unicode_ci NOT NULL,
   `status` smallint(6) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_login` timestamp NULL DEFAULT current_timestamp(),
   `role` int(10) DEFAULT NULL,
   `company_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `user`
@@ -1431,6 +1437,18 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password`, `password_reset_to
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ad_product`
+--
+ALTER TABLE `ad_product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ad_product_img`
+--
+ALTER TABLE `ad_product_img`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `fs_banners`
@@ -1643,6 +1661,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `ad_product`
+--
+ALTER TABLE `ad_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `ad_product_img`
+--
+ALTER TABLE `ad_product_img`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `fs_banners`
