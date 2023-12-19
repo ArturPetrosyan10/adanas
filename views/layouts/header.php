@@ -102,62 +102,38 @@ function isMobile() {
             <button type="button" class="fs-mobile-search-btn fs-icon-search"></button>
             <ul class="fs-action-buttons">
                 <li class="fs-action-button d-flex" data-role="authorization" style="min-width:max-content;gap:1rem">
-                <?php   if(Yii::$app->fsUser->isguest) { ?>
-                    <button class="fs-icon-user" style="color:black"></button>
-                    <div>
-                        <a href="/sign-in" class="fs-popover-sign-in"><?=$GLOBALS['text']['__login__']?></a>
-                    </div>
-                    <div>
-                        <a href="">/</a>
-                    </div>
-                    <div>
-                        <a href="/sign-up?model=buyer" class="fs-popover-sign-up"><?=$GLOBALS['text']['__to__register__']?></a>
-                    </div>
-                <?php } else { ?>
                    <?php $names = explode(' ', Yii::$app->fsUser->identity->name); ?>
-                   <span class="fs-top-profile-abbr"><?=mb_strtoupper(mb_substr($names[0], 0, 1));?><?=mb_strtoupper(mb_substr($names[1], 0, 1));?></span>
-                <?php } ?>
-                        <div class="fs-authorization-popover">
-                            <?php
-                                if(Yii::$app->fsUser->isguest) {
-                            ?>
-                                <h4 class="fs-authorisation-popover-title"><?=$GLOBALS['text']['__welcome__']?></h4>
-                                <div class="fs-authorisation-popover-buttons">
-                                    <a href="/sign-up?model=buyer" class="fs-popover-sign-up"><?=$GLOBALS['text']['__to__register__']?></a>
-                                    <a href="/sign-in" class="fs-popover-sign-in"><?=$GLOBALS['text']['__login__']?></a>
-                                </div>
-                            <?php } else { ?>
-                                    <div class="fs-profile-popover-window">
-                                        <div class="fs-profile-popover-head">
-                                            <?php $names = explode(' ', Yii::$app->fsUser->identity->name); ?>
-                                            <span class="fs-profile-abbr"><?=mb_strtoupper(mb_substr($names[0], 0, 1));?><?=mb_strtoupper(mb_substr($names[1], 0, 1));?></span>
-                                            <h3 class="fs-popover-name"><?=Yii::$app->fsUser->identity->name;?></h3>
-                                            <span class="fs-popover-email"><?=Yii::$app->fsUser->identity->email;?></span>
-                                        </div>
-                                        <div class="fs-profile-popover-body">
-                                            <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'store/index' ?>" class="fs-profile-popover-link showDesctop"><?=$GLOBALS['text']['__profile__popup__']?></a>
-                                            <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'sign-up' ?>" class="fs-profile-popover-link showDesctop">Գրանցել խանութ <?=''; // $GLOBALS['text']['__profile__popup__']?></a>
-                                             <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'site/mobile-personal' : 'site/mobile-supplier' ?>" class="fs-profile-popover-link showMobile"><?=$GLOBALS['text']['__profile__popup__']?></a>
-                                            <a href="/site/logout/" class="fs-profile-popover-link"><?=$GLOBALS['text']['__profile__popup__exite_']?></a>
-                                        </div>
-
-                                    </div>
-                            <?php } ?>
+                    <span class="fs-top-profile-abbr"><?=mb_strtoupper(mb_substr($names[0], 0, 1));?><?=mb_strtoupper(mb_substr($names[1], 0, 1));?></span>
+                    <div class="fs-authorization-popover">
+                        <div class="fs-profile-popover-window">
+                            <div class="fs-profile-popover-head">
+                                <?php $names = explode(' ', Yii::$app->fsUser->identity->name); ?>
+                                <span class="fs-profile-abbr"><?=mb_strtoupper(mb_substr($names[0], 0, 1));?><?=mb_strtoupper(mb_substr($names[1], 0, 1));?></span>
+                                <h3 class="fs-popover-name"><?=Yii::$app->fsUser->identity->name;?></h3>
+                                <span class="fs-popover-email"><?=Yii::$app->fsUser->identity->email;?></span>
+                            </div>
+                            <div class="fs-profile-popover-body">
+                                <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'supplier' ?>" class="fs-profile-popover-link showDesctop"><?=$GLOBALS['text']['__profile__popup__']?></a>
+                                <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'sign-up' ?>" class="fs-profile-popover-link showDesctop">Գրանցել խանութ <?=''; // $GLOBALS['text']['__profile__popup__']?></a>
+                                 <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'site/mobile-personal' : 'site/mobile-supplier' ?>" class="fs-profile-popover-link showMobile"><?=$GLOBALS['text']['__profile__popup__']?></a>
+                                <a href="/site/logout/" class="fs-profile-popover-link"><?=$GLOBALS['text']['__profile__popup__exite_']?></a>
+                            </div>
                         </div>
+                    </div>
                 </li>
                 <li class="fs-user-button">
                     <span class="fs-user-label"><?=$GLOBALS['text']['__mypage__']?></span>
                     <div class="fs-personal-popover">
                     </div>
                 </li>
-                <?php if(!Yii::$app->fsUser->isguest) {
+                <?php
                     $notifications = Yii::$app->fsUser->identity->notifications;
                     $notificationsAll = Yii::$app->fsUser->identity->allNotifications;
                     ?>
                     <li class="fs-action-button has-notification" data-fav-count="<?php echo count($notifications);?>"><button type="button" class="fs-icon-bell"></button></li>
                     <li class="fs-action-button header-favorite-button" data-fav-count="<?= count(Yii::$app->fsUser->identity->wishlist) ?>" title="<?= count(Yii::$app->fsUser->identity->wishlist) ?>"><a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'supplier' ?>-wishlist" class="fs-icon-heart"></a></li>
                     <li class="fs-action-button" id="orderListCountCont" data-prod-list="" data-prod-count="<?= count(Yii::$app->fsUser->identity->cart) ?>" title="<?= count(Yii::$app->fsUser->identity->cart) ?>"><a href="/cart" id="orderListCountContHREF" class="fs-icon-basket"></a></li>
-                <? } ?>
+                <?php  ?>
 
             </ul>
 

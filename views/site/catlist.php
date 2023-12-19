@@ -1,4 +1,3 @@
-<main class="fs-main-content">
     <div class="fs-breadcrumbs-wrapper">
         <div class="fs-container">
             <ul class="fs-breadcrumbs-list">
@@ -7,7 +6,6 @@
             </ul>
         </div>
     </div>
-
     <div class="fs-all-categories-wrapper">
         <div class="fs-container">
             <div class="fs-categories-slider owl-carousel owl-theme">
@@ -46,4 +44,5 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-</main>
+        </div>
+    </div>

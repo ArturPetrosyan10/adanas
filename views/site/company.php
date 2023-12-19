@@ -19,12 +19,12 @@
                     <a style="color:#4A4640;" href="tel:<?= $company->phone ?>"><?=$GLOBALS['text']['__phone__']?> <?= $company->phone ?></a>
                     <a style="color:#4A4640;" href="mailto:<?= $company->email ?>"><?= $company->email ?></a>
                     <?php
-                    $is = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>[1,null]])->one();
-                    $disabled = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>4])->one();
-                    $is_3_declines = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>2])->count();
-                    if(!$disabled){
+//                    $is = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>[1,null]])->one();
+//                    $disabled = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>4])->one();
+//                    $is_3_declines = \app\models\FsRequests::find()->where(['buyer_id'=>@Yii::$app->fsUser->identity->id,'seller_id'=>$company->id])->andWhere(['status'=>2])->count();
+                    if(!$disabled || true){
                         ?>
-                        <?php if($company->is_seller == 1 && Yii::$app->fsUser->identity->is_buyer == 1 && $is_3_declines<3 && !$is && Yii::$app->fsUser->identity->status == 1 && Yii::$app->fsUser->identity->verified == 1) { ?>
+                        <?php if($company->is_seller == 1 && Yii::$app->fsUser->identity->is_buyer == 1 && Yii::$app->fsUser->identity->status == 1 && Yii::$app->fsUser->identity->verified == 1) { ?>
                             <a href="/personal-requests?become-partners=<?= $company->id ?>" class="fs-registration-call-to-action"><?=$GLOBALS['text']['__become_a_partner']?></a>
                         <?php } ?>
                     <?php } else { ?>

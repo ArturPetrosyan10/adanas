@@ -25,7 +25,7 @@ use app\models\LoginForm;
 use app\models\FsLoginForm;
 use app\models\ContactForm;
 use app\models\FsUsers;
-use app\models\FsRequests;
+
 use app\models\FsProducts;
 use app\models\FsCategories;
 use app\models\FsCart;
@@ -186,7 +186,8 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         }
         $banners = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 0])->orderBy(['order_num' => SORT_ASC])->all();
         $offers = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 1])->orderBy(['order_num' => SORT_ASC])->all();
-        $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
+//        $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
+        $partners = FsStores::find()->where(['status' => 1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
         $view_history  = FsProducts::find()->select('id')->where(['status'=>1,'send_notice'=>1])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
         return $this->render('index', ['categories' => $categories, 'banners' => $banners, 'offers' => $offers,'view_history'=>$view_history,'partners'=>$partners]);
     }
@@ -243,14 +244,10 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionPersonal()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $categories = FsCategories::find()->select('id, name')->where(['parent_id' => null])->andWhere(['status' => 1])->asArray()->all();
-            return $this->render('personal', ['user' => $user, 'categories' => $categories]);
-        }
-
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $categories = FsCategories::find()->select('id, name')->where(['parent_id' => null])->andWhere(['status' => 1])->asArray()->all();
+        return $this->render('personal', ['user' => $user, 'categories' => $categories]);
     }
    public function actionMobilePersonal()
     {
@@ -412,29 +409,9 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionPersonalRequests($page = 1, $state = null, $fromdate = null, $todate = null)
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $requests = FsRequests::find()->where(['buyer_id' => $user->id]);
-
-            if ($state) {
-                if ($state == 'null') {
-                    $requests = $requests->andWhere(['status' => null]);
-                } else {
-                    $requests = $requests->andWhere(['status' => $state]);
-                }
-            }
-
-            if ($fromdate) {
-                $requests = $requests->andWhere(['>=', 'created_at', date('Y-m-d', strtotime(str_replace('/', '-', $fromdate)))]);
-            }
-            if ($todate) {
-                $requests = $requests->andWhere(['<=', 'created_at', date('Y-m-d', strtotime(str_replace('/', '-', $todate)))]);
-            }
-            $requests = $requests->limit(10)->offset(($page-1) * 10)->all();
-            return $this->render('requests', ['user' => $user, 'requests' => $requests]);
-        }
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        return $this->render('requests', ['user' => $user, 'requests' => $requests]);
     }
 
     public function actionPersonalTemplates($page = 1)
@@ -462,19 +439,16 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionSupplier()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $categories = FsCategories::find()
-                ->select('fs_categories.id, fs_categories.name, fs_categories_lang.*')
-                ->leftJoin('fs_categories_lang', 'fs_categories_lang.category_id = fs_categories.id')
-                ->where(['parent_id' => null])
-                ->andWhere(['status' => 1])
-                ->asArray()
-                ->all();
-            return $this->render('personal', ['user' => $user, 'categories' => $categories]);
-        }
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $categories = FsCategories::find()
+            ->select('fs_categories.id, fs_categories.name, fs_categories_lang.*')
+            ->leftJoin('fs_categories_lang', 'fs_categories_lang.category_id = fs_categories.id')
+            ->where(['parent_id' => null])
+            ->andWhere(['status' => 1])
+            ->asArray()
+            ->all();
+        return $this->render('personal', ['user' => $user, 'categories' => $categories]);
     }
 
     public function actionSupplierProcessing($page = 1, $state = null, $fromdate = null, $todate = null)
@@ -565,29 +539,9 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionSupplierRequests($page = 1, $state = null, $fromdate = null, $todate = null)
     {
-        if (!Yii::$app->fsUser->isGuest) {
             $this->layout = 'site';
             $user = Yii::$app->fsUser->identity;
-            $requests = FsRequests::find()->where(['seller_id' => $user->id]);
-
-            if ($state) {
-                if ($state == 'null') {
-                    $requests = $requests->andWhere(['status' => null]);
-                } else {
-                    $requests = $requests->andWhere(['status' => $state]);
-                }
-            }
-            if ($fromdate) {
-                $requests = $requests->andWhere(['>=', 'created_at', date('Y-m-d', strtotime(str_replace('/', '-', $fromdate)))]);
-            }
-            if ($todate) {
-                $requests = $requests->andWhere(['<=', 'created_at', date('Y-m-d', strtotime(str_replace('/', '-', $todate)))]);
-            }
-            $requests = $requests->limit(10)->offset(($page-1) * 10)->all();
             return $this->render('suppliers_requests', ['user' => $user, 'requests' => $requests]);
-        }
-
-        return $this->redirect(['sign-in']);
     }
 
     public function actionSupplierWishlist()
@@ -600,42 +554,6 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         return $this->redirect(['sign-in']);
     }
 
-    public function actionPersonalSendRequest()
-    {
-        $post = Yii::$app->request->post();
-        $model = new FsRequests();
-
-        $model->buyer_id = Yii::$app->fsUser->identity->id;
-        $model->seller_id = $post['partnerID'];
-        if ($model->save()) {
-            Yii::$app->session->setFlash('success', 'Հաջողությամբ ուղարկվեց');
-        } else {
-            Yii::$app->session->setFlash('error', 'Something went wrong.');
-        }
-
-        return $this->redirect(['corporate']);
-    }
-    public function actionDisablePartner()
-    {
-        $post = Yii::$app->request->post();
-
-        FsRequests::deleteAll(['buyer_id'=>Yii::$app->fsUser->identity->id,'seller_id'=>$post['partner_id']]);
-        FsRequests::deleteAll(['seller_id'=>Yii::$app->fsUser->identity->id,'buyer_id'=>$post['partner_id']]);
-
-       if($post['type']=='disabled') {
-           $model = new FsRequests();
-           $model->buyer_id = Yii::$app->fsUser->identity->id;
-           $model->seller_id = $post['partner_id'];
-           $model->status = 4;
-           $model->save(false);
-       } else {
-           $model = new FsRequests();
-           $model->buyer_id = Yii::$app->fsUser->identity->id;
-           $model->seller_id = $post['partner_id'];
-           $model->status = 1;
-           $model->save(false);
-       }
-    }
 
     public function actionUpdateUser()
     {
@@ -739,13 +657,11 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         }
 
         if(isset($_GET['category'])){
-
             $chailds = $ct->getchildrens($cats,intval($_GET['category']));
             $chailds[] = intval($_GET['category']);
             $cond = ['category_id' =>$chailds];
             $categories = $products = FsProducts::find()->where(['provider_id'=>$company->id])->andWhere(['status'=>1])->andWhere($cond)->andWhere($cond_comp)->andWhere($cond_second)->all();
         } else {
-            if(Yii::$app->fsUser->identity){
                 $cats__ = Yii::$app->fsUser->identity->categories;
                 if($cats__){
                     $cats__ = explode(';',$cats__);
@@ -763,27 +679,12 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
                 }
 
             $paramsToCategory = FsParamToCategory::find()->where(['category_id' => $ids_all])->groupBy('param_id')->asArray()->all();
-         
-            } else {
-                $products = FsProducts::find()->where(['provider_id'=>$company->id])->andWhere(['status'=>1])->andWhere($cond_comp)->andWhere($cond_second)->all();
-            }
+
         }
         
         return $this->render('company', ['company' => $company,'products' => $products, 'paramsToCategory' => $paramsToCategory]);
     }
 
-    public function actionSupplierRequestAnswer()
-    {
-        $post = Yii::$app->request->post();
-        $request = FsRequests::findOne($post['request']);
-        $request->status = $post['status'];
-        if ($request->save()) {
-            Yii::$app->session->setFlash('success', 'Հաջողությամբ ուղարկվեց');
-        } else {
-            Yii::$app->session->setFlash('error', 'Something went wrong.');
-        }
-        return $this->redirect(['supplier-requests']);
-    }
 
     public function actionChangeWishlist()
     {
@@ -845,14 +746,13 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
             return $this->render('list', ['view_history'=>$view_history,'category' => $category,'paramsToCategory'=> $paramsToCategory,'maxPrice'=>$maxPrice,'products'=>$products,'total'=>$total]);
         }
 
-        if(Yii::$app->fsUser->identity){
-            $cats = Yii::$app->fsUser->identity->categories;
-            if($cats){
-                $cats = explode(';',$cats);
-                array_pop($cats);
-                $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
-            }
+        $cats = Yii::$app->fsUser->identity->categories;
+        if($cats){
+            $cats = explode(';',$cats);
+            array_pop($cats);
+            $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
         }
+        $categories = FsCategories::find()->all();
         return $this->render('catlist', ['categories' => $categories]);
     }
     public function actionSearch()
@@ -980,21 +880,16 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     {
         $this->layout = 'site';
         $product = FsProducts::findOne(['url'=>$url]);
-
         if(!$product){
             $this->redirect('/404');
         }
-
         $view_history = FsViewHistory::find()->where(['ip'=>Yii::$app->getRequest()->getUserIP(),'product_id'=>$product->id])->one();
-
         if(!$view_history) {
-
                 $view_ = new FsViewHistory();
                 $view_->user_id = Yii::$app->fsUser->identity->id;
                 $view_->product_id = $product->id;
                 $view_->ip = Yii::$app->getRequest()->getUserIP();
                 $r = $view_->save(false);
-       
         }
         return $this->render('product', ['product' => $product]);
     }

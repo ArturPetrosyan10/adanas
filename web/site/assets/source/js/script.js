@@ -1933,18 +1933,14 @@ $('.fs-cart-supplier-template-checkbox-wrapper input[type="checkbox"]').change(f
 $(document).on('click', '.fs-single-order-td button', function() {
     let calcAction = $(this).attr('class');
     let prodCount = Number($(this).siblings('.fs-count-calc-num').val());
-    switch (calcAction) {
-        case 'fs-icon-minus':
-            prodCount--;
-            if (prodCount < 1) {
-                prodCount = 1;
-            }
-            break;
-        case 'fs-icon-plus':
-            prodCount++;
-            break;
-        default:
-            break;
+    if (calcAction === 'fs-icon-minus') {
+        prodCount--;
+        if (prodCount < 1) {
+            prodCount = 1;
+        }
+    }
+    else if(calcAction === 'fs-icon-plus'){
+        prodCount++;
     }
     $(this).siblings('.fs-count-calc-num').val(prodCount);
     // prodCount is new product count to send

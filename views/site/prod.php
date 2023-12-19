@@ -4,16 +4,13 @@ use app\models\FsProductVariations;
 use app\models\FsDiscounts;
 use app\models\FsWishlist;
 $photos = explode(',', $product->image);
-$show_c = false;
-if(Yii::$app->fsUser->identity) {
-    $show_c = \app\models\FsRequests::find()->where(['buyer_id' => Yii::$app->fsUser->identity->id, 'seller_id' => $product->provider_id,'status'=>1])->one();
-}
 $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_full_range'=>1,'applies_full_partners'=>'1','discount_type'=>1])->one();
 ?>
 <?php if($product->send_notice == 1 && strtotime(date('Y-m-d'))<strtotime( date("Y-m-d", strtotime("+10 days", strtotime($product->create_date))))){ ?>
 
 <article class="fs-product-card fs-new-product"  data-new="Նոր">
-    <?php } else { ?>
+    <?php }
+    else { ?>
         <?php if($discount->discount_procent){ ?>
            <article class="fs-product-card fs-new-product"  data-new="<?php echo $discount->discount_procent; ?>%">
         <?php } else { ?>
@@ -51,17 +48,17 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
     </h3>
     <?php if(!$discount->discount_procent){ ?>
         <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
-            <?=number_format($product->price, 0);?>
+            <?= number_format($product->price, 0);?>
         </span>
     <?php } else { ?>
         <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
             <span style=" text-decoration: line-through;color:#9B958C;"><?=number_format($product->price,0)?> <?= $GLOBALS['text']['__dr__'] ?> </span>
-            <?=number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
+            <?= number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
     <?php } ?>
     <?php
     if(!Yii::$app->fsUser->isGuest) {
         if(Yii::$app->fsUser->identity->verified > 0) {
-            if (Yii::$app->fsUser->identity->id == $product->provider_id || $show_c) {
+
             ?>
             <div class="fs-product-action-block">
                 <div class="fs-product-count-calc">
@@ -72,9 +69,10 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                 <button type="button" class="fs-product-add-to-cart fs-icon-basket" data-label="<?= $GLOBALS['text']['__basket__'] ?>" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>"></button>
             </div>
             <?php }
-        }
+
     } ?>
 </article>
+
     <div class="fs-product-fast-view-modal" id="fs-product-fast-view-modal_<?= $product['id'] ?>">
         <div class="fs-product-fast-view-modal-body">
             <button type="button" class="fs-icon-close fs-product-fast-view-modal-close"></button>

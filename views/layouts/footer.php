@@ -73,13 +73,18 @@ use app\models\FsPages;
             <li>
                 <a href="#">
                     <span>
-                        <i class="fa fa-phone"></i>
+                        <img style="width:18px" src="/web/images/message.png" alt="">
                         <span>info@adanas.am</span>
                     </span>
                 </a>
             </li>
             <li>
-                <span>Իսակովի 48/2</span>
+                <a href="#">
+                    <span>
+                        <img style="width:18px" src="/web/images/map.png" alt="">
+                        <span>Իսակովի 48/2</span>
+                    </span>
+                </a>
             </li>
         </ul>
         <ul>

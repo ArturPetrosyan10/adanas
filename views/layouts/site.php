@@ -11,7 +11,7 @@ use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
-use yii\bootstrap5\NavBar;
+//use yii\bootstrap5\NavBar;
 use yii\helpers\ArrayHelper;
 
 
@@ -27,7 +27,8 @@ $action_id = Yii::$app->controller->action->id;
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>Adanas test</title>
+    <link rel="icon" type="image/png" href="/web/images/new-logo.png">
     <?php $this->head()  ?>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no" />
@@ -38,6 +39,8 @@ $action_id = Yii::$app->controller->action->id;
 </head>
 
 <?php $this->beginBody() ?>
+
+
 <div id="page">
     <?php if($action_id !== 'sign-in'){
 //             include('header.php');

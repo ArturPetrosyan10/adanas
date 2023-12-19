@@ -41,12 +41,14 @@
     <div class="fs-container brands-section">
         <?php foreach ($brands as $index => $brand) { ?>
             <div class="brand-block">
-                <div class="img-parent">
-                    <img src='<?= $brand->logo ?>'>
-                </div>
-                <div>
-                    <h2><a href="brands/<?= $brand->id ?>"><?= $brand->name; ?></a></h2>
-                </div>
+                <a href="brands/<?= $brand->id ?>">
+                    <div class="img-parent">
+                        <img src='<?= $brand->logo ?>'>
+                    </div>
+                    <div>
+                        <h2><?= $brand->name; ?></h2>
+                    </div>
+                </a>
             </div>
         <?php }    ?>
         <div>
