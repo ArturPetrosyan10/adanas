@@ -186,7 +186,8 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
         }
         $banners = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 0])->orderBy(['order_num' => SORT_ASC])->all();
         $offers = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 1])->orderBy(['order_num' => SORT_ASC])->all();
-        $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
+//        $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
+        $partners = FsStores::find()->where(['status' => 1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
         $view_history  = FsProducts::find()->select('id')->where(['status'=>1,'send_notice'=>1])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
         return $this->render('index', ['categories' => $categories, 'banners' => $banners, 'offers' => $offers,'view_history'=>$view_history,'partners'=>$partners]);
     }
@@ -243,14 +244,10 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionPersonal()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $categories = FsCategories::find()->select('id, name')->where(['parent_id' => null])->andWhere(['status' => 1])->asArray()->all();
-            return $this->render('personal', ['user' => $user, 'categories' => $categories]);
-        }
-
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $categories = FsCategories::find()->select('id, name')->where(['parent_id' => null])->andWhere(['status' => 1])->asArray()->all();
+        return $this->render('personal', ['user' => $user, 'categories' => $categories]);
     }
    public function actionMobilePersonal()
     {
@@ -462,19 +459,16 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionSupplier()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $categories = FsCategories::find()
-                ->select('fs_categories.id, fs_categories.name, fs_categories_lang.*')
-                ->leftJoin('fs_categories_lang', 'fs_categories_lang.category_id = fs_categories.id')
-                ->where(['parent_id' => null])
-                ->andWhere(['status' => 1])
-                ->asArray()
-                ->all();
-            return $this->render('personal', ['user' => $user, 'categories' => $categories]);
-        }
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $categories = FsCategories::find()
+            ->select('fs_categories.id, fs_categories.name, fs_categories_lang.*')
+            ->leftJoin('fs_categories_lang', 'fs_categories_lang.category_id = fs_categories.id')
+            ->where(['parent_id' => null])
+            ->andWhere(['status' => 1])
+            ->asArray()
+            ->all();
+        return $this->render('personal', ['user' => $user, 'categories' => $categories]);
     }
 
     public function actionSupplierProcessing($page = 1, $state = null, $fromdate = null, $todate = null)
@@ -845,13 +839,11 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
             return $this->render('list', ['view_history'=>$view_history,'category' => $category,'paramsToCategory'=> $paramsToCategory,'maxPrice'=>$maxPrice,'products'=>$products,'total'=>$total]);
         }
 
-        if(Yii::$app->fsUser->identity){
-            $cats = Yii::$app->fsUser->identity->categories;
-            if($cats){
-                $cats = explode(';',$cats);
-                array_pop($cats);
-                $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
-            }
+        $cats = Yii::$app->fsUser->identity->categories;
+        if($cats){
+            $cats = explode(';',$cats);
+            array_pop($cats);
+            $categories = FsCategories::find()->where(['parent_id' => null])->andWhere(['id'=>$cats])->andWhere(['status' => 1])->all();
         }
         return $this->render('catlist', ['categories' => $categories]);
     }
@@ -980,21 +972,16 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     {
         $this->layout = 'site';
         $product = FsProducts::findOne(['url'=>$url]);
-
         if(!$product){
             $this->redirect('/404');
         }
-
         $view_history = FsViewHistory::find()->where(['ip'=>Yii::$app->getRequest()->getUserIP(),'product_id'=>$product->id])->one();
-
         if(!$view_history) {
-
                 $view_ = new FsViewHistory();
                 $view_->user_id = Yii::$app->fsUser->identity->id;
                 $view_->product_id = $product->id;
                 $view_->ip = Yii::$app->getRequest()->getUserIP();
                 $r = $view_->save(false);
-       
         }
         return $this->render('product', ['product' => $product]);
     }

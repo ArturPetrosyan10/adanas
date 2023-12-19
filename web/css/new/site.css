@@ -186,7 +186,7 @@ ul li {
     color:blue;
 }
 .fs-product-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
 }
 .news-block .news-img:hover {
     opacity:0.9;
@@ -273,30 +273,33 @@ ul li {
 .fs-product-name a{
     color:inherit;
     text-decoration:none;
-    word-break:break-word
+    font-family: sans-serif;
 }
 
 .fs-product-current-price{
     font-size: 18px;
     font-weight:400;
 }
-.owl-stage-outer{
+.fs-last-viewed-section  .owl-stage-outer{
     min-height:300px;
 }
-
-/*//*/
-.fs-product-card{
-    height:35.4rem
+.brand-block a h2 {
+    font-size: 13px;
+    color: black;
 }
+/*//*/
+/*.fs-product-card{
+    height:35.4rem
+}*/
 .fs-min-product-slider .fs-product-card{
     width:calc(33.333% - 2.4rem)
 }
 .fs-min-product-slider .fs-product-card{
     width:calc(50% - 2.4rem)
 }
-.fs-product-card{
+/*.fs-product-card{
     height: 26.4rem !important;
-}
+}*/
 .fs-min-product-slider .fs-product-card{
     width:48% !important;
     margin:1% !important;
@@ -306,9 +309,9 @@ ul li {
      margin-bottom:2.4rem
  }
 
-.fs-product-card{
+/*.fs-product-card{
     padding:1rem 1rem 6.6rem;
-}
+}*/
 .new-slider-parent{
     gap:2rem;
 }
@@ -503,6 +506,9 @@ footer ul a{
 }
 a:hover {
     text-decoration: none;
+}
+.brand-block a:hover {
+    text-decoration: underline;
 }
 .news-menu ul li a{
     color:black !important;
@@ -717,6 +723,12 @@ button:focus {
     box-sizing: border-box;
     min-height: 100%;
     margin-bottom: 10rem;
+}
+.fs-single-product-main-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border:1px solid #e5e8ec;
 }
 
 @media screen and (max-width: 1000px){

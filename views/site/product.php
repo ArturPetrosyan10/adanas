@@ -7,8 +7,65 @@ use app\models\FsWishlist;
 $photos = explode(',', $product->image);
 $show_c = \app\models\FsRequests::find()->where(['buyer_id'=>Yii::$app->fsUser->identity->id,'seller_id'=> $product->provider_id])->one();
 $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_full_range'=>1,'applies_full_partners'=>'1','discount_type'=>1])->one();
+
 ?>
-<main class="fs-main-content">
+<script>
+    function imageZoom(imgID, resultID) {
+        var img, lens, result, cx, cy;
+        img = document.getElementById(imgID);
+        result = document.getElementById(resultID);
+        /*create lens:*/
+        lens = document.createElement("DIV");
+        lens.setAttribute("class", "img-zoom-lens");
+        /*insert lens:*/
+        img.parentElement.insertBefore(lens, img);
+        /*calculate the ratio between result DIV and lens:*/
+        cx = result.offsetWidth / lens.offsetWidth;
+        cy = result.offsetHeight / lens.offsetHeight;
+        /*set background properties for the result DIV:*/
+        result.style.backgroundImage = "url('" + img.src + "')";
+        result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+        /*execute a function when someone moves the cursor over the image, or the lens:*/
+        lens.addEventListener("mousemove", moveLens);
+        img.addEventListener("mousemove", moveLens);
+        /*and also for touch screens:*/
+        lens.addEventListener("touchmove", moveLens);
+        img.addEventListener("touchmove", moveLens);
+        function moveLens(e) {
+            var pos, x, y;
+            /*prevent any other actions that may occur when moving over the image:*/
+            e.preventDefault();
+            /*get the cursor's x and y positions:*/
+            pos = getCursorPos(e);
+            /*calculate the position of the lens:*/
+            x = pos.x - (lens.offsetWidth / 2);
+            y = pos.y - (lens.offsetHeight / 2);
+            /*prevent the lens from being positioned outside the image:*/
+            if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+            if (x < 0) {x = 0;}
+            if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+            if (y < 0) {y = 0;}
+            /*set the position of the lens:*/
+            lens.style.left = x + "px";
+            lens.style.top = y + "px";
+            /*display what the lens "sees":*/
+            result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+        }
+        function getCursorPos(e) {
+            var a, x = 0, y = 0;
+            e = e || window.event;
+            /*get the x and y positions of the image:*/
+            a = img.getBoundingClientRect();
+            /*calculate the cursor's x and y coordinates, relative to the image:*/
+            x = e.pageX - a.left;
+            y = e.pageY - a.top;
+            /*consider any page scrolling:*/
+            x = x - window.pageXOffset;
+            y = y - window.pageYOffset;
+            return {x : x, y : y};
+        }
+    }
+</script>
     <div class="fs-breadcrumbs-wrapper">
         <div class="fs-container">
             <?php if(!isMobile_){ ?>
@@ -64,18 +121,15 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                         }
                         ?>
                         <div class="fs-single-product-main-image">
-                            <?php
-                            if(strlen($photos[0]) > 0){
-                                ?>
-                                <img src="/<?= $photos[0] ?>"
-                                     alt="">
-                                <?php
-                            }else{
-                                ?>
+                            <?php if(strlen($photos[0]) > 0){ ?>
+                                <div class="img-zoom-container">
+                                    <div class="img-zoom-lens"></div>
+                                    <img id="myimage" src="/<?= $photos[0] ?>" alt="Girl">
+                                    <div id="myresult" class="img-zoom-result"></div>
+                                </div>
+                            <?php }else{ ?>
                                 <img class="img-responsive" src="http://<?=$_SERVER['SERVER_NAME'];?>/img/prodpic/no-image.png" alt="">
-                                <?
-                            }
-                            ?>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="fs-single-product-text-info">
@@ -169,7 +223,6 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
         </div>
         <?php } ?>
     </div>
-</main>
 <div class="fs-not-registered-prod-modal">
     <div class="fs-not-registered-prod-modal-inner">
         <p>Պատվեր հավաքելու համար անհրաժեշտ է մուտք գործել համակարգ:</p>
@@ -181,3 +234,48 @@ function isMobile_() {
     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
 }
 ?>
+
+<style>
+    .img-zoom-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    #myimage{
+        position:absolute;
+        opacity:1;
+        z-index:50;
+    }
+
+    .img-zoom-lens {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #d4d4d4;
+    }
+
+    .img-zoom-result {
+        width: 100%;
+        height: 100%;
+        /* object-fit: contain; */
+        border: 1px solid #e5e8ec;
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        zoom: 1;
+        opacity: 0;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    imageZoom("myimage", "myresult");
+    $('body').on('mouseleave',"#myimage",function () {
+        $('#myimage').css('opacity','1');
+        $('.img-zoom-result').css('opacity','0');
+
+    })
+    $('body').on('mouseenter',"#myimage",function () {
+        $('#myimage').css('opacity','0');
+        $('.img-zoom-result').css('opacity','1');
+    })
+</script>

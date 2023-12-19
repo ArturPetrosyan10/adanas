@@ -13,7 +13,8 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
 <?php if($product->send_notice == 1 && strtotime(date('Y-m-d'))<strtotime( date("Y-m-d", strtotime("+10 days", strtotime($product->create_date))))){ ?>
 
 <article class="fs-product-card fs-new-product"  data-new="Նոր">
-    <?php } else { ?>
+    <?php }
+    else { ?>
         <?php if($discount->discount_procent){ ?>
            <article class="fs-product-card fs-new-product"  data-new="<?php echo $discount->discount_procent; ?>%">
         <?php } else { ?>
@@ -51,12 +52,12 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
     </h3>
     <?php if(!$discount->discount_procent){ ?>
         <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
-            <?=number_format($product->price, 0);?>
+            <?= number_format($product->price, 0);?>
         </span>
     <?php } else { ?>
         <span class="fs-product-current-price" data-price-cur="<?= $GLOBALS['text']['__dr__'] ?>">
             <span style=" text-decoration: line-through;color:#9B958C;"><?=number_format($product->price,0)?> <?= $GLOBALS['text']['__dr__'] ?> </span>
-            <?=number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
+            <?= number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
     <?php } ?>
     <?php
     if(!Yii::$app->fsUser->isGuest) {
@@ -75,6 +76,7 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
         }
     } ?>
 </article>
+
     <div class="fs-product-fast-view-modal" id="fs-product-fast-view-modal_<?= $product['id'] ?>">
         <div class="fs-product-fast-view-modal-body">
             <button type="button" class="fs-icon-close fs-product-fast-view-modal-close"></button>
