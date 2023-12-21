@@ -17,6 +17,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api','extraPatterns' => [
+                    'GET notifications' => 'notifications',
+                 ],],
                 'shop' => 'site/shop',
                 'search' => 'site/search',
                 'site/user/<id:\d+>' => 'site/user',
@@ -69,6 +72,9 @@ $config = [
             'baseUrl' => '',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ZaTMRObNiplcZ10xSgnENvTdBiG3TWRZ',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
