@@ -34,7 +34,7 @@
         <div class="fs-container">
             <div class="d-flex justify-content-between">
                 <h2 class="fs-section-title"><?=$GLOBALS['text']['_main_page_title_2_']?></h2>
-                <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
+                <a href="/categories" class="fs-section-title" style="border:none; font-size: 14px;">
                      <?= $GLOBALS['text']['__view__all__'] ?>
                     <i class="fa fa-long-arrow-alt-right"></i>
                 </a>
@@ -79,23 +79,23 @@
             </div>
         </div>
     </section>
-    <section class="fs- last-viewed-section fs-main-section-el" id="last" data-dom-el="section" >
+    <section class="fs- last-viewed-section fs-main-section-el" id="last" data-dom-el="section">
         <div class="fs-container">
             <div class="d-flex justify-content-between">
                 <h2 class="fs-section-title">
                     <?=$GLOBALS['text']['_main_page_title_3_']?>
                 </h2>
-                <a href="#" class="fs-section-title" style="border:none; font-size: 14px;">
+                <a href="/shop" class="fs-section-title" style="border:none; font-size: 14px;">
                     <?= $GLOBALS['text']['__view__all__'] ?>
                     <i class="fa fa-long-arrow-alt-right"></i>
                 </a>
             </div>
-            <div class="fs-product-slider owl-carousel owl-theme" style="margin-bottom:0">
+            <div class="fs-product-slider owl-carousel owl-theme" style="margin-bottom:0;">
                 <?php if(!empty($view_history)){;?>
                     <?php foreach ($view_history as $vp => $vp_val){ ?>
                         <?php $product = FsProducts::findOne($vp_val->id);?>
-                        <div class="item">
-                            <?php  echo $this->renderFile('@app/views/site/new-prod.php',['product'=>$product]); ?>
+                        <div class="item shadow p-3 mb-5 bg-white rounded">
+                            <?php  echo $this->renderFile('@app/views/site/prod.php',['product'=>$product]); ?>
                         </div>
                     <?php } ?>
                 <?php } ?>

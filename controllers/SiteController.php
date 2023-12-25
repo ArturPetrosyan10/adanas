@@ -251,14 +251,9 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     }
    public function actionMobilePersonal()
     {
-
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            return $this->render('personal_mobile', ['user' => $user, 'categories' => $categories]);
-        }
-
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        return $this->render('personal_mobile', ['user' => $user, 'categories' => $categories]);
     }
     public function actionMobileSupplier()
     {
@@ -1294,7 +1289,6 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     {
         $this->layout = 'site';
         $page = FsPages::findOne(['url' => $view]);
-
         return $this->render('view', ['page' => $page]);
     }
 

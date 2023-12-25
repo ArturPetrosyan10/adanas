@@ -114,7 +114,7 @@ function isMobile() {
                             </div>
                             <div class="fs-profile-popover-body">
                                 <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'supplier' ?>" class="fs-profile-popover-link showDesctop"><?=$GLOBALS['text']['__profile__popup__']?></a>
-                                <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'personal' : 'sign-up' ?>" class="fs-profile-popover-link showDesctop">Գրանցել խանութ <?=''; // $GLOBALS['text']['__profile__popup__']?></a>
+                                <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'admin/customers' : 'admin/customers' ?>" class="fs-profile-popover-link showDesctop">Գրանցել խանութ <?=''; // $GLOBALS['text']['__profile__popup__']?></a>
                                  <a href="/<?= Yii::$app->fsUser->identity->is_buyer == 1 ? 'site/mobile-personal' : 'site/mobile-supplier' ?>" class="fs-profile-popover-link showMobile"><?=$GLOBALS['text']['__profile__popup__']?></a>
                                 <a href="/site/logout/" class="fs-profile-popover-link"><?=$GLOBALS['text']['__profile__popup__exite_']?></a>
                             </div>

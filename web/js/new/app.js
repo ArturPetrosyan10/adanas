@@ -6,4 +6,18 @@ $(document).ready(function() {
         $('.big-slider').addClass('d-none');
         $('.slidern_'+$(this).data('id')).removeClass('d-none');
     })
+    // $('body').on('error','img', function() {
+    //     alert(1);
+    //     $(this).attr('src' , 'web/images/undefined.webp');
+    // });
+    document.addEventListener('DOMContentLoaded', function() {
+        var images = document.querySelectorAll('img');
+
+        images.forEach(function(img) {
+            img.addEventListener('error', function() {
+                img.src = 'web/images/undefined.webp';
+                img.alt = 'web/images/undefined.webp';
+            });
+        });
+    });
 })

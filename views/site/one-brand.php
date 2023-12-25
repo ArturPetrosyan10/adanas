@@ -153,8 +153,8 @@ if(isset($_GET['price'])){
 <div class="fs-breadcrumbs-wrapper">
     <div class="fs-container">
         <ul class="fs-breadcrumbs-list">
-            <li class="fs-breadcrumbs-el"><a onclick="history.back()" style="cursor:pointer;"><?=$GLOBALS['text']['__home__page__']?></a></li>
-            <li class="fs-breadcrumbs-el"><?= $company->legal_name ?></li>
+            <li class="fs-breadcrumbs-el"><a href="/" style="cursor:pointer;"><?=$GLOBALS['text']['__home__page__']?></a></li>
+            <li class="fs-breadcrumbs-el"><?= $brand->name; ?></li>
         </ul>
     </div>
 </div>
