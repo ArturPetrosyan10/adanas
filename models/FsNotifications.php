@@ -15,6 +15,9 @@ use Yii;
  * @property int $recipient_id
  * @property int|null $type
  * @property int $status
+ * @property int $status_mobile
+ * @property string|null $url
+ * @property string|null $img
  * @property string $created_at
  */
 class FsNotifications extends \yii\db\ActiveRecord
@@ -34,9 +37,9 @@ class FsNotifications extends \yii\db\ActiveRecord
     {
         return [
             [['sender_id', 'recipient_id'], 'required'],
-            [['sender_id', 'recipient_id', 'type', 'status'], 'integer'],
+            [['sender_id', 'recipient_id', 'type', 'status', 'status_mobile'], 'integer'],
             [['created_at'], 'safe'],
-            [['message', 'message_en', 'message_ru'], 'string', 'max' => 255],
+            [['message', 'message_en', 'message_ru', 'url', 'img'], 'string', 'max' => 255],
         ];
     }
 
@@ -54,6 +57,9 @@ class FsNotifications extends \yii\db\ActiveRecord
             'recipient_id' => 'Recipient ID',
             'type' => 'Type',
             'status' => 'Status',
+            'status_mobile' => 'Status Mobile',
+            'url' => 'Url',
+            'img' => 'Img',
             'created_at' => 'Created At',
         ];
     }

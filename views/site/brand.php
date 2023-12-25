@@ -43,7 +43,7 @@
             <div class="brand-block">
                 <a href="brands/<?= $brand->id ?>">
                     <div class="img-parent">
-                        <img src='<?= $brand->logo ?>'>
+                        <img src='<?= $brand->logo ?>' >
                     </div>
                     <div>
                         <h2><?= $brand->name; ?></h2>

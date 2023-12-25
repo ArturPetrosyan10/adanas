@@ -78,7 +78,7 @@ $action_id = Yii::$app->controller->action->id;
     <?php if($action_id !== 'sign-in'){
         include('footer.php');
     } ?>
-    <script src="/web/js/new-adanas/app.js"></script>
+    <!--<script src="/web/js/new-adanas/app.js"></script>-->
 <?php $this->endBody() ?>
 
 </div>

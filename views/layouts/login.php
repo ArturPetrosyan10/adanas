@@ -22,12 +22,8 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 <style>
-    .bg-dark{
-        background: #4A4640 !important;
-    }
     .btn-succ{
         background: #ffbd27;
-        color:white;
     }
 </style>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
@@ -38,9 +34,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="/web/images/fos-logo.svg" alt="" width="300">
-                    </a>
+                    <img class="align-content" src="/web/images/new-logo.png" alt="" width="300">
                 </div>
                 <hr>
                 <div class="login-form">

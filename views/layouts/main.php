@@ -114,13 +114,19 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-
- <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-
-               <ul class="nav navbar-nav">
-<!--                     <li >-->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               <?php if(Yii::$app->fsUser->identity->status === 2  && Yii::$app->user->isGuest){ ?>
+                   <li>
+                       <a href="../"><i class="menu-icon fa fa-sitemap"></i><</a>
+                   </li>
+                   <li>
+                       <a href="/admin/customers"><i class="menu-icon fa fa-sitemap"></i>Հաճախորդներ</a>
+                   </li>
+               <?php } ?>
+                   <!--                     <li >-->
 <!--                         <a href="/admin/dashboard"><i class="menu-icon fa fa-dashboard"></i>Վահանակ </a>-->
 <!--                     </li>-->
                    <?php if( Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20){ ?>
@@ -184,7 +190,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                  </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-    </aside>
+</aside>
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">

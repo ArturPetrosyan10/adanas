@@ -41,8 +41,6 @@ use app\models\FsPages;
                                     <?php } endforeach; ?>
                                 </ul>
                             </li>
-
-
                         <?php
                         $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
                         foreach ($cats as $category):  $categoryMenu = generateCategoryMenu($category->id); ?>
@@ -61,12 +59,12 @@ use app\models\FsPages;
 <footer class="fs-footer"  >
     <div class="fs-container d-flex justify-content-between">
         <ul>
-            <li><h4><?= $GLOBALS['text']['__contact_us__'] ?></h4></li>
+            <li><a href="/contacts"><h4><?= $GLOBALS['text']['__contact_us__'] ?></h4></a></li>
             <li>
                 <a href="#">
                     <span>
                         <i class="fa fa-phone"></i>
-                        <span> +374 77 55 66 77 </span>
+                        <a href="tel:+37477556677"><span> +374 77 55 66 77 </span></a>
                     </span>
                 </a>
             </li>
@@ -74,7 +72,7 @@ use app\models\FsPages;
                 <a href="#">
                     <span>
                         <img style="width:18px" src="/web/images/message.png" alt="">
-                        <span>info@adanas.am</span>
+                        <a href="mailto:info@adanas.am"><span>info@adanas.am</span></a>
                     </span>
                 </a>
             </li>
@@ -88,7 +86,7 @@ use app\models\FsPages;
             </li>
         </ul>
         <ul>
-            <li><span><?= $GLOBALS['text']['_footer_title_1_'] ?></span></li>
+            <li><a href="page/about"><span><?= $GLOBALS['text']['_footer_title_1_'] ?></span></a></li>
         </ul>
         <ul>
             <li><span><?= $GLOBALS['text']['__my__account__'] ?></span></li>

@@ -56,10 +56,7 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
             <?= number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
     <?php } ?>
     <?php
-    if(!Yii::$app->fsUser->isGuest) {
-        if(Yii::$app->fsUser->identity->verified > 0) {
-
-            ?>
+        if(Yii::$app->fsUser->identity->verified > 0) { ?>
             <div class="fs-product-action-block">
                 <div class="fs-product-count-calc">
                     <button type="button" class="fs-product-count-btn fs-icon-minus" data-action="minus"></button>
@@ -68,11 +65,8 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                 </div>
                 <button type="button" class="fs-product-add-to-cart fs-icon-basket" data-label="<?= $GLOBALS['text']['__basket__'] ?>" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>"></button>
             </div>
-            <?php }
-
-    } ?>
+  <?php } ?>
 </article>
-
     <div class="fs-product-fast-view-modal" id="fs-product-fast-view-modal_<?= $product['id'] ?>">
         <div class="fs-product-fast-view-modal-body">
             <button type="button" class="fs-icon-close fs-product-fast-view-modal-close"></button>
@@ -148,3 +142,6 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
         </div>
     </div>
 
+<script>
+    runChart();
+</script>

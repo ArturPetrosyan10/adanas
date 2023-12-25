@@ -36,6 +36,12 @@ use DatePeriod;
 use DateTime;
 class AdminController extends Controller {
     public function beforeAction($action) {
+        //multy_status let us create new customers
+        if(Yii::$app->fsUser->identity->status === 2){
+            $multy_status = true;
+        }else{
+            $multy_status = false;
+        }
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
@@ -403,7 +409,7 @@ class AdminController extends Controller {
     }
     /*CUSTOMERS PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionCustomers() {
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest && $multy_status === false) {
             $this->redirect(['admin/login']);
         }
         $post = Yii::$app->request->post();
