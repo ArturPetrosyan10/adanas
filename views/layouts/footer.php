@@ -32,15 +32,15 @@ use app\models\FsPages;
                     <nav  id="mmenu">
                         <ul>
                             <li>
-                                  <span> <img src="/web/site/assets/media/images/<?= $_COOKIE['language'] ?>.jpg" alt="" /></span>
-                                <ul>
-                                    <?php $langs = ['en', 'hy', 'ru']; foreach ($langs as $lang): if ($lang != $_COOKIE['language']) {?>
-                                        <li class="fs-lang-list-item">
-                                            <a href="/site/switch-language?lang=<?= $lang ?>"><img src="/web/site/assets/media/images/<?= $lang ?>.jpg" alt="<?= $lang ?>"></a>
-                                        </li>
-                                    <?php } endforeach; ?>
-                                </ul>
-                            </li>
+                              <span> <img src="/web/site/assets/media/images/<?= $_COOKIE['language'] ?>.jpg" alt="" /></span>
+                            <ul>
+                                <?php $langs = ['en', 'hy', 'ru']; foreach ($langs as $lang): if ($lang != $_COOKIE['language']) {?>
+                                    <li class="fs-lang-list-item">
+                                        <a href="/site/switch-language?lang=<?= $lang ?>"><img src="/web/site/assets/media/images/<?= $lang ?>.jpg" alt="<?= $lang ?>"></a>
+                                    </li>
+                                <?php } endforeach; ?>
+                            </ul>
+                        </li>
                         <?php
                         $cats = FsCategories::find()->where(['parent_id' => null])->andWhere(['status' => 1])->all();
                         foreach ($cats as $category):  $categoryMenu = generateCategoryMenu($category->id); ?>
