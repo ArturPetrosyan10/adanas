@@ -1,10 +1,10 @@
-$.noConflict();
-
+jQuery.noConflict();
+(function($) {
+	$(document).ready(function() {
 function addChild(id) {
 	jQuery('.standardSelect').val(id).trigger("chosen:updated");
 	jQuery('#addnew').modal('show');
 }
-
 function editeCategory(id) {
 	if (id) {
 		jQuery.ajax({
@@ -360,10 +360,10 @@ function copyMeasurement(id) {
 	}
 }
 
-function editeProduct(id) {
+function editeProduct(id , url = "/admin/product-edite?id=") {
 	if (id) {
 		jQuery.ajax({
-			url: "/admin/product-edite?id=" + id,
+			url: url + id,
 			success: function(result) {
 				jQuery(".modals").html(result);
 			}
@@ -769,6 +769,10 @@ jQuery(document).ready(function($) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		editeProduct(id);
 	});
+	$('body').on('click', '#editeStoreProduct', function(event) {
+		var id = $('.sortableTable tr.active').attr('data-id');
+		editeProduct(id ,"/store/product-edite?id=" );
+	});
 	$('body').on('click', '#editePage', function(event) {
 		var id = $('.sortableTable tr.active').attr('data-id');
 		editePage(id);
@@ -940,3 +944,14 @@ jQuery(document).ready(function($) {
 
 
 });
+function removeImg(el, id){
+	el.closest('span').remove();
+	jQuery.ajax({
+		url: "/store/remove-img?id=" + id,
+		success: function(result) {
+		}
+	});
+}
+
+	});
+})(jQuery);

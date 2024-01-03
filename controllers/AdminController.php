@@ -1344,9 +1344,6 @@ class AdminController extends Controller {
     }
     /* EDITE BLOCK */
     public function actionProductEdite() {
-//        if (Yii::$app->user->isGuest) {
-//            $this->redirect(['admin/login']);
-//        }
         $id = intval($_GET['id']);
         $product = FsProducts::findOne(['id' => $id]);
         $measurement = FsMeasurements::find()->where(['status' => 1])->all();

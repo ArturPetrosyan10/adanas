@@ -10,7 +10,7 @@ use app\models\FsProducts;
                     <li class="fs-breadcrumbs-el">
                         <a href="/categories/<?= $parent->url ?>"><?= $_COOKIE['language'] == 'hy' ? $parent->name : $parent->translation['name_' . $_COOKIE['language']] ?></a>
                     </li>
-                <? } ?>
+                <?php } ?>
                 <li class="fs-breadcrumbs-el"><?= $_COOKIE['language'] == 'hy' ? $category->name : $category->translation['name_' . $_COOKIE['language']] ?></li>
             </ul>
         </div>

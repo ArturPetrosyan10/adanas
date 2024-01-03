@@ -14711,53 +14711,7 @@ body{
     margin-right:2.4rem
 }
 
-.fs-breadcrumbs-wrapper{
-    width:100%
-}
-.fs-breadcrumbs-list{
-    height:7rem;
-    padding-left:0;
-    margin-top:0;
-    margin-bottom:0;
-    list-style:none;
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-box-pack:start;
-    -ms-flex-pack:start;
-    justify-content:flex-start;
-    -webkit-box-align:center;
-    -ms-flex-align:center;
-    align-items:center
-}
-.fs-breadcrumbs-el{
-    font-size:1.4rem;
-    line-height:2.2rem;
-    font-weight:700;
-    color:#4A4640
-}
-.fs-breadcrumbs-el:not(:last-child){
-    margin-right:1.5rem
-}
-.fs-breadcrumbs-el a{
-    font-weight:500;
-    color:#9B958C;
-    text-decoration:none;
-    position:relative;
-    font-size:1.4rem;
-    line-height:2.2rem
-}
-.fs-breadcrumbs-el a:after{
-    content:"";
-    width:0.1rem;
-    height:1rem;
-    position:absolute;
-    top:50%;
-    right:-0.8rem;
-    -webkit-transform:translateY(-65%);
-    transform:translateY(-65%);
-    background-color:#9B958C
-}
+
 .fs-companies-filter-wrapper{
     width:100%
 }

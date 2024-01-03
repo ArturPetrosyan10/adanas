@@ -20,7 +20,7 @@ class Store extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'store';
+        return 'ad_store';
     }
 
     /**
@@ -29,8 +29,8 @@ class Store extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'address', 'location', 'number'], 'required'],
-            [['name', 'location', 'number'], 'string', 'max' => 50],
+            [['name', 'address', 'latitude','longitude'], 'required'],
+            [['name',  'number'], 'string', 'max' => 50],
             [['address'], 'string', 'max' => 225],
         ];
     }

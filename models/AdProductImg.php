@@ -28,9 +28,9 @@ class AdProductImg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nameImg'], 'required'],
+            [['name'], 'required'],
             [['productId'], 'integer'],
-            [['nameImg', 'active'], 'string', 'max' => 50],
+            [['name', 'active'], 'string', 'max' => 50],
         ];
     }
 

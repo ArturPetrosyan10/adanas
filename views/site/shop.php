@@ -10,13 +10,21 @@ if(isset($_GET['price'])){
 <style>
     .owl-item{
         margin:15px 0 !important;
-        width:20% !important;
+        width:25% !important;
+    }
+    @media screen and (max-width: 1000px){
+        .owl-item{
+            margin:15px 0 !important;
+            width:33% !important;
+        }
     }
     .aside_section{
         gap:100px;
     }
     .owl-stage{
         width:100% !important;
+        display:flex;
+        flex-wrap:wrap;
     }
     .mobile-only{
         display:none;
@@ -33,6 +41,11 @@ if(isset($_GET['price'])){
         border: 0.1rem solid #D7D4D1;
     }
     @media all and (max-width: 768px) {
+        .owl-item{
+            transform: translate3d(0px, 0px, 0px) !important;
+            margin:15px 0 !important;
+            width:48% !important;
+        }
         .mobile-only {
             display: block
         }

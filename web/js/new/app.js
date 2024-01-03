@@ -10,7 +10,7 @@ $(document).ready(function() {
     //     alert(1);
     //     $(this).attr('src' , 'web/images/undefined.webp');
     // });
-    document.addEventListener('DOMContentLoaded', function() {
+    /*document.addEventListener('DOMContentLoaded', function() {
         var images = document.querySelectorAll('img');
 
         images.forEach(function(img) {
@@ -19,5 +19,5 @@ $(document).ready(function() {
                 img.alt = 'web/images/undefined.webp';
             });
         });
-    });
+    });*/
 })

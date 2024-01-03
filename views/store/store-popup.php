@@ -20,16 +20,13 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="modal-body">
                 <?php $form = ActiveForm::begin(['action' => Yii::$app->urlManager->createUrl(['store/create'])]); ?>
-                <!--                <form action="create" method="post" enctype="multipart/form-dat">-->
-
                 <div class="store-form">
-
-
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
                     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
-
+                    <input type="hidden" name="Store[latitude]" id="store-location-latitude">
+                    <input type="hidden" name="Store[longitude]" id="store-location-longitude">
 
                     <?= $form->field($model, 'number')->textInput(['maxlength' => true]) ?>
 
@@ -37,7 +34,6 @@ use yii\widgets\ActiveForm;
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
                         <?= Html::submitButton('Գրանցել', ['class' => 'btn btn-success']) ?>
                     </div>
-
 
                 </div>
                 <?php ActiveForm::end(); ?>

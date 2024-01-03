@@ -614,7 +614,8 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
             }
             $products = $products->all();
             return $this->render('one-brand',['brand'=> $brand , 'products' => $products]);
-        }else{
+        }
+        else{
             $brands = FsStores::find()->where(['parent_id' => null])->all();
             return $this->render('brand',['brands'=> $brands]);
         }

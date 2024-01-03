@@ -18,7 +18,7 @@ $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
 $this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
-$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
+//$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
 ?>
 <?php $this->beginPage() ?>
 <!doctype html>
@@ -35,9 +35,13 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>FOS Admin</title>
+    <title>Adanas Manager</title>
     <meta name="description" content="FOS Admins">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" href="/web/images/new-logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
@@ -64,7 +68,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 </head>
 
 <body class="d-flex flex-column h-100">
-<?php $this->beginBody() ?>
+<?php $this->beginBody();
+$currentRoute = Yii::$app->controller->route; ?>
 
 
 <aside id="left-panel" class="left-panel">
@@ -72,73 +77,22 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <div id="main-menu" class="main-menu collapse navbar-collapse">
 
             <ul class="nav navbar-nav">
-                <!--                     <li >-->
-                <!--                         <a href="/admin/dashboard"><i class="menu-icon fa fa-dashboard"></i>Վահանակ </a>-->
-                <!--                     </li>-->
                 <?php if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20) { ?>
-                    <!--                       <li>-->
-                    <!--                           <a href="/admin/orders"><i class="menu-icon fa fa-shopping-cart"></i>Պատվերներ</a>-->
-                    <!--                       </li>-->
-
-                    <li>
-                        <a href="/store"><i class="menu-icon fa fa-shopping-cart"></i>Մենեջեռ</a>
+                    <li class="<?= $currentRoute == "store/index" ? 'active' : '' ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['store/index']) ?>"><i class="menu-icon fa fa-shopping-cart"></i>Մենեջեռ</a>
+                    </li>
+                    <li class="<?= $currentRoute == "store/products" ? 'active' : '' ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['store/products']) ?>"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
+                    </li>
+                    <li class="<?= $currentRoute == "store/concurents" ? 'active' : '' ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['store/concurents']) ?>"><i class="menu-icon fa ti-gallery"></i>Կոնկուրենտներ</a>
+                    </li>
+                    <li <?= $currentRoute == "store/categories" ? 'active' : '' ?>>
+                        <a href="/store/categories"><i class="menu-icon fa fa-bars"></i>Կատեգորիաներ </a>
                     </li>
                 <?php } ?>
-                <?php if (Yii::$app->user->identity->role == 10) { ?>
-                    <!--                      <li>-->
-                    <!--                         <a href="/admin/stores"><i class="menu-icon fa fa-archive"></i>Խանութներ</a>-->
-                    <!--                     </li>-->
-<!--                    <li>-->
-<!--                        <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>-->
-<!--                    </li>-->
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/partners"><i class="menu-icon fa fa-user"></i>Գործընկերներ</a>-->
-                    <!--                     </li>-->
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/customers"><i class="menu-icon fa fa-sitemap"></i>Հաճախորդներ</a>-->
-                    <!--                     </li>-->
-                    <!--                     <li>-->
-                    <!--                        <a href="/admin/discounts"><i class="menu-icon fa fa-percent"></i>Զեղչեր</a>-->
-                    <!--                    </li>-->
-                <?php } ?>
-                <?php if (Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 30) { ?>
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/pages"><i class="menu-icon fa fa-file"></i>Էջեր</a>-->
-                    <!--                     </li>-->
-                    <!--                    <li>-->
-                    <!--                        <a href="/admin/texts"><i class="menu-icon fa fa-font"></i>Տեքստեր</a>-->
-                    <!--                    </li>-->
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/banners"><i class="menu-icon fa fa-picture-o"></i>Պաստառներ</a>-->
-                    <!--                     </li>-->
-                    <!--                    <li>-->
-                    <!--                        <a href="/admin/products"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>-->
-                    <!--                    </li>  -->
-
-                    <li>
-                        <a href="/ad-product"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
-                    </li>
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/categories"><i class="menu-icon fa fa-bars"></i>Կատեգորիաներ </a>-->
-                    <!--                     </li>-->
-                    <!--                     <li>-->
-                    <!--                         <a href="/admin/properties"><i class="menu-icon fa fa-gg"></i>Պարամետրեր</a>-->
-                    <!--                     </li>-->
-                    <!--                      <li>-->
-                    <!--                         <a href="/admin/subscriptions"><i class="menu-icon fa fa-group"></i>Բաժանորդներ</a>-->
-                    <!--                     </li>-->
-
-                    <!--                      <li>-->
-                    <!--                         <a href="/admin/measurement"><i class="menu-icon fa fa-eraser"></i>Չափման միավորներ</a>-->
-                    <!--                     </li>-->
-                <?php } ?>
-                <!--                   --><?php //if( Yii::$app->user->identity->role == 10){ ?>
-                <!--                     <li>-->
-                <!--                         <a href="/admin/settings"><i class="menu-icon fa fa-cogs"></i>Կարգավորումներ</a>-->
-                <!--                     </li>-->
-                <!--                   --><?php //} ?>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </nav>
 </aside>
 <!-- /#left-panel -->
@@ -148,11 +102,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <!--                    <a class="navbar-brand" href="./"><img src="/web/images/fos-logo.svg" alt="Logo"></a>-->
-                <!--                    <a class="navbar-brand hidden" href="./"><img src="/web/images/fos-logo.svg" alt="Logo"></a>-->
-                <!--                    logo color #008A4E-->
-                <a class="navbar-brand" href="./"><img width="42px" src="/web/images/new-logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="/web/images/new-logo.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img width="" src="/web/images/new-big-logo.webp" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="/web/images/new-big-logo.webp" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>
@@ -189,21 +140,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <!-- /#header -->
     <!-- Content -->
     <div class="content">
-        <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
             <?= $content ?>
         </div>
     </div>
 </div>
-</div> <!-- /.card -->
-
-
-</div>
-<!-- /#right-panel -->
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
@@ -319,8 +266,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         });
     }
 </script>
-<!--<script type="module" src="../../web/js/new/geolocation.js" ></script>-->
-<script type="module" src="/web/js/main.js"></script>
+
 <script type="module" src="/web/js/new/store.js"></script>
 
 <?php $this->endBody() ?>
@@ -374,6 +320,24 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     .tbl {
         max-height: 80vh;
         overflow: auto;
+    }
+    .right-menu li{
+        padding:0 30px;
+        list-style-type:none;
+        color: #FFF;
+        font-size: 17px;
+        gap:15px;
+    }
+    .right-menu{
+        width: 250px;
+        height: 100%;
+        right: 0;
+        top: 55px;
+        padding-top:15px;
+        background: green;
+    }
+    .width-newmenu{
+        width:calc(100% - 250px) !important;
     }
 </style>
 
