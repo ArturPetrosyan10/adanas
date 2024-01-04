@@ -98,7 +98,7 @@ use app\models\FsPages;
             <li><span><i class="fa fa-facebook"></i></span></li>
         </ul>
     </div>
-    <div class="fs-container d-flex justify-content-between" style="margin-top:50px;">
+    <div class="fs-container d-flex justify-content-between" style="margin-top: 30px;border-top: solid 1px #ededed;padding-top: 20px;">
         <div>
             <p><img class="alignnone wp-image-828 size-full" src="https://adanas.am/wp-content/uploads/2023/08/Adanas-logo-140x32-1.png" alt="" width="140" height="32"></p>
         </div>

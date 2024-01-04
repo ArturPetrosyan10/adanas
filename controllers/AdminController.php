@@ -22,6 +22,7 @@ use app\models\FsNotifications;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -1601,7 +1602,11 @@ class AdminController extends Controller {
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(array('orders'));
+            if(Yii::$app->user->identity->type == 1){
+                return Yii::$app->getResponse()->redirect(Url::to(['/store/index']));
+            }else{
+                return $this->redirect(array('orders'));
+            }
         }
         $model->password = '';
         return $this->render('login', ['model' => $model, ]);
