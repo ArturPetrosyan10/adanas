@@ -141,7 +141,3 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
             </div>
         </div>
     </div>
-
-<script>
-    runChart();
-</script>

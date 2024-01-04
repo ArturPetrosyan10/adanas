@@ -101,7 +101,7 @@ use app\models\FsPages;
             <p><img class="alignnone wp-image-828 size-full" src="https://adanas.am/wp-content/uploads/2023/08/Adanas-logo-140x32-1.png" alt="" width="140" height="32"></p>
         </div>
         <div>
-            <p>Copyright © 2023 Adanas | All Rights Reserved | Website by&nbsp;<a target="_blank" href="https://codewave.am/">CodeWave</a></p>
+            <p class="copyright">Copyright © 2023 Adanas | All Rights Reserved | Website by&nbsp;<a target="_blank" href="https://codewave.am/">CodeWave</a></p>
         </div>
         <div >
             <p><img  src="https://adanas.am/wp-content/uploads/2023/02/payment.png" alt="" width="179" height="32"></p>

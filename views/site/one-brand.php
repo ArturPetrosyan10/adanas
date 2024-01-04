@@ -8,6 +8,24 @@ if(isset($_GET['price'])){
 }
 ?>
 <style>
+    .fs-product-thumbnail{
+        padding:1rem;
+    }
+    .fs-product-add-to-fav{
+        left:0px !important;
+    }
+    .owl-item {
+        -webkit-box-shadow: 0px 1px 30px rgb(62 68 90 / 9%);
+        padding: 2rem;
+        border-radius:8px;
+        width:22% !important;
+    }
+    .owl-carousel .owl-item {
+        float: left;
+        margin-left: 12px;
+        margin-right: 12px !important;
+        margin-top: 20px;
+    }
     .aside_section{
         gap:100px;
     }

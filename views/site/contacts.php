@@ -39,7 +39,7 @@
                     <input type="email"  name="email" id="EMAILFROM"  placeholder="<?= $GLOBALS['text']['__email__'] ?>" >
                 </label>
                 <label class="fs-contact-us-input-field">
-                    <input type="text"  name="topic" id="TOPICFROM"  placeholder="not set 'topic'" >
+                    <input type="text"  name="topic" id="TOPICFROM"  placeholder="<?= $GLOBALS['text']['__topic__'] ?>" >
                 </label>
                 <label class="fs-contact-us-textarea-field">
                     <span class="fs-contact-us-textarea-wrapper">

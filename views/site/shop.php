@@ -6,11 +6,32 @@ if(isset($_GET['price'])){
     $fromPrice = $price_range[0];
     $toPrice = $price_range[1];
 }
+
 ?>
 <style>
-    .owl-item{
-        margin:15px 0 !important;
-        width:25% !important;
+    .fs-product-thumbnail{
+        padding:1rem;
+    }
+    .fs-product-add-to-fav{
+        left:0px !important;
+    }
+    .owl-item {
+        -webkit-box-shadow: 0px 1px 30px rgb(62 68 90 / 9%);
+        padding: 2rem;
+        border-radius:8px;
+        width:22% !important;
+    }
+    .owl-carousel .owl-item {
+        float: left;
+        margin-left: 12px;
+        margin-right: 12px !important;
+        margin-top: 20px;
+    }
+    .aside_section{
+        gap:100px;
+    }
+    .owl-stage{
+        width:100% !important;
     }
     @media screen and (max-width: 1000px){
         .owl-item{
@@ -39,6 +60,25 @@ if(isset($_GET['price'])){
         border-radius: 0.4rem;
         color:#D7D4D1;
         border: 0.1rem solid #D7D4D1;
+    }
+    .owl-item {
+        -webkit-box-shadow: 0px 1px 30px rgb(62 68 90 / 9%);
+        padding: 2rem;
+        border-radius:8px;
+        width:22% !important;
+    }
+    .owl-carousel .owl-item {
+        float: left;
+        margin-left: 12px;
+        margin-right: 12px !important;
+        margin-top: 20px;
+    }
+    .aside_section{
+        gap:100px;
+    }
+
+    .owl-stage{
+        width:100% !important;
     }
     @media all and (max-width: 768px) {
         .owl-item{

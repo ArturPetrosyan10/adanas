@@ -23,48 +23,48 @@ use app\models\FsParamToCategory;
                         <?php echo display_list($categories, 'select');?>
                     </select>
                     <br><br>
-                    <div class="form-group">
-                        <button data-toggle="collapse"  data-target="#showProps__" class="btn" type="button"><i class="fa fa-cogs"></i> Պարամետրեր</button>
-                        <div class="collapse" id="showProps__">
-                            <?php
-                            
-                               $category = AdCategories::findOne(['id'=>$product->category_id]);
-                               if ($category && false){
-                                    $ids = $category->getAllParents();
-                                    $ids_all = [];
-                                    if(!empty($ids)){
-                                        foreach($ids as $id_ => $id_val){
-                                            $ids_all[] = $id_val->id;
-                                        }
-                                    }
-                                    $ids_all[] = $id;
-                                    $paramsToCategory = FsParamToCategory::find()->where(['category_id'=>$ids_all])->asArray()->all();
-                                    echo  Yii::$app->view->renderFile('@app/views/admin/get-param.php',['params'=>$params,
-                                        'paramsToCategory'=>$paramsToCategory,
-                                        'product'=>$product,
-                                        'category_id'=>$product->category_id,
-                                        'paramsOrigin' => $paramsOrigin]);
-                               }
-                                       ?>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <span style="margin-bottom: 4px;color: #878787;">Չափման միավոր</span>
-                            <select class="standardSelectM"  name="measuremnet_id">
-                                <option value=""></option>
-                                <?php foreach ($measurement as $ms => $msVal){ ?>
-                                    <option <?php if( $msVal['id'] == $product->qty_type){ echo 'selected';}?> value="<?php echo $msVal['id'];?>"><?php echo $msVal['name'];?></option>
-                                <?php } ?>
-                            </select>
-                            <br>
-                            <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Ապրանքի կոդ</span>
-                            <input type="text" name="code_" value="<?php echo $product->code_;?>" placeholder="Ապրանքի կոդ" class="form-control">
-                            <br>
-                            <span style="margin-bottom: 4px;color: #878787;">Արտիկուլ</span>
-                            <input type="text" name="vendor_code" value="<?php echo $product->vendor_code;?>" placeholder="Արտիկուլ" class="form-control">
-                        </div>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <button data-toggle="collapse"  data-target="#showProps__" class="btn" type="button"><i class="fa fa-cogs"></i> Պարամետրեր</button>-->
+<!--                        <div class="collapse" id="showProps__">-->
+<!--                            --><?php
+//
+//                               $category = AdCategories::findOne(['id'=>$product->category_id]);
+//                               if ($category && false){
+//                                    $ids = $category->getAllParents();
+//                                    $ids_all = [];
+//                                    if(!empty($ids)){
+//                                        foreach($ids as $id_ => $id_val){
+//                                            $ids_all[] = $id_val->id;
+//                                        }
+//                                    }
+//                                    $ids_all[] = $id;
+//                                    $paramsToCategory = FsParamToCategory::find()->where(['category_id'=>$ids_all])->asArray()->all();
+//                                    echo  Yii::$app->view->renderFile('@app/views/admin/get-param.php',['params'=>$params,
+//                                        'paramsToCategory'=>$paramsToCategory,
+//                                        'product'=>$product,
+//                                        'category_id'=>$product->category_id,
+//                                        'paramsOrigin' => $paramsOrigin]);
+//                               }
+//                                       ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-6">-->
+<!--                            <span style="margin-bottom: 4px;color: #878787;">Չափման միավոր</span>-->
+<!--                            <select class="standardSelectM"  name="measuremnet_id">-->
+<!--                                <option value=""></option>-->
+<!--                                --><?php //foreach ($measurement as $ms => $msVal){ ?>
+<!--                                    <option --><?php //if( $msVal['id'] == $product->qty_type){ echo 'selected';}?><!-- value="--><?php //echo $msVal['id'];?><!--">--><?php //echo $msVal['name'];?><!--</option>-->
+<!--                                --><?php //} ?>
+<!--                            </select>-->
+<!--                            <br>-->
+<!--                            <span style="margin-bottom: 4px;color: #878787;margin-top:2px;display:block;">Ապրանքի կոդ</span>-->
+<!--                            <input type="text" name="code_" value="--><?php //echo $product->code_;?><!--" placeholder="Ապրանքի կոդ" class="form-control">-->
+<!--                            <br>-->
+<!--                            <span style="margin-bottom: 4px;color: #878787;">Արտիկուլ</span>-->
+<!--                            <input type="text" name="vendor_code" value="--><?php //echo $product->vendor_code;?><!--" placeholder="Արտիկուլ" class="form-control">-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="form-group">
                         <div class="row" style="margin:10px 0px;">
