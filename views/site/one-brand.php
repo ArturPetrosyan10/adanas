@@ -1,5 +1,5 @@
 <?php $fromPrice =0;
-$toPrice =$maxPrice = 500000;
+$toPrice = $maxPrice = 50000;
 $fromPrice = 0;
 if(isset($_GET['price'])){
     $price_range = explode(';',$_GET['price']);
@@ -8,6 +8,9 @@ if(isset($_GET['price'])){
 }
 ?>
 <style>
+    .owl-stage{
+        transform: translate3d(0px, 0px, 0px) !important;
+    }
     .fs-product-thumbnail{
         padding:1rem;
     }

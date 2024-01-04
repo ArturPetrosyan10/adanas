@@ -148,6 +148,8 @@ use app\models\FsPages;
 
 
 <script src="/web/site/assets/source/js/libs_n_plugins/owl_carousel/owl.carousel.min.js?v3"></script>
+
+
 <!--<script src="/web/site/assets/source/js/libs_n_plugins/video/video.min.js?v3"></script>-->
 <!--<script-->
 <!--        src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"-->

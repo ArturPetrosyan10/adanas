@@ -30,9 +30,9 @@ use app\models\FsProducts;
                     <ul class="fs-category-link-list">
                         <li class="fs-category-link-first-level">
                             <a href="/categories/<?= $category->url ?>" class="fs-category-link-first-level-link"><?= $_COOKIE['language'] == 'hy' ? $category->name : $category->translation['name_' . $_COOKIE['language']] ?></a>
-                            <? if (count($category->children) > 0) { ?>
+                            <?php if (count($category->children) > 0) { ?>
                                 <ul class="ft-category-link-second-level-list">
-                                    <? foreach ($category->children as $child) { ?>
+                                    <?php foreach ($category->children as $child) { ?>
                                         <li class="ft-category-link-second-level-list-el <?= @$_GET['id'] == $child->id ? "active" : '' ?>">
                                             <a href="/categories/<?= $child->url ?>"><?= $_COOKIE['language'] == 'hy' ? $child->name : $child->translation['name_' . $_COOKIE['language']] ?></a>
                                         </li>

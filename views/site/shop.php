@@ -9,6 +9,9 @@ if(isset($_GET['price'])){
 
 ?>
 <style>
+    .owl-stage{
+        transform: translate3d(0px, 0px, 0px) !important;
+    }
     .fs-product-thumbnail{
         padding:1rem;
     }
