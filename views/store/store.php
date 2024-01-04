@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody class="sortableTable ui-sortable" id="sortable">
                     <?php foreach ($documents as $index => $document) { ?>
                         <tr>
-                            <td><?= $document['username'];  ?></td>
+                            <td><?= $document['username'];  ?></td> 
                             <td><?= $document['comment'] ?></td>
                             <td><?= $document['created_at'] ?></td>
                             <td><a href="<?= Yii::$app->urlManager->createUrl('store/document') ?>?id=<?= $document['id']; ?>">Դիտել</td>
