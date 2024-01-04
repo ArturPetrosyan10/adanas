@@ -26,8 +26,6 @@ use app\models\FsPages;
                         return $menuHtml;
                     }
                     ?>
-                     <link rel="stylesheet" href="/web/css/la.css">
-                    <link type="text/css" rel="stylesheet" href="/web/css/mmenu.css?v3" />
 
                     <nav  id="mmenu">
                         <ul>

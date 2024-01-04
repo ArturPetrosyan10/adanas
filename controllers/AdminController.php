@@ -37,6 +37,9 @@ use DatePeriod;
 use DateTime;
 class AdminController extends Controller {
     public function beforeAction($action) {
+        if(Yii::$app->user->identity->type == 1){ //manager
+            return Yii::$app->getResponse()->redirect(Url::to(['/store/index']));
+        }
         //multy_status let us create new customers
         if(Yii::$app->fsUser->identity->status === 2){
             $multy_status = true;
@@ -1602,7 +1605,7 @@ class AdminController extends Controller {
         }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if(Yii::$app->user->identity->type == 1){
+            if(Yii::$app->user->identity->type == 1){ //manager
                 return Yii::$app->getResponse()->redirect(Url::to(['/store/index']));
             }else{
                 return $this->redirect(array('orders'));

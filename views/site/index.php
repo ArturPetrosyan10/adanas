@@ -94,7 +94,7 @@
                 <?php if(!empty($view_history)){;?>
                     <?php foreach ($view_history as $vp => $vp_val){ ?>
                         <?php $product = FsProducts::findOne($vp_val->id);?>
-                        <div class="item shadow p-3 mb-5 bg-white rounded">
+                        <div class="item p-3 mb-5 bg-white rounded">
                             <?php  echo $this->renderFile('@app/views/site/prod.php',['product'=>$product]); ?>
                         </div>
                     <?php } ?>

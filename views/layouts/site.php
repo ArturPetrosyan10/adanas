@@ -38,12 +38,12 @@ $action_id = Yii::$app->controller->action->id;
     <link rel="stylesheet" href="">
 </head>
 
-<?php $this->beginBody() ?>
+<?php $this->beginBody();
+?>
 
 
 <div id="page">
     <?php if($action_id !== 'sign-in'){
-//             include('header.php');
             echo $this->render('header.php');
 
         $urls = [0=>['action'=>'index','url' => '/','name'=> $GLOBALS['text']['__home__page__'] ],

@@ -102,7 +102,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </button>
             </div>
             <div class="modal-body">
-<!--                concurentnery aji vra lini + amen xanuti apranqneri canky skzbic nytrvi-->
                 <form action="<?= Yii::$app->urlManager->createUrl('store/add-document') ?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="store_id" value="<?= $_GET['id'] ?>">
                     <input type="hidden" name="<?= $this->renderDynamic('return Yii::$app->request->csrfParam;'); ?>" value="<?= $this->renderDynamic('return Yii::$app->request->csrfToken;'); ?>" />
