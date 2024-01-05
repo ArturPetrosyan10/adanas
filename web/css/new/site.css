@@ -505,10 +505,39 @@ footer ul a{
     line-height:3.2rem;
     margin-top:0;
     margin-bottom:0;
-    color:#8C8370;
+    color:#ffbd27;
     padding-bottom:3.2rem
 }
-
+.fs-auth-input-label{
+    display:block;
+    box-sizing:border-box;
+    padding-bottom:1.2rem;
+    font-size:1.4rem;
+    line-height:2.2rem;
+    color:#000;
+    font-weight:500
+}
+.fs-authorization-submit{
+    width:100%;
+    height:4.6rem;
+    background-color:transparent;
+    border-radius:0.4rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:1.6rem;
+    color:#ffbd27;
+    border:solid 1px #ffbd27;
+    font-size:1.6rem;
+    font-weight:500;
+}
+.fs-auth-sign-in-action-row .fs-auth-remember-me .fs-auth-checkbox-label{
+    display:block;
+    white-space:nowrap;
+    font-size:1.4rem;
+    font-weight:700;
+    color:#000;
+}
 .fs-top-profile-abbr{
     width:3.2rem;
     height:3.2rem;
@@ -1163,6 +1192,25 @@ button:focus {
     border-radius:0.4rem;
     overflow:hidden
 }
+.fs-personal-order-tab{
+    padding:0 1.6rem;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.6rem;
+    line-height:2.4rem;
+    font-weight:400;
+    color:#ffbd27;
+    background-color:transparent;
+    border:none;
+    position:relative;
+    text-decoration:none;
+}
+.active-border-bottom{
+    border-bottom:solid 0.2rem #ffbd27;
+}
+
 .fs-product-thumbnail-wrapper:after{
     content:"";
     position:relative;
@@ -1183,6 +1231,19 @@ button:focus {
 }
 .copyright{
     font-size:16px;
+}
+
+.fs-personal-announced-table-wrapper thead{
+    background-color: #D7D4D1;
+}
+.fs-personal-announced-table-wrapper thead td,.fs-personal-announced-table-wrapper tbody td{
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    text-transform: uppercase;
+    color: #4A4640;
+    font-weight: 700;
 }
 
 @media screen and (max-width: 1000px){

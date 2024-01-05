@@ -7,16 +7,15 @@
                 <?php } else { ?>
                     <li class="fs-breadcrumbs-el"><a href="/personal"><?= $GLOBALS['text']["__home__page__"] ?></a></li>
                 <?php } ?>
-                <li class="fs-breadcrumbs-el"><?= $GLOBALS['text']["__sales__"] ?></li>
+                <li class="fs-breadcrumbs-el" >/</li> <li class="fs-breadcrumbs-el"> <?= $GLOBALS['text']["__sales__"] ?></li>
             </ul>
         </div>
     </div>
     <div class="fs-personal-page-wrapper">
         <div class="fs-container">
-            <? include("personal_menu.php"); ?>
+            <?php include("personal_menu.php"); ?>
             <div class="fs-personal-body">
-                <? include('title.php'); ?>
-                <!--        <div class="fs-personal-name-row">Օգտահաշիվը դեռ հաստատված չէ - </div>-->
+                <?php include('title.php'); ?>
                 <div class="fs-personal-title-group">
                     <h2 class="fs-personal-body-title"><?= $GLOBALS['text']["__sales__"] ?></h2>
                 </div>
@@ -24,12 +23,13 @@
                     <div class="fs-personal-announced-head">
                         <?php if(!isMobile_()){ ?>
                             <div class="fs-personal-announced-tab-head">
-                                <a href="/personal-sales" class="fs-personal-order-tab <?php if(!isset($_GET['state'])){ echo 'active';}?>"><?= $GLOBALS['text']["_all_"] ?></a>
-                                <a href="/personal-sales?state=0" class="fs-personal-order-tab <?php if(@$_GET['state'] === 0){ echo 'active';}?>"><?= $GLOBALS['text']["__pending__"] ?></a>
-                                <a href="/personal-sales?state=2" class="fs-personal-order-tab <?php if(@$_GET['state'] == 2){ echo 'active';}?>"><?= $GLOBALS['text']["__completed__"] ?></a>
-                                <a href="/personal-sales?state=1" class="fs-personal-order-tab <?php if(@$_GET['state'] == 1){ echo 'active';}?>"><?= $GLOBALS['text']["__acting__"] ?></a>
+                                <a href="/personal-sales" class="fs-personal-order-tab <?php if(!isset($_GET['state'])){ echo 'active-border-bottom';}?>"><?= $GLOBALS['text']["_all_"] ?></a>
+                                <a href="/personal-sales?state=0" class="fs-personal-order-tab <?php if(@$_GET['state'] === '0'){ echo 'active-border-bottom';}?>"><?= $GLOBALS['text']["__pending__"] ?></a>
+                                <a href="/personal-sales?state=2" class="fs-personal-order-tab <?php if(@$_GET['state'] === '2'){ echo 'active-border-bottom';}?>"><?= $GLOBALS['text']["__completed__"] ?></a>
+                                <a href="/personal-sales?state=1" class="fs-personal-order-tab <?php if(@$_GET['state'] === '1'){ echo 'active-border-bottom';}?>"><?= $GLOBALS['text']["__acting__"] ?></a>
                             </div>
-                        <?php } else { ?>
+                        <?php }
+                        else { ?>
                             <div class="fs-category-sort-row mobile-only">
                                 <select name="type" id="drop_mobile_offers_pers" class="fs-dropdown">
                                     <option value=""><?= $GLOBALS['text']["__all__"] ?></option>
@@ -114,7 +114,8 @@
                             <!--                            </div>-->
                             <!--                        </div>-->
                         </div>
-                    <?php } else { ?>
+                    <?php }
+                    else { ?>
                         <div class="fs-personal-announced-table-wrapper">
                             <table class="table table-responsive">
                                 <thead>

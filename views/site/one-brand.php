@@ -10,6 +10,7 @@ if(isset($_GET['price'])){
 <style>
     .owl-stage{
         transform: translate3d(0px, 0px, 0px) !important;
+        width:100% !important;
     }
     .fs-product-thumbnail{
         padding:1rem;
@@ -32,9 +33,7 @@ if(isset($_GET['price'])){
     .aside_section{
         gap:100px;
     }
-    .owl-stage{
-        width:100% !important;
-    }
+
     .mobile-only{
         display:none;
     }

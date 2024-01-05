@@ -40,7 +40,6 @@ class AdminController extends Controller {
         if(Yii::$app->user->identity->type == 1){ //manager
             return Yii::$app->getResponse()->redirect(Url::to(['/store/index']));
         }
-        //multy_status let us create new customers
         if(Yii::$app->fsUser->identity->status === 2){
             $multy_status = true;
         }else{
@@ -66,11 +65,11 @@ class AdminController extends Controller {
     }
     /*PRODUCTS PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionProducts() {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
         $post = Yii::$app->request->post();
         if ($post && $post['add']) {
+//            echo '<pre>';
+//            var_dump($post);
+//            die;
             $product = new FsProducts();
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
@@ -111,7 +110,6 @@ class AdminController extends Controller {
                 $img = substr($img, 0, -1);
                 $product->image = $img;
             }
-
             if (isset($post['old_prod']) && !empty($post['old_prod'])) {
                 for ($i = 0;$i < count($post['old_prod']);$i++) {
                     $img .= $post['old_prod'][$i].',';
@@ -166,7 +164,7 @@ class AdminController extends Controller {
                 }
             }
             $this->redirect(['products', 'success' => 'true', 'id' => 'key' . $product->id]);
-        } else if ($post && $post['edite']) {
+        } else if ($post && $post['edite']){
             $product = FsProducts::findOne(['id' => intval($post['id']) ]);
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
@@ -876,9 +874,6 @@ class AdminController extends Controller {
     }
     /*PROPERTIES PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionProperties() {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
         $post = Yii::$app->request->post();
         if ($post && $post['add']) {
             $param_new = new FsParams();

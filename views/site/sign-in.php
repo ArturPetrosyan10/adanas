@@ -7,13 +7,14 @@
                 <i class="fs-icon-error"></i>
                 <p><?= $GLOBALS['text']["__no__user__found__"] ?></p>
             </div>
-                <script>
-        var url = window.location.href;
-        url = url.split('?')[0];
-        window.history.replaceState({}, document.title, url);
-    </script>
+            <script>
+                var url = window.location.href;
+                url = url.split('?')[0];
+                window.history.replaceState({}, document.title, url);
+            </script>
             <?php } ?>
             <form action="/site/login" id="loginf" method="POST" class="fs-auth-form">
+
                 <input type="hidden" name="authmod" value="local" />
                 <input type="hidden" name="regmod" value="login" />
 
@@ -31,14 +32,24 @@
                         <span class="fs-auth-checkbox-imitation"></span>
                         <span class="fs-auth-checkbox-label"><?= $GLOBALS['text']["__remember__me__"] ?></span>
                     </label>
-                    <a href="/forgot/" class="fs-auth-forgot-pass"><?= $GLOBALS['text']["__forgot__password__"] ?></a>
+<!--                    <a href="/forgot/" class="fs-auth-forgot-pass">--><?php //= $GLOBALS['text']["__forgot__password__"] ?><!--</a>-->
+<!--                    <div class="d-flex flex-column">-->
+<!--                        <div class="fs-lang-selected-block" tabindex="0">-->
+<!--                            <img src="/web/site/assets/media/images/--><?php //= $_COOKIE['language'] ?><!--.jpg" alt="" />-->
+<!--                        </div>-->
+<!--                        <div class="fs-lang-list-wrapper position-static p-0">-->
+<!--                            <ul class="fs-lang-list">-->
+<!--                                --><?php //$langs = ['en', 'hy', 'ru']; foreach ($langs as $lang): if ($lang != $_COOKIE['language']) {?>
+<!--                                    <li class="fs-lang-list-item">-->
+<!--                                        <a onclick="alert(1)" href="/site/switch-language?lang=--><?php //= $lang ?><!--"><img src="/web/site/assets/media/images/--><?php //= $lang ?><!--.jpg" alt="--><?php //= $lang ?><!--"></a>-->
+<!--                                    </li>-->
+<!--                                --><?php //} endforeach; ?>
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <button type="submit" class="fs-authorization-submit"><?= $GLOBALS['text']["__enter__"] ?></button>
             </form>
-            <!--<p class="fs-authorized-already">
-                <?php /*= $GLOBALS['text']["__not__registered__yet__"] */?>
-                <a href="/sign-up/"><?php /*= $GLOBALS['text']["__register__"] */?></a>
-            </p>-->
         </div>
     </div>
 </main>

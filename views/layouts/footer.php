@@ -108,7 +108,7 @@ use app\models\FsPages;
         </div>
     </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 <?php if(isMobile()){ ?>
 <script src="/web/site/assets/source/js/libs_n_plugins/jquery/jquery.min.js?v3"></script>

@@ -1,6 +1,19 @@
 <?php 
 use app\models\FsProducts;
 ?>
+<style>
+     section .item{
+        box-shadow: 0px 1px 30px rgb(62 68 90 / 9%);
+        padding: 2rem;
+        border-radius:8px;
+    }
+     .main-section .item {
+        padding: 2rem;
+        border-radius:8px;
+        width:22% !important;
+        margin-bottom:20px;
+    }
+</style>
 <main class="fs-main-content">
     <div class="fs-breadcrumbs-wrapper">
         <div class="fs-container">
@@ -100,22 +113,21 @@ use app\models\FsProducts;
                     </div>
                 </div>
                 <div class="fs-category-container">
-                    <br>
-                     <div class="fs-category-prod-list">
-
-                        <?php
-                          if(!empty($products)) {
-                              foreach ($products as $product) {
-                                  echo $this->renderFile('@app/views/site/prod.php', ['product' => $product]);
+                    <section>
+                         <div class="item">
+                            <?php
+                              if(!empty($products)) {
+                                  foreach ($products as $product) {
+                                      echo $this->renderFile('@app/views/site/prod.php', ['product' => $product]);
+                                  }
                               }
-                          }
-                        ?>
-                    </div>
+                            ?>
+                        </div>
+                    </section>
                     <nav>
                         <?php $pages = ceil(intval($total)/12); ?>
                         <?php if($pages>1){ ?>
                         <ul class="pagination">
-
                             <?php if(isset($_GET['page']) && intval($_GET['page'] )>0){ ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?php echo strtok($_SERVER["REQUEST_URI"],'?');?>?page=<?php echo intval($_GET['page'])-1;?>" aria-label="Previous">
@@ -148,12 +160,12 @@ use app\models\FsProducts;
                     </nav>
                 </div>
             </div>
-            <?php } else { ?>
+            <?php }
+            else { ?>
             <div class="fs-category-container">
                 <aside class="fs-category-page-sidebar">
                     <div class="fs-category-sub-list">
                         <a href="/categories" class="fs-category-sub-title"><?= $GLOBALS['text']['__categories__'] ?></a>
-
                         <?php
                             foreach ($category->allParents as $parent) { ?>
                             <a href="/categories/<?= $parent->url ?>" class="fs-category-back-link"><i class="fs-icon-chevron"></i> <?= $_COOKIE['language'] == 'hy' ? $parent->name : $parent->translation['name_' . $_COOKIE['language']] ?></a>
@@ -161,15 +173,15 @@ use app\models\FsProducts;
                         <ul class="fs-category-link-list">
                             <li class="fs-category-link-first-level">
                                 <a href="/categories/<?= $category->url ?>" class="fs-category-link-first-level-link"><?= $_COOKIE['language'] == 'hy' ? $category->name : $category->translation['name_' . $_COOKIE['language']] ?></a>
-                                <? if (count($category->children) > 0) { ?>
+                                <?php if (count($category->children) > 0) { ?>
                                     <ul class="ft-category-link-second-level-list">
-                                        <? foreach ($category->children as $child) { ?>
+                                        <?php foreach ($category->children as $child) { ?>
                                             <li class="ft-category-link-second-level-list-el <?= @$_GET['id'] == $child->id ? "active" : '' ?>">
                                                 <a href="/categories/<?= $child->url ?>"><?= $_COOKIE['language'] == 'hy' ? $child->name : $child->translation['name_' . $_COOKIE['language']] ?></a>
                                             </li>
-                                        <? } ?>
+                                        <?php } ?>
                                     </ul>
-                                <? } ?>
+                                <?php } ?>
                             </li>
                         </ul>
                     </div>
@@ -217,16 +229,15 @@ use app\models\FsProducts;
                             </div>
                         </div>
                     </div>
-                    <div class="fs-category-prod-list">
-
-                        <?php
-                          if(!empty($products)) {
-                              foreach ($products as $product) {
-                                  echo $this->renderFile('@app/views/site/prod.php', ['product' => $product]);
-                              }
-                          }
-                        ?>
-                    </div>
+                        <section class="w-100 d-flex flex-wrap justify-content-between main-section">
+                        <?php if(!empty($products)) {
+                                foreach ($products as $product) { ?>
+                                    <div class="item">
+                                        <?= $this->renderFile('@app/views/site/prod.php', ['product' => $product]); ?>
+                                    </div>
+                          <?php }
+                             } ?>
+                        </section>
                     <nav>
                         <?php $pages = ceil(intval($total)/12); ?>
                         <?php if($pages>1){ ?>
@@ -267,24 +278,21 @@ use app\models\FsProducts;
             </div>
             <?php } ?>
         </div>
-      
-          <?php if(!empty($view_history)){;?>
-    <section class="fs-last-viewed-section fs-main-section-el" id="last" data-dom-el="section">
+        <?php if(!empty($view_history)){ ?>
+        <section class="fs-last-viewed-section fs-main-section-el" id="last" data-dom-el="section">
             <div class="fs-container">
                 <h2 class="fs-section-title"><?= $GLOBALS['text']['_main_page_title_55_']?></h2>
                 <div class="fs-product-slider owl-carousel owl-theme">
-                  
-                        <?php foreach ($view_history as $vp => $vp_val){ ?>
-                            <?php $product = FsProducts::findOne($vp_val->product_id);?>
-                            <div class="item">
-                                <?php  echo $this->renderFile('@app/views/site/prod.php',['product'=>$product]); ?>
-                            </div>
-                        <?php } ?>
-                   
+                    <?php foreach ($view_history as $vp => $vp_val){ ?>
+                        <?php $product = FsProducts::findOne($vp_val->product_id);?>
+                        <div class="item">
+                            <?php  echo $this->renderFile('@app/views/site/prod.php',['product'=>$product]); ?>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </section>
-         <?php } ?>
+        <?php } ?>
     </div>
 </main>
 <style>

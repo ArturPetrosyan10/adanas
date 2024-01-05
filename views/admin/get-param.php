@@ -42,7 +42,7 @@ if(!empty($paramsToCategory)){
                 if( @$param['id'] == 33){
                     $sl = 'colors';
                 }
-                echo '<select class="form-control standardSelect__ '. $sl.'" multiple name="property[' . $param['id'] . '][]"><option value=""></option>';
+                echo '<select class="form-control standardSelect__ '. $sl.'" multiple name="property[' . $param['id'] . '][]" data-id="' . $param['id'] . '"><option value=""></option>';
                 foreach ($paramChailds as $paramL => $paramVal) {
                     $class= '';
                     if(isset($params)){
@@ -110,6 +110,7 @@ if(!empty($paramsToCategory)){
     }
 </style>
 <script>
+    var st_selects_values = [];
     setTimeout(function(){
         jQuery(".filter-block .standardSelect__").chosen({
             disable_search_threshold: 10,
@@ -117,13 +118,15 @@ if(!empty($paramsToCategory)){
             placeholder_text_multiple: "Ընտրել",
             width: "100%"
         }).trigger('chosen:updated');
-        jQuery('.colors').on('change',function(){
+        // jQuery('.colors').on('change',function(){ //-
+        jQuery('.standardSelect__').on('change',function(){ //+
+            st_selects_values[jQuery(this).data('id')] = jQuery(this).val();
             var txt = '';
-            if(jQuery(this).val()){
+            if(jQuery(this).val() && !check_multiple(st_selects_values)){
                 var ls = jQuery(this).val();
                 for (let i = 0; i < ls.length; i++) {
-                    var tct = jQuery(this).find('option[value="'+ls[i]+'"]').text();
-                    console.log(tct);
+                    var tct = jQuery(this).find('option[value="'+ls[i]+'"]').text(); // name of property
+                    // console.log(tct);
                     if(jQuery('[data-tp='+tct+']').length == 1){
 
                         txt += `<div class="row" style="border:1px solid lightgray;margin:10px;"  data-tp="`+tct+`">`;
@@ -144,10 +147,21 @@ if(!empty($paramsToCategory)){
                 }
 
                 jQuery(this).closest('div').find('.info-block').html(txt);
+                jQuery('body .standardSelect__').each(function () {
+                    st_selects_values[jQuery(this).data('id')] = jQuery(this).val();
+                });
             }
             // console.log(jQuery(this).val());
             // console.log(jQuery(this).find('option:selected').text());
         });
     },500);
-
+    function check_multiple(array) {
+        let i = 0;
+        for (let arrayKey in array) {
+            if(array[arrayKey].length){
+                i++;
+            }
+        }
+        return(!!((i - 1) && i > 0));
+    }
 </script>

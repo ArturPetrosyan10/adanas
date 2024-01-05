@@ -63,6 +63,11 @@ class SiteController extends Controller
             $this->enableCsrfValidation = false;
             return parent::beforeAction($action);
         }else{
+            if (!isset($_COOKIE['language'])) {
+                setcookie('language', 'hy', time() + (365 * 24 * 60 * 60));
+                $lng = 'am';
+                return Yii::$app->getResponse()->redirect(Url::to([''], true))->send();
+            }
             return $this->redirect('sign-in');
         }
     }
@@ -117,57 +122,56 @@ class SiteController extends Controller
     }
     public function actionGetmessages(){
         $challenge = $_REQUEST['hub_challenge'];
-$verify_token = $_REQUEST['hub_verify_token'];
+        $verify_token = $_REQUEST['hub_verify_token'];
 
-// Set this Verify Token Value on your Facebook App 
-if ($verify_token === 'testtoken') {
-  echo $challenge;
-}
+        // Set this Verify Token Value on your Facebook App
+        if ($verify_token === 'testtoken') {
+          echo $challenge;
+        }
 
-$input = json_decode(file_get_contents('php://input'), true);
+        $input = json_decode(file_get_contents('php://input'), true);
 
-// Get the Senders Graph ID
-$sender = $input['entry'][0]['messaging'][0]['sender']['id'];
+        // Get the Senders Graph ID
+        $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
 
-// Get the returned message
-$message = $input['entry'][0]['messaging'][0]['message']['text'];
+        // Get the returned message
+        $message = $input['entry'][0]['messaging'][0]['message']['text'];
 
-//API Url and Access Token, generate this token value on your Facebook App Page
-$url = 'https://graph.facebook.com/v2.6/me/messages?access_token=<ACCESS-TOKEN-VALUE>';
+        //API Url and Access Token, generate this token value on your Facebook App Page
+        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=<ACCESS-TOKEN-VALUE>';
 
-//Initiate cURL.
-$ch = curl_init($url);
+        //Initiate cURL.
+        $ch = curl_init($url);
 
-//The JSON data.
-$jsonData = '{
-    "recipient":{
-        "id":"' . $sender . '"
-    }, 
-    "message":{
-        "text":"The message you want to return"
-    }
-}';
+        //The JSON data.
+        $jsonData = '{
+            "recipient":{
+                "id":"' . $sender . '"
+            }, 
+            "message":{
+                "text":"The message you want to return"
+            }
+        }';
 
-//Tell cURL that we want to send a POST request.
-curl_setopt($ch, CURLOPT_POST, 1);
+        //Tell cURL that we want to send a POST request.
+        curl_setopt($ch, CURLOPT_POST, 1);
 
-//Attach our encoded JSON string to the POST fields.
-curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        //Attach our encoded JSON string to the POST fields.
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
 
-//Set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        //Set the content type to application/json
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-//Execute the request but first check if the message is not empty.
-if(!empty($input['entry'][0]['messaging'][0]['message'])){
-  $result = curl_exec($ch);
-}
+        //Execute the request but first check if the message is not empty.
+        if(!empty($input['entry'][0]['messaging'][0]['message'])){
+          $result = curl_exec($ch);
+        }
     }
     public function actionSwitchLanguage($lang)
     {
         setcookie('language', $lang, time() + (365 * 24 * 60 * 60),"/");
         return $this->goBack(Yii::$app->request->referrer);
     }
-
 
     /**
      * Displays homepage.
@@ -377,29 +381,27 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
     }
     public function actionPersonalSales()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-
-            $get = Yii::$app->request->get();
-            $state = $get['state'];
-            $fromdate = $get['state'];
-            $todate = $get['todate'];
-            $page = 1 ;
-            $requests = FsDiscounts::find();
-            if(isset($state)) {
-                $requests = $requests->andWhere(['discount_status' => $state]);
-            }
-            if ($fromdate) {
-                $requests = $requests->andWhere(['>=', 'start_date', date('Y-m-d', strtotime(str_replace('/', '-', $fromdate)))]);
-            }
-            if ($todate) {
-                $requests = $requests->andWhere(['<=', 'start_date', date('Y-m-d', strtotime(str_replace('/', '-', $todate)))]);
-            }
-            $requests = $requests->limit(10)->offset(($page-1) * 10)->all();
-            return $this->render('sales', ['user' => $user,'discounts'=>$requests]);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $get = Yii::$app->request->get();
+        $state = $get['state'];
+        $fromdate = $get['state'];
+        $todate = $get['todate'];
+        $page = 1 ;
+        $requests = FsDiscounts::find();
+        if(isset($state)) {
+            $requests = $requests->andWhere(['discount_status' => $state]);
         }
-        return $this->redirect(['sign-in']);
+        if ($fromdate) {
+            $requests = $requests->andWhere(['>=', 'start_date', date('Y-m-d', strtotime(str_replace('/', '-', $fromdate)))]);
+        }
+        if ($todate) {
+            $requests = $requests->andWhere(['<=', 'start_date', date('Y-m-d', strtotime(str_replace('/', '-', $todate)))]);
+        }
+        $requests = $requests->limit(10)->offset(($page-1) * 10)->all();
+
+
+        return $this->render('sales', ['user' => $user,'discounts'=>$requests]);
     }
 
     public function actionPersonalRequests($page = 1, $state = null, $fromdate = null, $todate = null)
@@ -423,13 +425,10 @@ if(!empty($input['entry'][0]['messaging'][0]['message'])){
 
     public function actionPersonalWishlist()
     {
-        if (!Yii::$app->fsUser->isGuest) {
-            $this->layout = 'site';
-            $user = Yii::$app->fsUser->identity;
-            $res = FsWishlist::find()->select('provider_id')->groupBy('provider_id')->where(['user_id'=>Yii::$app->fsUser->identity->id])->asArray()->all();
-            return $this->render('wishlist',['providers'=>$res,'user' => $user]);
-        }
-        return $this->redirect(['sign-in']);
+        $this->layout = 'site';
+        $user = Yii::$app->fsUser->identity;
+        $res = FsWishlist::find()->select('provider_id')->groupBy('provider_id')->where(['user_id'=>Yii::$app->fsUser->identity->id])->asArray()->all();
+        return $this->render('wishlist',['providers'=>$res,'user' => $user]);
     }
 
     public function actionSupplier()
