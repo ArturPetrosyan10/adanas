@@ -26,7 +26,7 @@ if($category_id){
     </select>
 <?php }
 if(!empty($paramsToCategory)){
-    echo '<div class="filter-block">';
+    echo '<div class="filter-block position-relative">';
 
     foreach ($paramsToCategory as $pr){
 
@@ -72,7 +72,8 @@ if(!empty($paramsToCategory)){
                 echo '</select>';
             }
             echo '<div class="info-block">'.$info.'</div></div>';
-        } else if($param->type_ == 'text'){
+        }
+        else if($param->type_ == 'text'){
             $val= '';
             if(isset($params) && $params[$param['id']]){
                 $val=$params[$param['id']];
@@ -81,7 +82,8 @@ if(!empty($paramsToCategory)){
                       <input type="text" value="'.$val.'" class="form-control" id="prop_' . $param['id'] . '"  name="property[' .$param['id'] . ']">
                    </div>';
             echo '</div>';
-        } else if($param->type_ == 'number'){
+        }
+        else if($param->type_ == 'number'){
             $val= '';
             if(isset($params) && $params[$param['id']]){
                 $val=$params[$param['id']];
@@ -91,7 +93,14 @@ if(!empty($paramsToCategory)){
                    </div>';
             echo '</div>';
         }
+
     }
+    $addict_div = '<div style="position:relative"> ';
+    $addict_div .= '<b style="margin-bottom:10px;">Գին</b>'.'<input type="number" class="form-control" name="variations__price__[]" >' ;
+    $addict_div .= '</div>' ;
+    echo $addict_div;
+    echo '<button class="btn btn-sm addParamVariation" style="position: absolute; right: 3.2rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-plus"></i></button>';
+    echo '<button class="btn btn-sm minuseParamVariation" style="position: absolute; right: 1rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-minus"></i></button>';
     echo '</div>';
 };?>
 <style>
@@ -110,7 +119,6 @@ if(!empty($paramsToCategory)){
     }
 </style>
 <script>
-    var st_selects_values = [];
     setTimeout(function(){
         jQuery(".filter-block .standardSelect__").chosen({
             disable_search_threshold: 10,
@@ -118,50 +126,27 @@ if(!empty($paramsToCategory)){
             placeholder_text_multiple: "Ընտրել",
             width: "100%"
         }).trigger('chosen:updated');
-        // jQuery('.colors').on('change',function(){ //-
-        jQuery('.standardSelect__').on('change',function(){ //+
-            st_selects_values[jQuery(this).data('id')] = jQuery(this).val();
-            var txt = '';
-            if(jQuery(this).val() && !check_multiple(st_selects_values)){
-                var ls = jQuery(this).val();
-                for (let i = 0; i < ls.length; i++) {
-                    var tct = jQuery(this).find('option[value="'+ls[i]+'"]').text(); // name of property
-                    // console.log(tct);
-                    if(jQuery('[data-tp='+tct+']').length == 1){
-
-                        txt += `<div class="row" style="border:1px solid lightgray;margin:10px;"  data-tp="`+tct+`">`;
-                        txt += jQuery('[data-tp='+tct+']').html();
-                        txt += `</div>`;
-                        continue;
-                    }
-                    txt +=`<div class="row" style="border:1px solid lightgray;margin:10px;"  data-tp="`+tct+`">
-                                   <div class="col-sm-12">`+tct+`</div>
-                                   <div class="col-sm-6">
-                                           <input type="text" onkeyup="jQuery(this).attr('value',jQuery(this).val())" class="form-control" name="code__[]" placeholder="Կոդ">
-                                           <input type="hidden" name="vid_[]" value="`+ls[i]+`">
-                                   </div>
-                                   <div class="col-sm-6">
-                                      <input type="number" onkeyup="jQuery(this).attr('value',jQuery(this).val())" class="form-control"  name="price_[]" step="0.1" placeholder="Արժեք">
-                                    </div>
-                                </div>`;
-                }
-
-                jQuery(this).closest('div').find('.info-block').html(txt);
-                jQuery('body .standardSelect__').each(function () {
-                    st_selects_values[jQuery(this).data('id')] = jQuery(this).val();
-                });
-            }
-            // console.log(jQuery(this).val());
-            // console.log(jQuery(this).find('option:selected').text());
-        });
     },500);
-    function check_multiple(array) {
-        let i = 0;
-        for (let arrayKey in array) {
-            if(array[arrayKey].length){
-                i++;
-            }
-        }
-        return(!!((i - 1) && i > 0));
+    jQuery('body').on('click','.minuseParamVariation',function(){
+        delete_row(jQuery(this));
+    });
+    jQuery('body').on('click','.addParamVariation',function(){
+        copy_row(jQuery(this));
+    });
+
+    function copy_row(el) {
+        let originalSelect = el.closest('.filter-block').find(".standardSelect__").chosen('destroy');
+        let elCopy = el.closest('.filter-block').clone();
+        el.closest('.collapse').append(elCopy);
+        jQuery(".filter-block .standardSelect__").chosen({
+            disable_search_threshold: 10,
+            placeholder_text_single: "Ընտրել",
+            placeholder_text_multiple: "Ընտրել",
+            width: "100%"
+        }).trigger('chosen:updated');
+    }
+
+    function delete_row(el){
+        el.closest('.filter-block').remove();
     }
 </script>

@@ -67,9 +67,9 @@ class AdminController extends Controller {
     public function actionProducts() {
         $post = Yii::$app->request->post();
         if ($post && $post['add']) {
-//            echo '<pre>';
-//            var_dump($post);
-//            die;
+            echo '<pre>';
+            var_dump($post);
+            die;
             $product = new FsProducts();
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
