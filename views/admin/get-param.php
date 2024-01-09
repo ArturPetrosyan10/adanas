@@ -1,5 +1,4 @@
 <?php
-
 use app\models\FsBrandToCategory;
 use app\models\FsParams;
 use app\models\FsProductVariations;
@@ -26,8 +25,9 @@ if($category_id){
     </select>
 <?php }
 if(!empty($paramsToCategory)){
-    echo '<div class="filter-block position-relative">';
-
+    $counter = 0;
+    $img_div = '<div class="col-sm-3" style="color: #878787;padding-left:0px;"> Նկար  <input type="file" name="img_variation['.$counter.'][]" ></div>';
+    echo '<div class="filter-block position-relative" data-row="'.$counter.'">';
     foreach ($paramsToCategory as $pr){
 
         $param = FsParams::find()->where(['id'=>$pr['param_id']])->one();
@@ -42,7 +42,7 @@ if(!empty($paramsToCategory)){
                 if( @$param['id'] == 33){
                     $sl = 'colors';
                 }
-                echo '<select class="form-control standardSelect__ '. $sl.'" multiple name="property[' . $param['id'] . '][]" data-id="' . $param['id'] . '"><option value=""></option>';
+                echo '<select class="form-control standardSelect__ '. $sl.'" multiple  name="property['.$counter.'][' . $param['id'] . '][]" data-id="' . $param['id'] . '"><option value=""></option>';
                 foreach ($paramChailds as $paramL => $paramVal) {
                     $class= '';
                     if(isset($params)){
@@ -52,18 +52,16 @@ if(!empty($paramsToCategory)){
                             if($paramVal["id"] == $value['value']){
                                 $class='selected="selected"';
                                 $variation = FsProductVariations::findOne(['param_id'=>$paramVal["id"] ,'product_id'=>$product->id]);
-                                if( $param['id'] == 33){
-                                    $info .='<div class="row" data-tp="' . $paramVal["name"] . '" style="border:1px solid lightgray;margin:10px;">
-                                            <div class="col-sm-12" >' . $paramVal["name"] . '</div>
-                                            <div class="col-sm-6">
-                                                    <input type="text" class="form-control" name="code__[]" value="'.$variation->code.'" placeholder="Կոդ">
-                                                    <input type="hidden" name="vid_[]" value="'.$paramVal["id"].'">
-                                            </div>
-                                            <div class="col-sm-6">
-                                               <input type="number" class="form-control"  value="'.$variation->price.'"  name="price_[]" step="0.1" placeholder="Արժեք">
-                                             </div>
-                                         </div>';
-                                }
+                                $info .='<div class="row" data-tp="' . $paramVal["name"] . '" style="border:1px solid lightgray;margin:10px;">
+                                        <div class="col-sm-12" >' . $paramVal["name"] . '</div>
+                                        <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="code__[]" value="'.$variation->code.'" placeholder="Կոդ">
+                                                <input type="hidden" name="vid_[]" value="'.$paramVal["id"].'">
+                                        </div>
+                                        <div class="col-sm-6">
+                                           <input type="number" class="form-control"  value="'.$variation->price.'"  name="price_[]" step="0.1" placeholder="Արժեք">
+                                         </div>
+                                     </div>';
                             }
                         }
                     }
@@ -79,7 +77,7 @@ if(!empty($paramsToCategory)){
                 $val=$params[$param['id']];
             }
             echo '<div>
-                      <input type="text" value="'.$val.'" class="form-control" id="prop_' . $param['id'] . '"  name="property[' .$param['id'] . ']">
+                      <input type="text" value="'.$val.'" class="form-control" id="prop_' . $param['id'] . '"   name="property['.$counter.'][' .$param['id'] . ']">
                    </div>';
             echo '</div>';
         }
@@ -89,16 +87,17 @@ if(!empty($paramsToCategory)){
                 $val=$params[$param['id']];
             }
             echo '<div>
-                      <input value="'.$val.'" class="form-control" id="prop_' .$param['id']. '"  type="number" name="property[' . $param['id']. ']" >
+                      <input value="'.$val.'" class="form-control" id="prop_' .$param['id']. '"  type="number"  name="property['.$counter.'][' . $param['id']. ']" >
                    </div>';
             echo '</div>';
         }
 
     }
     $addict_div = '<div style="position:relative"> ';
-    $addict_div .= '<b style="margin-bottom:10px;">Գին</b>'.'<input type="number" class="form-control" name="variations__price__[]" >' ;
+    $addict_div .= '<b style="margin-bottom:10px;">Գին</b>'.'<input type="number" class="form-control" name="variations__price__['.$counter.']" >' ;
     $addict_div .= '</div>' ;
     echo $addict_div;
+    echo $img_div;
     echo '<button class="btn btn-sm addParamVariation" style="position: absolute; right: 3.2rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-plus"></i></button>';
     echo '<button class="btn btn-sm minuseParamVariation" style="position: absolute; right: 1rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-minus"></i></button>';
     echo '</div>';
@@ -137,7 +136,17 @@ if(!empty($paramsToCategory)){
     function copy_row(el) {
         let originalSelect = el.closest('.filter-block').find(".standardSelect__").chosen('destroy');
         let elCopy = el.closest('.filter-block').clone();
+        let row_id = jQuery('body').find('.filter-block').last().data('row');
+
         el.closest('.collapse').append(elCopy);
+
+        changeAttr('.filter-block','data-row',row_id+1)
+        jQuery('body').find('.filter-block').last().find('input , select').each(function () {
+            let name = jQuery(this).attr('name');
+            let new_name = change_names(name , row_id+1);
+            jQuery(this).attr('name',new_name);
+        });
+
         jQuery(".filter-block .standardSelect__").chosen({
             disable_search_threshold: 10,
             placeholder_text_single: "Ընտրել",
@@ -145,7 +154,15 @@ if(!empty($paramsToCategory)){
             width: "100%"
         }).trigger('chosen:updated');
     }
-
+    function changeAttr(classname,attr,value){
+        let elems = document.querySelectorAll(classname);
+        let latest_block = elems[elems.length - 1];
+        latest_block.setAttribute(attr, value);
+    }
+    function change_names(str,value){
+        let updatedStr = str.replace(/\[\d+\]/, '[' + value + ']');
+        return updatedStr;
+    }
     function delete_row(el){
         el.closest('.filter-block').remove();
     }

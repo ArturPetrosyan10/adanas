@@ -6,6 +6,7 @@ use app\models\FsBlogs;
 use app\models\FsCategoriesLang;
 use app\models\FsDiscounts;
 use app\models\FsParamToCategory;
+use app\models\FsProductVariations;
 use app\models\FsSettings;
 use app\models\FsStores;
 use app\models\FsTexts;
@@ -886,7 +887,12 @@ class SiteController extends Controller
                 $view_->ip = Yii::$app->getRequest()->getUserIP();
                 $r = $view_->save(false);
         }
-        return $this->render('product', ['product' => $product]);
+        
+        $variations = FsProductVariations::find()
+            ->where(['product_id' => $product->id])
+            ->with('variationParams')
+            ->all();
+        return $this->render('product', ['product' => $product,'variations' => $variations ]);
     }
     public function actionShop(){
         $this->layout = 'site';

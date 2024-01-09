@@ -28,8 +28,10 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
         <button type="button" data-prodid="<?= $product['id'] ?>" class="fs-open-prod-window"><?= $GLOBALS['text']["__view__"] ?></button>
     </div>
         <?php
-        $variation = FsProductVariations::find()->where(['product_id'=>$product->id])->all();
-        if(!empty($variation)){ ?>
+        $variation = FsProductVariations::find()->with('variationParams')->where(['product_id'=>$product->id])->all();
+//        var_dump($variation[0]->variationParams[0]->paramName->parent);
+//        var_dump($product->id);
+        if(!empty($variation) && false){ ?>
             <select class="filter-select-prod" data-variation="default">
                 <option value="default" data-price="<?php echo $product->price;?>"><?= $GLOBALS['text']["__select_color__"] ?></option>
                 <?php foreach ($variation as $variation => $var_val){  ?>
@@ -38,9 +40,7 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                 <?php } ?>
             </select>
         <?php } ?>
-    <?php if(!Yii::$app->fsUser->isGuest) { ?>
-        <button type="button" class="fs-product-add-to-fav fs-icon-heart <?php if(FsWishlist::find()->where(['user_id' => Yii::$app->fsUser->identity->id])->andWhere(['product_id' => $product->id])->one()){ ?>active<?php } ?>"></button>
-    <?php } ?>
+    <button type="button" class="fs-product-add-to-fav fs-icon-heart <?php if(FsWishlist::find()->where(['user_id' => Yii::$app->fsUser->identity->id])->andWhere(['product_id' => $product->id])->one()){ ?>active<?php } ?>"></button>
     <h3 class="fs-product-name">
         <a href="/product/<?= $product->url ?>">
             <?= ($_COOKIE['language'] == 'hy') ? $product->name : ($_COOKIE['language'] == 'ru' ? $product->name_ru : $product->name_en) ?>
@@ -98,7 +98,7 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                                 </div>
                                 <?php
                                 $variation = FsProductVariations::find()->where(['product_id'=>$product->id])->all();
-                                if(!empty($variation)){ ?>
+                                if(!empty($variation) && false){ ?>
                                 <div class="fs-single-prod-data-row">
                                     <select class="filter-select-prod-sec" data-variation="default">
                                         <option value="default" data-price="<?php echo $product->price;?>"><?= $GLOBALS['text']["__select_color__"] ?></option>
@@ -110,7 +110,6 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
                                 </div>
                                 <?php } ?>
                             </div>
-
                             <div class="fs-single-product-price-block">
                                 <?php if($product->is_aah || $product->is_tax || $product->is_env){ ?>
                                       <?php if(!$discount->discount_procent){ ?>

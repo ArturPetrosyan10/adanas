@@ -17,6 +17,7 @@ use app\models\FsStores;
 use app\models\FsDiscounts;
 use app\models\FsTexts;
 use app\models\FsUsers;
+use app\models\FsVariationsParams;
 use app\models\User;
 use app\models\FsNotifications;
 use app\models\Users;
@@ -69,6 +70,7 @@ class AdminController extends Controller {
         if ($post && $post['add']) {
             echo '<pre>';
             var_dump($post);
+            var_dump($_FILES);
             die;
             $product = new FsProducts();
             $product->name = $post['name'];
@@ -100,8 +102,7 @@ class AdminController extends Controller {
             $product->env_procent = $post['anim_procent'];
             $img = '';
             if (!empty($_FILES['img']) && $_FILES["img"]["name"][0]) {
-
-                for ($i = 0;$i < count($_FILES['img']['name']);$i++) {
+                for ($i = 0; $i < count($_FILES['img']['name']) ; $i++) {
                     $tmp_name = $_FILES["img"]["tmp_name"][$i];
                     $name = time() . basename($_FILES["img"]["name"][$i]);
                     move_uploaded_file($tmp_name, "web/uploads/$name");
@@ -134,35 +135,72 @@ class AdminController extends Controller {
             $product->url = $this->transLateURRL($product->name).'_'.$product->id;
             $product->save(false);
             if (!empty($post['property'])) {
-                foreach ($post['property'] as $prop => $prop_val) {
-                    if (!is_array($prop_val)) {
-                        $prop_new = new FsProductParams();
-                        $prop_new->param_id = $prop;
-                        $prop_new->product_id = $product->id;
-                        $prop_new->value = $prop_val;
-                        $prop_new->save(false);
-                    }
-                    else {
-                        foreach ($prop_val as $prop_val_simple => $prop_simple) {
+                for ($i = 0; $i < count($post['property']); $i++) {
+                    foreach ($post['property'][$i] as $prop => $prop_val) {
+                        if (!is_array($prop_val)) {
                             $prop_new = new FsProductParams();
                             $prop_new->param_id = $prop;
                             $prop_new->product_id = $product->id;
-                            $prop_new->value = $prop_simple;
+                            $prop_new->value = $prop_val;
                             $prop_new->save(false);
+                        }
+                        else {
+                            foreach ($prop_val as $prop_val_simple => $prop_simple) {
+                                $prop_new = new FsProductParams();
+                                $prop_new->param_id = $prop;
+                                $prop_new->product_id = $product->id;
+                                $prop_new->value = $prop_simple;
+                                $prop_new->save(false);
+                            }
                         }
                     }
                 }
             }
-            if (!empty($post['vid_'])) {
-                for ($i = 0; $i < count($post['vid_']); $i++) {
+            //new added
+            if (!empty($post['property'])) {
+                for ($i = 0; $i < count($post['property']); $i++) {
                     $variation_new = new FsProductVariations();
-                    $variation_new->param_id = $post['vid_'][$i];
                     $variation_new->product_id = $product->id;
-                    $variation_new->code = $post['code_'][$i];
-                    $variation_new->price = $post['price_'][$i];
-                    $variation_new->save(false);
+                    $variation_new->price = $post['variations__price__'][$i];
+
+
+                    $tmp_name = $_FILES["img_variation"]["tmp_name"][$i];
+                    $name = time() . basename($_FILES["img_variation"]["name"][$i]);
+                    move_uploaded_file($tmp_name, "web/uploads/$name");
+                    $var_img = "web/uploads/$name";
+                    $variation_new->img = $var_img;
+                    $variation_new->save();
+
+                    foreach ($post['property'][$i] as $index => $prop_val){
+                        if (!is_array($prop_val)) {
+                            $variation_param = new FsVariationsParams();
+                            $variation_param->variation_id = $variation_new->id;
+                            $variation_param->param_id = $index;
+                            $variation_param->value = $prop_val;
+                            $variation_param->save(false);
+                        }else{
+                            foreach ($prop_val as $key => $prop) {
+                                $variation_param = new FsVariationsParams();
+                                $variation_param->variation_id = $variation_new->id;
+                                $variation_param->param_id = $prop;
+                                $variation_param->save(false);
+                            }
+                        }
+                    }
+//                    $variation_new->code = $post['code_'][$i];
                 }
             }
+            //new commented
+//            if (!empty($post['vid_'])) {
+//                for ($i = 0; $i < count($post['vid_']); $i++) {
+//                    $variation_new = new FsProductVariations();
+//                    $variation_new->param_id = $post['vid_'][$i];
+//                    $variation_new->product_id = $product->id;
+//                    $variation_new->code = $post['code_'][$i];
+//                    $variation_new->price = $post['price_'][$i];
+//                    $variation_new->save(false);
+//                }
+//            }
             $this->redirect(['products', 'success' => 'true', 'id' => 'key' . $product->id]);
         } else if ($post && $post['edite']){
             $product = FsProducts::findOne(['id' => intval($post['id']) ]);
@@ -223,40 +261,69 @@ class AdminController extends Controller {
                 move_uploaded_file($tmp_name, "web/uploads/$name");
                 $product->video = "web/uploads/$name";
             }
-            FsProductParams::deleteAll(['product_id' => $product->id]);
-            FsProductVariations::deleteAll(['product_id' => $product->id]);
+//            commented new
+//            FsProductParams::deleteAll(['product_id' => $product->id]);
+//            FsProductVariations::deleteAll(['product_id' => $product->id]);
             $product->save(false);
             if (!empty($post['property'])) {
-                foreach ($post['property'] as $prop => $prop_val) {
-                    if (!is_array($prop_val)) {
-                        $prop_new = new FsProductParams();
-                        $prop_new->param_id = $prop;
-                        $prop_new->product_id = $product->id;
-                        $prop_new->value = $prop_val;
-                        $prop_new->save(false);
-                    }
-                    else {
-                        foreach ($prop_val as $prop_val_simple => $prop_simple) {
+                for ($i = 0; $i < count($post['property']); $i++) {
+                    foreach ($post['property'][$i] as $prop => $prop_val) {
+                        if (!is_array($prop_val)) {
                             $prop_new = new FsProductParams();
                             $prop_new->param_id = $prop;
                             $prop_new->product_id = $product->id;
-                            $prop_new->value = $prop_simple;
+                            $prop_new->value = $prop_val;
                             $prop_new->save(false);
+                        }
+                        else {
+                            foreach ($prop_val as $prop_val_simple => $prop_simple) {
+                                $prop_new = new FsProductParams();
+                                $prop_new->param_id = $prop;
+                                $prop_new->product_id = $product->id;
+                                $prop_new->value = $prop_simple;
+                                $prop_new->save(false);
+                            }
                         }
                     }
                 }
             }
-
-            if (!empty($post['vid_'])) {
-                for ($i = 0; $i < count($post['vid_']); $i++) {
+            //new added
+            if (!empty($post['property'])) {
+                for ($i = 0; $i < count($post['property']); $i++) {
                     $variation_new = new FsProductVariations();
-                    $variation_new->param_id = $post['vid_'][$i];
                     $variation_new->product_id = $product->id;
-                    $variation_new->code = $post['code__'][$i];
-                    $variation_new->price = $post['price_'][$i];
-                    $variation_new->save(false);
+                    $variation_new->price = $post['variations__price__'][$i];
+                    $variation_new->save();
+                    foreach ($post['property'][$i] as $index => $prop_val){
+                        if (!is_array($prop_val)) {
+                            $variation_param = new FsVariationsParams();
+                            $variation_param->variation_id = $variation_new->id;
+                            $variation_param->param_id = $index;
+                            $variation_param->value = $prop_val;
+                            $variation_param->save(false);
+                        }else{
+                            foreach ($prop_val as $key => $prop) {
+                                $variation_param = new FsVariationsParams();
+                                $variation_param->variation_id = $variation_new->id;
+                                $variation_param->param_id = $prop;
+                                $variation_param->save(false);
+                            }
+                        }
+                    }
+//                    $variation_new->code = $post['code_'][$i];
                 }
             }
+            //new comented
+//            if (!empty($post['vid_'])) {
+//                for ($i = 0; $i < count($post['vid_']); $i++) {
+//                    $variation_new = new FsProductVariations();
+//                    $variation_new->param_id = $post['vid_'][$i];
+//                    $variation_new->product_id = $product->id;
+//                    $variation_new->code = $post['code__'][$i];
+//                    $variation_new->price = $post['price_'][$i];
+//                    $variation_new->save(false);
+//                }
+//            }
             $this->redirect(['products', 'success' => 'true', 'id' => 'key' . $product->id]);
         }
         $page = $_GET['page'];
@@ -1222,9 +1289,6 @@ class AdminController extends Controller {
     }
     /* GETTERS BLOCK */
     public function actionGetProps() {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
         $id = intval($_GET['id']);
       
         $ids = FsCategories::findOne($id);
@@ -1350,7 +1414,20 @@ class AdminController extends Controller {
         $paramsOrigin = FsProductParams::find()->where(['product_id' => $id])->asArray()->all();
         $params = ArrayHelper::map($paramsOrigin, 'param_id', 'value');
         $categories = $this->getresultTree($categories, 0);
-        return $this->renderAjax('product-edite-popup', ['product' => $product, 'categories' => $categories, 'measurement' => $measurement, 'params' => $params, 'paramsOrigin' => $paramsOrigin]);
+
+        $product_variation_params = FsProductVariations::find()
+            ->where(['fs_product_variations.product_id' => $id])
+            ->with('variationParams')
+            ->asArray()
+            ->all();
+
+        return $this->renderAjax('product-edite-popup', [
+            'product' => $product,
+            'categories' => $categories,
+            'measurement' => $measurement,
+            'params' => $params, 'paramsOrigin' => $paramsOrigin,
+            'product_variation_params' => $product_variation_params
+        ]);
     }
     public function actionParamsEdite() {
         if (Yii::$app->user->isGuest) {

@@ -843,8 +843,10 @@ button:focus {
     background:white;
     border:none;
     box-shadow: var(--wvs-item-box-shadow,0 0 0 1px #a8a8a8);
-    width:27px;
+    width:max-content;
+    min-width:30px;
     height:25px;
+
 }
 .add-product-order .order-block{
     padding: 20px;
@@ -1245,6 +1247,21 @@ button:focus {
     color: #4A4640;
     font-weight: 700;
 }
+.fs-single-min-thumbnail{
+    width:9.8rem;
+    height:10.4rem;
+    margin-top:1.2rem;
+    margin-bottom:1.2rem;
+    cursor:pointer;
+    border-radius:0.4rem;
+    overflow:hidden
+}
+
+.fs-single-product-main-image{
+    width:80%;
+    height:58.4rem;
+}
+
 
 @media screen and (max-width: 1000px){
      .fs-home-page-banner-list {

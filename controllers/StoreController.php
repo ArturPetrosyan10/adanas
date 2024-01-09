@@ -173,6 +173,7 @@ class StoreController extends Controller
             $model->load($post);
             $model->save();
         }
+        return $this->redirect('index');
 
     }
 

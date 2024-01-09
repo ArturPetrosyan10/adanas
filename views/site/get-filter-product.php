@@ -5,9 +5,8 @@ use app\models\FsProductVariations;
 ?>
 <div class="d-flex justify-content-start sizes-buttons" >
 <?php
-if(!empty($params)){
+if(!empty($params) ){
     foreach ($params as $pr){
-//        echo ' <div class="fs-single-prod-data-row">';
         $param = FsParams::find()->where(['id'=>$pr['param_id']])->one();
         $param->name = $_COOKIE['language'] != 'hy' ? ($_COOKIE['language'] === 'en' ? $param->name_en : $param->name_ru ) : $param->name;
         $paramChailds = FsParams::find()->where(['parent_id'=>$param['id']])->asArray()->all();
@@ -35,15 +34,7 @@ if(!empty($params)){
                 echo '<p class="fs-single-prod-data-text">' . $pr->value . '</p>';
             }
         }
-//        echo '</div>';
     }
-
 };
 ?>
-<!--<div class="d-flex justify-content-start sizes-buttons" >
-    <button>L</button>
-    <button>M</button>
-    <button>S</button>
-    <button>XL</button>
-</div>-->
 </div>

@@ -13,6 +13,17 @@ if (Yii::$app->fsUser->identity->verified > 0) {
     $verified = false;
 }
 ?>
+<style>
+    .fs-single-min-thumbnail-list .owl-stage{
+        width:100% !important;
+    }
+    .fs-single-thumbnail-wrapper .owl-loaded{
+        width:15% !important;
+    }
+    .fs-single-thumbnail-wrapper .owl-nav{
+        display:none !important;
+    }
+</style>
 <script>
     function imageZoom(imgID, resultID) {
         var img, lens, result, cx, cy;
@@ -85,7 +96,8 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                 </li>
                 <li class="fs-breadcrumbs-el"><?= $_COOKIE['language'] == 'hy' ? $product->name : $product['name_' . $_COOKIE['language']] ?></li>
             </ul>
-        <?php } else { ?>
+        <?php }
+            else { ?>
              <ul class="fs-breadcrumbs-list">
                  <li class="fs-breadcrumbs-el"><a onclick="history.back()" style="cursor:pointer;"><?= $GLOBALS['text']["__back__"] ?></a></li>
               
@@ -98,12 +110,12 @@ if (Yii::$app->fsUser->identity->verified > 0) {
         <div class="fs-container">
             <div class="fs-single-row">
                 <div class="fs-single-info-col">
-                    <div class="fs-single-thumbnail-wrapper">
+                    <div class="fs-single-thumbnail-wrapper d-flex">
                         <?php
                         $mainPhoto = false;
                         if (count($photos) > 0) {
                             ?>
-                            <div class="fs-single-min-thumbnail-list owl-carousel owl-theme">
+                            <div class="fs-single-min-thumbnail-list d-flex">
                             <?php foreach ($photos as $photo) {
                                     if ($mainPhoto == false) {
                                         $mainPhoto = $photo;
@@ -121,8 +133,6 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                         <div class="fs-single-product-main-image">
                             <?php if(strlen($photos[0]) > 0){ ?>
                                 <div class="img-zoom-container">
-<!--                                    <div class="img-zoom-lens"></div>-->
-<!--                                    --><?php //$product[0] = 'https://adanas.codewave.am/wp-content/uploads/2023/06/22-2.jpg'; ?>
                                     <img id="myimage" src=" /<?= $photos[0] ?>" alt="Girl">
                                     <div id="myresult" class="img-zoom-result"></div>
                                 </div>
@@ -170,7 +180,12 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                     </div>
                     <div class="add-product-order">
 
-                        <?php echo Yii::$app->view->renderFile('@app/views/site/get-filter-product.php',['params'=>$params,'product'=>$product,'category_id'=>$product->category_id]) ?>
+                        <?php echo Yii::$app->view->renderFile('@app/views/site/get-filter-product.php',[
+                                    'params'=>$params,
+                                    'product'=>$product,
+                                    'category_id'=>$product->category_id ,
+                                    'variations' => $variations,
+                                ]) ?>
                         <div class="w-100 border-1 order-block">
                             <form action="" class="d-flex justify-content-start">
                                 <div class="d-flex counts-block fs-single-prod-calc-block-inner fs-single-order-td">
@@ -216,7 +231,7 @@ if (Yii::$app->fsUser->identity->verified > 0) {
 
                 </div>
             </div>
-            <div class="fs-single-product-text-info">
+            <div class="fs-single-product-text-info" style="margin-top:200px;">
                 <h3 class="fs-single-product-desc-title"><?= $GLOBALS['text']["__description__"] ?></h3>
                 <div class="fs-single-product-desc-content">
                     <?= $_COOKIE['language'] == 'hy' ? $product->description : $product['description_' . $_COOKIE['language']] ?>
@@ -269,8 +284,8 @@ function isMobile_() {
 
     .img-zoom-lens {
         position: absolute;
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         /*border: 1px solid black;*/
         /*border-radius:50%;*/
     }
@@ -285,6 +300,7 @@ function isMobile_() {
         z-index: 2;
         zoom: 1;
         opacity: 0;
+        background-repeat: no-repeat;
     }
 
 </style>

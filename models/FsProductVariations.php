@@ -11,6 +11,7 @@ use Yii;
  * @property int|null $product_id
  * @property int|null $param_id
  * @property string|null $code
+ * @property string|null $img
  * @property float|null $price
  */
 class FsProductVariations extends \yii\db\ActiveRecord
@@ -29,7 +30,7 @@ class FsProductVariations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'param_id'], 'integer'],
+            [['product_id'], 'integer'],
             [['price'], 'number'],
             [['code'], 'string', 'max' => 255],
         ];
@@ -47,5 +48,9 @@ class FsProductVariations extends \yii\db\ActiveRecord
             'code' => 'Code',
             'price' => 'Price',
         ];
+    }
+    public function getVariationParams()
+    {
+        return $this->hasMany(FsVariationsParams::class, ['variation_id' => 'id']);
     }
 }

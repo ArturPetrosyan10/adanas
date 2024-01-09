@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $variation_id
  * @property int $param_id
+ * @property string $value
  */
 class FsVariationsParams extends \yii\db\ActiveRecord
 {
@@ -42,5 +43,9 @@ class FsVariationsParams extends \yii\db\ActiveRecord
             'variation_id' => 'Variation ID',
             'param_id' => 'Param ID',
         ];
+    }
+    public function getParamName()
+    {
+        return $this->hasOne(FsParams::class, ['id' => 'param_id']);
     }
 }

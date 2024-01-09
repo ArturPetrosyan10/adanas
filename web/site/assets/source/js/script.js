@@ -525,6 +525,7 @@ $('.fs-single-min-thumbnail').click(function() {
     $('.fs-single-min-thumbnail').removeClass('active');
     $(this).addClass('active');
     target.attr('src', ($(this).find('img').attr('src')));
+    imageZoom("myimage", "myresult");
 });
 $('.corporateCat').change(function() {
     var url = '/site/corporate/';
