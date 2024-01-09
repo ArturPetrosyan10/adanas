@@ -25,7 +25,6 @@
                         <button data-toggle="collapse"  data-target="#showProps__" class="btn" type="button"><i class="fa fa-cogs"></i> Պարամետրեր</button>
                         <div class="collapse" id="showProps__">
                             <?php
-                            
                                $category = FsCategories::findOne(['id'=>$product->category_id]);
                                 $ids = $category->getAllParents();
                                 $ids_all = [];
@@ -35,8 +34,17 @@
                                     }
                                 }
                                 $ids_all[] = $id;
-                               $paramsToCategory = FsParamToCategory::find()->where(['category_id'=>$ids_all])->asArray()->all();
-                               echo  Yii::$app->view->renderFile('@app/views/admin/get-param.php',['params'=>$params,'paramsToCategory'=>$paramsToCategory,'product'=>$product,'category_id'=>$product->category_id, 'paramsOrigin' => $paramsOrigin]);?>
+                                $paramsToCategory = FsParamToCategory::find()->where(['category_id'=>$ids_all])->asArray()->all();
+                                echo  Yii::$app->view->renderFile('@app/views/admin/get-param.php',[
+                                    'params'=>$params,
+                                    'paramsToCategory'=>$paramsToCategory,
+                                    'product'=>$product,
+                                    'category_id'=>$product->category_id,
+                                    'paramsOrigin' => $paramsOrigin,
+                                    'product_variation_params' => $product_variation_params
+                                    ]);
+
+                                ?>
                         </div>
                     </div>
                     <div class="row">

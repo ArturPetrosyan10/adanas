@@ -68,10 +68,6 @@ class AdminController extends Controller {
     public function actionProducts() {
         $post = Yii::$app->request->post();
         if ($post && $post['add']) {
-            echo '<pre>';
-            var_dump($post);
-            var_dump($_FILES);
-            die;
             $product = new FsProducts();
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
@@ -158,17 +154,19 @@ class AdminController extends Controller {
             }
             //new added
             if (!empty($post['property'])) {
-                for ($i = 0; $i < count($post['property']); $i++) {
+//                for ($i = 0; $i < count($post['property']); $i++) {
+                foreach ($post['property'] as $i => $array) {
+
                     $variation_new = new FsProductVariations();
                     $variation_new->product_id = $product->id;
                     $variation_new->price = $post['variations__price__'][$i];
-
-
-                    $tmp_name = $_FILES["img_variation"]["tmp_name"][$i];
-                    $name = time() . basename($_FILES["img_variation"]["name"][$i]);
-                    move_uploaded_file($tmp_name, "web/uploads/$name");
-                    $var_img = "web/uploads/$name";
-                    $variation_new->img = $var_img;
+                    if($_FILES["img_variation"]["tmp_name"][$i]) {
+                        $tmp_name = $_FILES["img_variation"]["tmp_name"][$i][0];
+                        $name = time() . $i . basename($_FILES["img_variation"]["name"][$i][0]);
+                        move_uploaded_file($tmp_name, "web/uploads/$name");
+                        $var_img = "web/uploads/$name";
+                        $variation_new->img = $var_img;
+                    }
                     $variation_new->save();
 
                     foreach ($post['property'][$i] as $index => $prop_val){
@@ -180,10 +178,12 @@ class AdminController extends Controller {
                             $variation_param->save(false);
                         }else{
                             foreach ($prop_val as $key => $prop) {
-                                $variation_param = new FsVariationsParams();
-                                $variation_param->variation_id = $variation_new->id;
-                                $variation_param->param_id = $prop;
-                                $variation_param->save(false);
+                                if($prop){
+                                    $variation_param = new FsVariationsParams();
+                                    $variation_param->variation_id = $variation_new->id;
+                                    $variation_param->param_id = $prop;
+                                    $variation_param->save(false);
+                                }
                             }
                         }
                     }
@@ -202,7 +202,12 @@ class AdminController extends Controller {
 //                }
 //            }
             $this->redirect(['products', 'success' => 'true', 'id' => 'key' . $product->id]);
-        } else if ($post && $post['edite']){
+        }
+        else if ($post && $post['edite']){
+//            echo '<pre>';
+//            var_dump($post);
+//            var_dump($_FILES);
+//            die;
             $product = FsProducts::findOne(['id' => intval($post['id']) ]);
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
@@ -262,8 +267,7 @@ class AdminController extends Controller {
                 $product->video = "web/uploads/$name";
             }
 //            commented new
-//            FsProductParams::deleteAll(['product_id' => $product->id]);
-//            FsProductVariations::deleteAll(['product_id' => $product->id]);
+            FsProductParams::deleteAll(['product_id' => $product->id]);
             $product->save(false);
             if (!empty($post['property'])) {
                 for ($i = 0; $i < count($post['property']); $i++) {
@@ -288,11 +292,27 @@ class AdminController extends Controller {
                 }
             }
             //new added
+
+            $vars = FsProductVariations::find()->where(['product_id' => $product->id])->all();
+            foreach ($vars as $index => $var) {
+                if($var->img){
+                    unlink($var->img);
+                }
+                FsVariationsParams::deleteAll(['variation_id' => $var->id]);
+                $var->delete();
+            }
             if (!empty($post['property'])) {
-                for ($i = 0; $i < count($post['property']); $i++) {
+                foreach ($post['property'] as $i => $array) {
                     $variation_new = new FsProductVariations();
                     $variation_new->product_id = $product->id;
                     $variation_new->price = $post['variations__price__'][$i];
+                    if($_FILES["img_variation"]["tmp_name"][$i]) {
+                        $tmp_name = $_FILES["img_variation"]["tmp_name"][$i][0];
+                        $name = time() . $i . basename($_FILES["img_variation"]["name"][$i][0]);
+                        move_uploaded_file($tmp_name, "web/uploads/$name");
+                        $var_img = "web/uploads/$name";
+                        $variation_new->img = $var_img;
+                    }
                     $variation_new->save();
                     foreach ($post['property'][$i] as $index => $prop_val){
                         if (!is_array($prop_val)) {
@@ -303,14 +323,15 @@ class AdminController extends Controller {
                             $variation_param->save(false);
                         }else{
                             foreach ($prop_val as $key => $prop) {
-                                $variation_param = new FsVariationsParams();
-                                $variation_param->variation_id = $variation_new->id;
-                                $variation_param->param_id = $prop;
-                                $variation_param->save(false);
+                                if($prop){
+                                    $variation_param = new FsVariationsParams();
+                                    $variation_param->variation_id = $variation_new->id;
+                                    $variation_param->param_id = $prop;
+                                    $variation_param->save(false);
+                                }
                             }
                         }
                     }
-//                    $variation_new->code = $post['code_'][$i];
                 }
             }
             //new comented
@@ -370,11 +391,7 @@ class AdminController extends Controller {
     }
     /*PARTNERS PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionPartners() {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
         $post = Yii::$app->request->post();
-
         if ($post && $post['add']) {
             $user = new FsUsers();
             $user->load($post);

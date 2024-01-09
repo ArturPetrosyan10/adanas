@@ -110,7 +110,7 @@ if (Yii::$app->fsUser->identity->verified > 0) {
         <div class="fs-container">
             <div class="fs-single-row">
                 <div class="fs-single-info-col">
-                    <div class="fs-single-thumbnail-wrapper d-flex">
+                    <div class="fs-single-thumbnail-wrapper d-flex flex-wrap">
                         <?php
                         $mainPhoto = false;
                         if (count($photos) > 0) {
@@ -129,7 +129,8 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                                     </div>
                             <?php } ?>
                             </div>
-                  <?php } ?>
+                        <?php
+                        } ?>
                         <div class="fs-single-product-main-image">
                             <?php if(strlen($photos[0]) > 0){ ?>
                                 <div class="img-zoom-container">
@@ -139,6 +140,9 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                             <?php }else{ ?>
                                 <img class="img-responsive" src="http://<?=$_SERVER['SERVER_NAME'];?>/img/prodpic/no-image.png" alt="">
                             <?php } ?>
+                        </div>
+                        <div class="w-100 d-flex " style="gap:1rem">
+                            <?php echo  Yii::$app->view->renderFile('@app/views/site/product-variations.php',['variations' => $variations]); ?>
                         </div>
                     </div>
                 </div>
@@ -180,12 +184,12 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                     </div>
                     <div class="add-product-order">
 
-                        <?php echo Yii::$app->view->renderFile('@app/views/site/get-filter-product.php',[
-                                    'params'=>$params,
-                                    'product'=>$product,
-                                    'category_id'=>$product->category_id ,
-                                    'variations' => $variations,
-                                ]) ?>
+<!--                        --><?php //echo Yii::$app->view->renderFile('@app/views/site/get-filter-product.php',[
+//                                    'params'=>$params,
+//                                    'product'=>$product,
+//                                    'category_id'=>$product->category_id ,
+//                                    'variations' => $variations,
+//                                ]) ?>
                         <div class="w-100 border-1 order-block">
                             <form action="" class="d-flex justify-content-start">
                                 <div class="d-flex counts-block fs-single-prod-calc-block-inner fs-single-order-td">
@@ -194,7 +198,7 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                                     <button type="button" class="fs-icon-plus" data-action="plus"></button>
                                 </div>
                                 <div class="d-flex adding-block">
-                                    <button type="button" <?= $verified ? '' : 'disabled' ?> class="fs-product-add-to-cart-1 fs-icon-basket" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>">Ավելացնել</button>
+                                    <button type="button" <?= $verified ? '' : 'disabled' ?> class="fs-product-add-to-cart-1 fs-icon-basket" disabled data-variation="" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>">Ավելացնել</button>
                                     <button type="button" <?= $verified ? '' : 'disabled' ?> class="">Գնել հիմա</button>
                                 </div>
                                 <div class="d-flex choosen-block">

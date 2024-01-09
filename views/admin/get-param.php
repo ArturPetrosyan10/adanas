@@ -25,82 +25,73 @@ if($category_id){
     </select>
 <?php }
 if(!empty($paramsToCategory)){
+    $product_variation_params = $product_variation_params ?? ['0' => '0'];
     $counter = 0;
-    $img_div = '<div class="col-sm-3" style="color: #878787;padding-left:0px;"> Նկար  <input type="file" name="img_variation['.$counter.'][]" ></div>';
-    echo '<div class="filter-block position-relative" data-row="'.$counter.'">';
-    foreach ($paramsToCategory as $pr){
-
-        $param = FsParams::find()->where(['id'=>$pr['param_id']])->one();
-        $paramChailds = FsParams::find()->where(['parent_id'=>$param['id']])->asArray()->all();
-     
-        echo '<div>';
-        echo '<b style="margin-bottom:10px;">'.$param->name.'</b>';
-        $info = '';
-        if($param->type_ == 'select'){
-            if(!empty($paramChailds) ) {
-                $sl = '';
-                if( @$param['id'] == 33){
-                    $sl = 'colors';
-                }
-                echo '<select class="form-control standardSelect__ '. $sl.'" multiple  name="property['.$counter.'][' . $param['id'] . '][]" data-id="' . $param['id'] . '"><option value=""></option>';
-                foreach ($paramChailds as $paramL => $paramVal) {
-                    $class= '';
-                    if(isset($params)){
-
-                        foreach ($paramsOrigin as $key => $value) {
-
-                            if($paramVal["id"] == $value['value']){
-                                $class='selected="selected"';
-                                $variation = FsProductVariations::findOne(['param_id'=>$paramVal["id"] ,'product_id'=>$product->id]);
-                                $info .='<div class="row" data-tp="' . $paramVal["name"] . '" style="border:1px solid lightgray;margin:10px;">
-                                        <div class="col-sm-12" >' . $paramVal["name"] . '</div>
-                                        <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="code__[]" value="'.$variation->code.'" placeholder="Կոդ">
-                                                <input type="hidden" name="vid_[]" value="'.$paramVal["id"].'">
-                                        </div>
-                                        <div class="col-sm-6">
-                                           <input type="number" class="form-control"  value="'.$variation->price.'"  name="price_[]" step="0.1" placeholder="Արժեք">
-                                         </div>
-                                     </div>';
-                            }
+    foreach ($product_variation_params as $index => $variation_param ) {
+//        echo '<pre>';
+//        var_dump($variation_param);
+//        echo '</pre>';
+        $img_div = '<div class="col-sm-3" style="color: #878787;padding-left:0px;"> Նկար  <input type="file" name="img_variation[' . $counter . '][]" ></div>';
+        if(isset($variation_param['img'])){
+            $img_div .= '<span style="position:relative;display:inline-block;width:60px;height:50px; margin-top:auto;"> 
+                            <input type="hidden" name="old_var_img['.$counter.']" value="'.$variation_param['img'].'">
+                            <img src="/'. $variation_param['img'] .'" alt="'. $variation_param['img'] .'"  height="45" alt="" style="border:1px solid lightgray;margin:5px;">
+                            <div onclick="jQuery(this).closest(`span`).remove()" style="position:absolute;top:-5px;right:-5px;color:red;cursor:pointer;"><i class="fa fa-close"></i></div>
+                         </span>';
+        }
+        echo '<div class="filter-block position-relative" data-row="' . $counter . '">';
+        foreach ($paramsToCategory as $pr) {
+            $param = FsParams::find()->where(['id' => $pr['param_id']])->one();
+            $paramChailds = FsParams::find()->where(['parent_id' => $param['id']])->asArray()->all();
+            echo '<div>';
+            echo '<b style="margin-bottom:10px;">' . $param->name . '</b>';
+            $info = '';
+            if ($param->type_ == 'select') {
+                if (!empty($paramChailds)) {
+                    $var_params = array_column($variation_param['variationParams'],'param_id');
+                    echo '<select  class="form-control standardSelect__ "   name="property[' . $counter . '][' . $param['id'] . '][]" data-id="' . $param['id'] . '" >
+                            <option value=""></option>';
+                    foreach ($paramChailds as $paramL => $paramVal) {
+                        if (isset($params)) {
+                            $class =  in_array($paramVal["id"],$var_params) ? 'selected' : 'asfd' ;
+                            echo '<option ' . $class . ' value="' . $paramVal["id"] . '">' . $paramVal["name"] . '</option>';
                         }
                     }
-                    echo '<option '.$class.' value="' . $paramVal["id"] . '">' . $paramVal["name"] . '</option>';
+                    echo '</select>';
                 }
-                echo '</select>';
-            }
-            echo '<div class="info-block">'.$info.'</div></div>';
-        }
-        else if($param->type_ == 'text'){
-            $val= '';
-            if(isset($params) && $params[$param['id']]){
-                $val=$params[$param['id']];
-            }
-            echo '<div>
-                      <input type="text" value="'.$val.'" class="form-control" id="prop_' . $param['id'] . '"   name="property['.$counter.'][' .$param['id'] . ']">
+                echo '<div class="info-block">' . $info . '</div></div>';
+            } else if ($param->type_ == 'text') {
+                $val = '';
+                if (isset($params) && $params[$param['id']]) {
+                    $val = $params[$param['id']];
+                }
+                echo '<div>
+                      <input type="text" value="' . $val . '" class="form-control" id="prop_' . $param['id'] . '"   name="property[' . $counter . '][' . $param['id'] . ']">
                    </div>';
-            echo '</div>';
-        }
-        else if($param->type_ == 'number'){
-            $val= '';
-            if(isset($params) && $params[$param['id']]){
-                $val=$params[$param['id']];
-            }
-            echo '<div>
-                      <input value="'.$val.'" class="form-control" id="prop_' .$param['id']. '"  type="number"  name="property['.$counter.'][' . $param['id']. ']" >
+                echo '</div>';
+            } else if ($param->type_ == 'number') {
+                $val = '';
+                if (isset($params) && $params[$param['id']]) {
+                    $val = $params[$param['id']];
+                }
+                echo '<div>
+                      <input value="' . $val . '" class="form-control" id="prop_' . $param['id'] . '"  type="number"  name="property[' . $counter . '][' . $param['id'] . ']" >
                    </div>';
-            echo '</div>';
+                echo '</div>';
+            }
+
         }
+        $addict_div = '<div style="position:relative"> ';
+        $addict_div .= '<b style="margin-bottom:10px;">Գին</b>' . '<input type="number" class="form-control" name="variations__price__[' . $counter . ']" value="'. $variation_param['price'] .'" >';
+        $addict_div .= '</div>';
+        echo $addict_div;
+        echo $img_div;
+        echo '<button class="btn btn-sm addParamVariation" style="position: absolute; right: 3.2rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-plus"></i></button>';
+        echo '<button class="btn btn-sm minuseParamVariation" style="position: absolute; right: 1rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-minus"></i></button>';
+        echo '</div>';
+        $counter++;
 
     }
-    $addict_div = '<div style="position:relative"> ';
-    $addict_div .= '<b style="margin-bottom:10px;">Գին</b>'.'<input type="number" class="form-control" name="variations__price__['.$counter.']" >' ;
-    $addict_div .= '</div>' ;
-    echo $addict_div;
-    echo $img_div;
-    echo '<button class="btn btn-sm addParamVariation" style="position: absolute; right: 3.2rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-plus"></i></button>';
-    echo '<button class="btn btn-sm minuseParamVariation" style="position: absolute; right: 1rem;background: none;top: 1.6rem;" type="button"><i class="fa fa-minus"></i></button>';
-    echo '</div>';
 };?>
 <style>
     .filter-block{

@@ -61,21 +61,36 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--<script src="/web/js/new/geolocation.js" ></script>-->
 
 <script>
-    var myLatitude = 40.21427467;
+    var myLatitude = 40.21427467; // 0;
     var myLongitude = 44.4896076;
     const x = document.getElementById("#store-location");
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(showPosition , showError);
         } else {
             alert('Geolocation is not supported by this browser.')
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
-
     }
     function showPosition(position) {
         myLatitude = position.coords.latitude;
         Longitude = position.coords.longitude;
+    }
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                console.log = "User denied the request for Geolocation."
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log = "Location information is unavailable."
+                break;
+            case error.TIMEOUT:
+                console.log = "The request to get user location timed out."
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log = "An unknown error occurred."
+                break;
+        }
     }
     getLocation()
 </script>

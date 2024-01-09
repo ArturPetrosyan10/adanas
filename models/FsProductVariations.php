@@ -49,6 +49,7 @@ class FsProductVariations extends \yii\db\ActiveRecord
             'price' => 'Price',
         ];
     }
+
     public function getVariationParams()
     {
         return $this->hasMany(FsVariationsParams::class, ['variation_id' => 'id']);

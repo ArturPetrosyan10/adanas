@@ -867,11 +867,9 @@ class SiteController extends Controller
        }
        $categories_html .=' </ul>
                         </div>';
-
        echo $products_html.$categories_html;
 
    }
-
     public function actionProducts($url)
     {
         $this->layout = 'site';
