@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\FsBlogs;
+use app\models\FsCartParams;
 use app\models\FsCategoriesLang;
 use app\models\FsDiscounts;
 use app\models\FsParamToCategory;
@@ -11,6 +12,7 @@ use app\models\FsSettings;
 use app\models\FsStores;
 use app\models\FsTexts;
 use app\models\FsUserToBrand;
+use app\models\FsVariationsParams;
 use app\models\FsViewHistory;
 use app\models\FsProductParams;
 use mysql_xdevapi\Exception;
@@ -721,9 +723,7 @@ class SiteController extends Controller
                 }
             }
             $ids_all[] = $category->id;
-
             $paramsToCategory = FsParamToCategory::find()->where(['category_id' => $ids_all])->groupBy('param_id')->asArray()->all();
-
             if(isset($_GET['page'])){
                 $page = intval($_GET['page']);
             } else {
@@ -731,8 +731,8 @@ class SiteController extends Controller
             }
 
             $view_history  = FsViewHistory::find()->select('product_id')->where(['user_id'=>Yii::$app->fsUser->identity->id])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
-            $cats = Yii::$app->fsUser->identity->categories;
-            $cats = explode(';', $cats);
+
+            $cats = array_column(FsCategories::find()->all(), 'id');
             if (in_array($ids_all[0], $cats)) {
                 $data = $category->products($category->id, $page, $_GET);
             }
@@ -905,14 +905,16 @@ class SiteController extends Controller
 
         $total_count = clone $products;
         $total_count = $total_count->select('count(id)');
-        $total_count = $total_count->asArray();
+        $total_count->asArray();
         $total_count = $total_count->one();
         $total_count = $total_count['count(id)'];
         if(isset($_GET['page'])){
-            $pageSize = 20;
-            $products->limit(20);
-            $offset = ($_GET['page']) * $pageSize;
-            $products->offset($offset);
+            if($_GET['page'] !== 'all') {
+                $pageSize = 20;
+                $products->limit(20);
+                $offset = ($_GET['page']) * $pageSize;
+                $products->offset($offset);
+            }
         }
         $products = $products->all();
         return $this->render('shop',['products'=>$products,'total_count' => $total_count]);
@@ -934,15 +936,28 @@ class SiteController extends Controller
     {
         $post = Yii::$app->request->post();
         $post['user_id'] = Yii::$app->fsUser->identity->id;
-        $product = FsCart::findOne(['status'=>0,'product_id'=>$post['product_id'],'user_id'=>$post['user_id']]);
-      
+
+        if($post['variation_id']){
+            $var_params = FsVariationsParams::find()->where(['variation_id' => $post['variation_id']])->asArray()->all();
+        }
+        $product = FsCart::find()
+            ->where(['status'=>0,
+                'user_id'=>$post['user_id'],
+                'variation_id' => $post['variation_id']
+            ])->one();
         if($product){
-          $product->quantity =  $product->quantity + intval($post['quantity']);
-          $product->save(false);
-          return 200;
+            $product->quantity =  $product->quantity + intval($post['quantity']);
+            $product->save(false);
+            return 200;
         } else {
             $product = new FsCart();
             if ($product->load($post, '') && $product->save()) {
+                foreach ($var_params as $index => $var_param) {
+                    $cart_params = new FsCartParams();
+                    $cart_params->cart_id = $product->id;
+                    $cart_params->param_id = $var_param['param_id'];
+                    $cart_params->save(false);
+                }
                 return 200;
             }
         }

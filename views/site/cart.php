@@ -4,7 +4,9 @@ use app\models\FsProductVariations;
 use app\models\FsUsers;
 use app\models\FsStores;
 use app\models\FsParams;
+
 ?>
+
 <main class="fs-main-content">
     <div class="fs-breadcrumbs-wrapper">
         <div class="fs-container">
@@ -27,13 +29,13 @@ use app\models\FsParams;
             <a class="fs-cart-empty-return" href="/categories"><?= $GLOBALS['text']['__view__range__'] ?></a>
         </div>
     </div>
-    <?php } else { $all_total = 0; ?>
+    <?php }
+    else { $all_total = 0; ?>
     <div class="fs-page-title">
         <div class="fs-container">
             <h1><?= $GLOBALS['text']['__basket__'] ?> (<?= count($products) ?>)</h1>
         </div>
     </div>
-
     <div class="fs-cart-wrapper">
         <div class="fs-container">
             <div class="fs-cart-action-row">
@@ -77,7 +79,6 @@ use app\models\FsParams;
                 <div class="fs-cart-table-title-col" data-col-name="tax" style="display:none;">բնապահպ. վճար</div>
                 <div class="fs-cart-table-title-col" data-col-name="result"><?= $GLOBALS['text']['__total__'] ?><span>(<?= $GLOBALS['text']['__with_taxs__'] ?>)</span></div>
             </div>
-
             <div class="fs-cart-supplier-block-wrapper">
                 <?php foreach ($suppliers as $supplier) {  $total = []; ?>
                     <div class="fs-cart-supplier-block" data-supplier="<?= $supplier ?>">
@@ -90,20 +91,26 @@ use app\models\FsParams;
                         <button type="button" id="refill_order" class="fs-cart-supplier-submit-button">Վերահաշվարկել գումարը</button>
                     </div>
                     <div class="fs-cart-supplier-rows">
+                        <?php
+/*                        echo '<pre>';
+                        var_dump($suppliers);
+                        var_dump($products); die;
+                        */?>
                         <?php foreach ($products as $pr) {
                             $product = $pr->product;
-                            if($pr->variation_id){
+                            /*if($pr->variation_id){
                                 $variation = FsProductVariations::find()->where(['id'=>$pr->variation_id])->one();
                                 $param = FsParams::find()->where(['id'=>$variation->param_id])->one();
                                 $product->price = $variation->price;
                                 $product->code_ = $variation->code;
                                 $product->name = $product->name.'<br>('.$param->name.')';
-                            }
+                            }*/
                             if($product->provider_id != $supplier){
                                 continue;
                             }
-                            $productParams = $product->getProductParams()->with('param')->all();
-                        ?>
+//                            $productParams = $product->getProductParams()->with('param')->all();
+                            $productParams = $pr->getCartParams()->all();
+                            ?>
                             <div class="fs-cart-supplier-row fs-single-order-tr__" data-id="<?= $product->id ?>">
                             <div class="fs-cart-supplier-row-inner">
                                 <label class="fs-cart-supplier-row-select-block">
@@ -119,13 +126,24 @@ use app\models\FsParams;
                                     </div>
                                     <button type="button" class="fs-cart-product-info-toggle-btn fs-icon-chevron"></button>
                                     <div class="fs-cart-product-info-block">
-                                        <?php foreach ($productParams as $pp): ?>
-                                             <?php if($pp->param->id != 33){ ?>
+                                        <?php foreach ($productParams as $pp):
+                                             $parent_name =  $pp->param->parent->name;
+                                             $name = $pp->param->name;
+                                            if($_COOKIE['language'] === 'ru'){
+                                                $parent_name = $pp->param->parent->name_ru;
+                                                 $name = $pp->param->name_ru;
+                                            }elseif($_COOKIE['language'] === 'en'){
+                                                $parent_name = $pp->param->parent->name_en;
+                                                 $name = $pp->param->name_en;
+                                            }?>
                                             <div class="fs-cart-product-info-row">
-                                            <h6 class="fs-cart-product-info-title"><?= $_COOKIE['language'] == 'hy' ? $pp->param->name : $pp->param['name_' . $_COOKIE['language']] ?></h6>
-                                            <p class="fs-cart-product-info-paragraph"><?= FsParams::findOne($pp->value)[$_COOKIE['language'] == 'hy' ? 'name' : 'name_' . $_COOKIE['language']] ?></p>
-                                        </div>
-                                            <?php } ?>
+                                                <div class="d-flex">
+                                                    <h6 class="fs-cart-product-info-title"><?= $parent_name ?>-</h6>
+                                                    <p class="fs-cart-product-info-title"> <?= $name; ?></p>
+                                                </div>
+
+                                                <p class="fs-cart-product-info-paragraph"><?= FsParams::findOne($pp->value)[$_COOKIE['language'] == 'hy' ? 'name' : 'name_' . $_COOKIE['language']] ?></p>
+                                            </div>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
@@ -216,6 +234,7 @@ use app\models\FsParams;
                             </label>
                             <input type="text" class="fs-cart-supplier-template-name" placeholder="Ձևանմուշի անվանում" />
                         </div>
+
                         <div class="fs-cart-supplier-save-template-bottom-row"><button type="button" class="saveTemplate" data-seller="<?= FsUsers::findOne($supplier)->id ?>"><?= $GLOBALS['text']['__save__'] ?></button></div>
                     </div>
                 </div>

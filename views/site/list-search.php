@@ -26,21 +26,19 @@
                             </button>
                         </div>
                         <div class="fs-mobile-filter-body">
-
-                                    <div class="fs-category-sort-row" style="display:block;">
-                                        <div class="fs-dropdown fs-catalogue-sort" style="margin: 0px 1%;width:97%;">
-                                            <p class="fs-dropdown-selected-variant" tabindex="0"><?php if(isset($_COOKIE['sort_text'])){ echo $_COOKIE['sort_text'];} else { echo 'Դասակարգել ըստ';} ?></p>
-                                            <div class="fs-dropdown-select">
-                                                <ul class="fs-dropdown-select-options">
-                                                    <li class="fs-dropdown-select-option <?php if(!isset($_COOKIE['sort']) || $_COOKIE['sort']==0){ echo 'active';}?>" data-type="0"><?= $GLOBALS['text']['__sort_by__'] ?></li>
-                                                    <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==1){ echo 'active';}?> data-type="1"><?= $GLOBALS['text']['__notif__popup_tab_1__'] ?></li>
-                                                    <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==2){ echo 'active';}?> data-type="2"><?= $GLOBALS['text']['__required__'] ?></li>
-                                                    <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==3){ echo 'active';}?> data-type="3"><?= $GLOBALS['text']['__sort_by_price_bottom__'] ?></li>
-                                                    <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==4){ echo 'active';}?> data-type="4"><?= $GLOBALS['text']['__sort_by_price_top__'] ?></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
+                            <div class="fs-category-sort-row" style="display:block;">
+                                <div class="fs-dropdown fs-catalogue-sort" style="margin: 0px 1%;width:97%;">
+                                    <p class="fs-dropdown-selected-variant" tabindex="0"><?php if(isset($_COOKIE['sort_text'])){ echo $_COOKIE['sort_text'];} else { echo 'Դասակարգել ըստ';} ?></p>
+                                    <div class="fs-dropdown-select">
+                                        <ul class="fs-dropdown-select-options">
+                                            <li class="fs-dropdown-select-option <?php if(!isset($_COOKIE['sort']) || $_COOKIE['sort']==0){ echo 'active';}?>" data-type="0"><?= $GLOBALS['text']['__sort_by__'] ?></li>
+                                            <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==1){ echo 'active';}?> data-type="1"><?= $GLOBALS['text']['__notif__popup_tab_1__'] ?></li>
+                                            <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==2){ echo 'active';}?> data-type="2"><?= $GLOBALS['text']['__required__'] ?></li>
+                                            <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==3){ echo 'active';}?> data-type="3"><?= $GLOBALS['text']['__sort_by_price_bottom__'] ?></li>
+                                            <li class="fs-dropdown-select-option" <?php if(isset($_COOKIE['sort']) || $_COOKIE['sort']==4){ echo 'active';}?> data-type="4"><?= $GLOBALS['text']['__sort_by_price_top__'] ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                             <input type="hidden" name="q" value="<?php echo $_GET['q'];?>">

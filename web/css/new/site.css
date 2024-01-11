@@ -695,27 +695,30 @@ button:focus {
 .fs-product-add-to-fav.active:before{
     content:"\e913"
 }
+.fs-cart-empty-button.active{
+    pointer-events:auto;
+    background-color:#dc3545;
+}
+.fs-cart-empty-button i{
+    font-size:1.8rem;
+    position:absolute;
+    top:50%;
+    left:1.5rem;
+    transform:translateY(-50%)
+}
 .fs-filter-reset-btn-wrapper .fs-filter-reset-btn{
     height: 4.6rem;
     min-width: 10.8rem;
-    cursor: pointer;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    border: 0.1rem solid #B9AF9D;
-    background-color: transparent;
-    outline: none;
-    -webkit-box-sizing: border-box;
+    border: 0.1rem solid #ffbd27;
     box-sizing: border-box;
     font-weight: 500;
     font-size: 1.6rem;
+    background:transparent;
     line-height: 2.4rem;
-    color: #8C8370;
+    color: #ffbd27;
     border-radius: 0.4rem;
 }
 .fs-filter-reset-btn-wrapper{

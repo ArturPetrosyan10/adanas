@@ -11,7 +11,6 @@ $(document).ready(function() {
         changeProductVariation($(this));
     })
     function changeProductVariation(el) {
-        debugger;
         let var_id = el.data('var_id');
         let var_price = el.data('var_price');
         $('body').find('.fs-single-row').find('.fs-single-product-current-price').text(formatNumberWithCommas(var_price)+' դր/ ' + '');
@@ -19,8 +18,6 @@ $(document).ready(function() {
         $('body').find('.fs-product-add-to-cart-1').attr('data-price',var_price);
         $('body').find('.fs-product-add-to-cart-1').attr('data-variation',var_id);
         $('body').find('.fs-product-add-to-cart-1').attr('disabled',false);
-
-
     }
 })
 function formatNumberWithCommas(number) {

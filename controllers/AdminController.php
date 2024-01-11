@@ -204,10 +204,6 @@ class AdminController extends Controller {
             $this->redirect(['products', 'success' => 'true', 'id' => 'key' . $product->id]);
         }
         else if ($post && $post['edite']){
-//            echo '<pre>';
-//            var_dump($post);
-//            var_dump($_FILES);
-//            die;
             $product = FsProducts::findOne(['id' => intval($post['id']) ]);
             $product->name = $post['name'];
             $product->name_ru = $post['name_ru'];
@@ -294,10 +290,10 @@ class AdminController extends Controller {
             //new added
 
             $vars = FsProductVariations::find()->where(['product_id' => $product->id])->all();
+            $imgs_for_delete = [];
             foreach ($vars as $index => $var) {
-                if($var->img){
-                    unlink($var->img);
-                }
+                //write link for delete
+                $imgs_for_delete[$var->img] = false;
                 FsVariationsParams::deleteAll(['variation_id' => $var->id]);
                 $var->delete();
             }
@@ -306,12 +302,15 @@ class AdminController extends Controller {
                     $variation_new = new FsProductVariations();
                     $variation_new->product_id = $product->id;
                     $variation_new->price = $post['variations__price__'][$i];
-                    if($_FILES["img_variation"]["tmp_name"][$i]) {
+                    if($_FILES["img_variation"]["tmp_name"][$i][0]) {
                         $tmp_name = $_FILES["img_variation"]["tmp_name"][$i][0];
                         $name = time() . $i . basename($_FILES["img_variation"]["name"][$i][0]);
                         move_uploaded_file($tmp_name, "web/uploads/$name");
                         $var_img = "web/uploads/$name";
                         $variation_new->img = $var_img;
+                    }else if($post['old_var_img'][$i]){
+                        $variation_new->img = $post['old_var_img'][$i];
+                        $imgs_for_delete[$variation_new->img] = true;
                     }
                     $variation_new->save();
                     foreach ($post['property'][$i] as $index => $prop_val){
@@ -334,7 +333,14 @@ class AdminController extends Controller {
                     }
                 }
             }
+            foreach ($imgs_for_delete as $index => $img) {
+                if(!$img){
+                    unlink($index);
+                }
+            }
+
             //new comented
+//
 //            if (!empty($post['vid_'])) {
 //                for ($i = 0; $i < count($post['vid_']); $i++) {
 //                    $variation_new = new FsProductVariations();

@@ -8976,18 +8976,6 @@ body{
     -webkit-transition:background-color 240ms;
     transition:background-color 240ms
 }
-.fs-cart-empty-button.active{
-    pointer-events:auto;
-    background-color:#4A4640
-}
-.fs-cart-empty-button i{
-    font-size:1.8rem;
-    position:absolute;
-    top:50%;
-    left:1.5rem;
-    -webkit-transform:translateY(-50%);
-    transform:translateY(-50%)
-}
 
 
 .fs-cart-table-title-row .fs-cart-table-title-col:not(:last-child){

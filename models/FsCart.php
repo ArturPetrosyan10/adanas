@@ -60,4 +60,8 @@ class FsCart extends \yii\db\ActiveRecord
     {
         return $this->hasOne(FsProducts::class, ['id' => 'product_id']);
     }
+    public function getCartParams()
+    {
+        return $this->hasMany(FsCartParams::class, ['cart_id' => 'id']);
+    }
 }

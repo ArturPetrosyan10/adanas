@@ -27,7 +27,7 @@ $action_id = Yii::$app->controller->action->id;
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
-    <title>Adanas test</title>
+    <title>Adanas</title>
     <link rel="icon" type="image/png" href="/web/images/new-logo.png">
     <?php $this->head()  ?>
     <meta charset="utf-8" />

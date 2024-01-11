@@ -1627,6 +1627,7 @@ $('.fs-product-add-to-cart-1').click(function() {
     let price = $(this).attr('data-price');
     let variation = $(this).attr('data-variation');
     let count = $(this).closest('.fs-single-page-wrapper').find('.fs-product-count').val();
+
     $.post("/site/add-to-cart", {
         product_id: product,
         quantity: count,

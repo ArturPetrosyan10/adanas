@@ -97,7 +97,6 @@ class FsCategories extends \yii\db\ActiveRecord
     public function products($id,$page,$get)
     {
         $cond = $cond_second = [];
-
         if(isset($get['price'])){
             $price_range = explode(';',$get['price']);
             $fromPrice = $price_range[0];
@@ -148,7 +147,6 @@ class FsCategories extends \yii\db\ActiveRecord
         $data['chailds'] = $chailds;
         return $data;
     }
-
  
     public function productSearch($page,$text, $get)
     {

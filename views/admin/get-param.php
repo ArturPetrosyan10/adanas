@@ -26,6 +26,7 @@ if($category_id){
 <?php }
 if(!empty($paramsToCategory)){
     $product_variation_params = $product_variation_params ?? ['0' => '0'];
+    //param name first array part must be $counter
     $counter = 0;
     foreach ($product_variation_params as $index => $variation_param ) {
 //        echo '<pre>';
@@ -40,22 +41,22 @@ if(!empty($paramsToCategory)){
                          </span>';
         }
         echo '<div class="filter-block position-relative" data-row="' . $counter . '">';
+
         foreach ($paramsToCategory as $pr) {
             $param = FsParams::find()->where(['id' => $pr['param_id']])->one();
             $paramChailds = FsParams::find()->where(['parent_id' => $param['id']])->asArray()->all();
+
             echo '<div>';
             echo '<b style="margin-bottom:10px;">' . $param->name . '</b>';
             $info = '';
             if ($param->type_ == 'select') {
                 if (!empty($paramChailds)) {
-                    $var_params = array_column($variation_param['variationParams'],'param_id');
-                    echo '<select  class="form-control standardSelect__ "   name="property[' . $counter . '][' . $param['id'] . '][]" data-id="' . $param['id'] . '" >
-                            <option value=""></option>';
+                    $variation_params = array_column($variation_param['variationParams'],'param_id');
+                    echo '<select  class="form-control standardSelect__ " name="property[' . $counter . '][' . $param['id'] . '][]" data-id="' . $param['id'] . '" >
+                              <option value=""></option>';
                     foreach ($paramChailds as $paramL => $paramVal) {
-                        if (isset($params)) {
-                            $class =  in_array($paramVal["id"],$var_params) ? 'selected' : 'asfd' ;
-                            echo '<option ' . $class . ' value="' . $paramVal["id"] . '">' . $paramVal["name"] . '</option>';
-                        }
+                        $class =  in_array($paramVal["id"],$variation_params) ? 'selected' : '' ;
+                        echo '<option ' . $class . ' value="' . $paramVal["id"] . '">' . $paramVal["name"] . '</option>';
                     }
                     echo '</select>';
                 }

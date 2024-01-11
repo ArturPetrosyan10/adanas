@@ -36,7 +36,7 @@
     for ($i = 1; $i <= $pages; $i++){
         if( $i == (intval($_GET['page'])+2) || $i == (intval($_GET['page'])+3) || $i == (intval($_GET['page'])-1)  ||  $i == (intval($_GET['page'])) ||  $i == intval($_GET['page'])+1) {
             $class = '';
-            if($i == intval($_GET['page'])+1){
+            if($i == intval($_GET['page'])+1 && $_GET['page'] !== 'all'){
                 $class = 'active';
             }
             echo '<li class="page-item '.$class.'"><a class="page-link" href="'.Yii::$app->urlManager->createUrl(['/shop']).'?page=' . ($i-1).'">' . $i.'</a></li>';
@@ -50,9 +50,9 @@
             </a>
         </li>
     <?php } ?>
-    <li>
-    <li class="page-item"><a class="page-link" href="<?= Yii::$app->urlManager->createUrl(['/shop']) ?>?page=all">Տեսնել ամբողջը</a></li>
-    </li>
+
+    <li class="page-item <?= $_GET['page'] === 'all' ? 'active' : ''?>"><a class="page-link" href="<?= Yii::$app->urlManager->createUrl(['/shop']) ?>?page=all">Տեսնել ամբողջը</a></li>
+
 </ul>
 
 
