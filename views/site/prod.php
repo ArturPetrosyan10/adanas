@@ -56,16 +56,16 @@ $discount = FsDiscounts::find()->where(['user_id'=>$product->user_id,'applies_fu
             <?= number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></span>
     <?php } ?>
     <?php
-        if(Yii::$app->fsUser->identity->verified > 0) { ?>
+        /*if(Yii::$app->fsUser->identity->verified > 0) { */?><!--
             <div class="fs-product-action-block">
                 <div class="fs-product-count-calc">
                     <button type="button" class="fs-product-count-btn fs-icon-minus" data-action="minus"></button>
-                    <input type="text" id="prod_cc_<?= $product['id'] ?>" class="fs-product-count" value="1">
+                    <input type="text" id="prod_cc_<?php /*= $product['id'] */?>" class="fs-product-count" value="1">
                     <button type="button" class="fs-product-count-btn fs-icon-plus" data-action="plus"></button>
                 </div>
-                <button type="button" class="fs-product-add-to-cart fs-icon-basket" data-label="<?= $GLOBALS['text']['__basket__'] ?>" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>"></button>
+                <button type="button" class="fs-product-add-to-cart fs-icon-basket" data-label="<?php /*= $GLOBALS['text']['__basket__'] */?>" data-price="<?php /*= $product->price */?>" data-product="<?php /*= $product->id */?>"></button>
             </div>
-  <?php } ?>
+  --><?php /*} */?>
 </article>
     <div class="fs-product-fast-view-modal" id="fs-product-fast-view-modal_<?= $product['id'] ?>">
         <div class="fs-product-fast-view-modal-body">

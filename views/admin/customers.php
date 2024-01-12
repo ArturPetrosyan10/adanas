@@ -1,5 +1,8 @@
 <?php use app\models\FsCategories;
-use app\models\FsOrders;?>
+use app\models\FsOrders;
+$user_group = \app\models\FsUsersGroup::find()->all();
+
+?>
 <style>
     .sortableTable tr.active{
         color:black !important;
@@ -232,6 +235,15 @@ use app\models\FsOrders;?>
                                 <span style="margin-bottom: 4px;color: #878787;">Գաղտնաբառ *</span>
                                 <input type="text" name="FsUsers[password]" placeholder="Գաղտնաբառ *" class="form-control">
                             </div>
+                            <div class="col-sm-4">
+                                <span style="margin-bottom: 4px;color: #878787;">Հաճախորդի տեսակ</span>
+                                <select class="form-control multiple" name="users_group" >
+                                    <option value=" ">Ընտրել</option>
+                                    <?php foreach ($user_group as $index => $item) { ?>
+                                        <option value="<?= $item->id ?>" ><?= $item->name ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
 
                         </div>
 
@@ -307,3 +319,53 @@ use app\models\FsOrders;?>
         padding-right:10px;
     }
 </style>
+<script>
+    setTimeout(function(){
+        jQuery(".multiple").chosen({
+            disable_search_threshold: 10,
+            placeholder_text_single: "Ընտրել",
+            placeholder_text_multiple: "Ընտրել",
+            width: "100%"
+        }).trigger('chosen:updated');
+    },500);
+    jQuery('body').on('click','.minuseParamVariation',function(){
+        delete_row(jQuery(this));
+    });
+    jQuery('body').on('click','.addParamVariation',function(){
+        copy_row(jQuery(this));
+    });
+
+    function copy_row(el) {
+        let originalSelect = el.closest('.filter-block').find(".standardSelect__").chosen('destroy');
+        let elCopy = el.closest('.filter-block').clone();
+        let row_id = jQuery('body').find('.filter-block').last().data('row');
+
+        el.closest('.collapse').append(elCopy);
+
+        changeAttr('.filter-block','data-row',row_id+1)
+        jQuery('body').find('.filter-block').last().find('input , select').each(function () {
+            let name = jQuery(this).attr('name');
+            let new_name = change_names(name , row_id+1);
+            jQuery(this).attr('name',new_name);
+        });
+
+        jQuery(".filter-block .standardSelect__").chosen({
+            disable_search_threshold: 10,
+            placeholder_text_single: "Ընտրել",
+            placeholder_text_multiple: "Ընտրել",
+            width: "100%"
+        }).trigger('chosen:updated');
+    }
+    function changeAttr(classname,attr,value){
+        let elems = document.querySelectorAll(classname);
+        let latest_block = elems[elems.length - 1];
+        latest_block.setAttribute(attr, value);
+    }
+    function change_names(str,value){
+        let updatedStr = str.replace(/\[\d+\]/, '[' + value + ']');
+        return updatedStr;
+    }
+    function delete_row(el){
+        el.closest('.filter-block').remove();
+    }
+</script>

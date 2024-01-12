@@ -2,6 +2,10 @@
 use app\models\FsBrandToCategory;
 use app\models\FsParams;
 use app\models\FsProductVariations;
+$user_group = \app\models\FsUsersGroup::find()->all();
+if(isset($product)){
+    $chossen_group_ids = array_column(\app\models\FsProductByUserGroup::find()->where(['product_id' => $product->id])->asArray()->all(),'group_id');
+}
 if($category_id){
     $category = \app\models\FsCategories::findOne($category_id);
     $category = $category->getParentFirstLevel();
@@ -23,15 +27,20 @@ if($category_id){
             <?php } ?>
         <?php } ?>
     </select>
+
+    <span>Հաճախորդի տեսակ</span>
+    <select class="form-control multiple" name="users_group[]" multiple>
+        <?php foreach ($user_group as $index => $item) { ?>
+            <option value="<?= $item->id ?>" <?= in_array($item->id,$chossen_group_ids,) ? 'selected' : '' ?>><?= $item->name ?></option>
+        <?php } ?>
+    </select>
 <?php }
 if(!empty($paramsToCategory)){
     $product_variation_params = $product_variation_params ?? ['0' => '0'];
     //param name first array part must be $counter
     $counter = 0;
     foreach ($product_variation_params as $index => $variation_param ) {
-//        echo '<pre>';
-//        var_dump($variation_param);
-//        echo '</pre>';
+
         $img_div = '<div class="col-sm-3" style="color: #878787;padding-left:0px;"> Նկար  <input type="file" name="img_variation[' . $counter . '][]" ></div>';
         if(isset($variation_param['img'])){
             $img_div .= '<span style="position:relative;display:inline-block;width:60px;height:50px; margin-top:auto;"> 
@@ -61,19 +70,22 @@ if(!empty($paramsToCategory)){
                     echo '</select>';
                 }
                 echo '<div class="info-block">' . $info . '</div></div>';
-            } else if ($param->type_ == 'text') {
+            }
+            else if ($param->type_ == 'text') {
                 $val = '';
-                if (isset($params) && $params[$param['id']]) {
-                    $val = $params[$param['id']];
+                if($variation_param){
+                    $val = \app\models\FsVariationsParams::find()->where(['variation_id' => $variation_param['id'] , 'param_id' => $param->id])->one();
+                    $val = $val->value;
                 }
                 echo '<div>
-                      <input type="text" value="' . $val . '" class="form-control" id="prop_' . $param['id'] . '"   name="property[' . $counter . '][' . $param['id'] . ']">
-                   </div>';
+                         <input type="text" value="' . $val . '" class="form-control" id="prop_' . $param['id'] . '"   name="property[' . $counter . '][' . $param['id'] . ']">
+                      </div>';
                 echo '</div>';
             } else if ($param->type_ == 'number') {
                 $val = '';
-                if (isset($params) && $params[$param['id']]) {
-                    $val = $params[$param['id']];
+                if($variation_param){
+                    $val = \app\models\FsVariationsParams::find()->where(['variation_id' => $variation_param['id'] , 'param_id' => $param->id])->one();
+                    $val = $val->value;
                 }
                 echo '<div>
                       <input value="' . $val . '" class="form-control" id="prop_' . $param['id'] . '"  type="number"  name="property[' . $counter . '][' . $param['id'] . ']" >
@@ -111,7 +123,7 @@ if(!empty($paramsToCategory)){
 </style>
 <script>
     setTimeout(function(){
-        jQuery(".filter-block .standardSelect__").chosen({
+        jQuery(".filter-block .standardSelect__ , .multiple").chosen({
             disable_search_threshold: 10,
             placeholder_text_single: "Ընտրել",
             placeholder_text_multiple: "Ընտրել",

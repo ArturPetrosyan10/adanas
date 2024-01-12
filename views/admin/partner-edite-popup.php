@@ -1,3 +1,11 @@
+<?php
+$user_group = \app\models\FsUsersGroup::find()->all();
+if(isset($partner)){
+    $chossen_group_ids = $partner->group_id;
+}
+?>
+
+
 <div class="modal fade add-new" id="editenew" tabindex="-1" role="dialog" aria-labelledby="editenew" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -22,6 +30,14 @@
                             <input type="text" onchange="isValidHvhh(jQuery(this))" name="FsUsers[holding_hvhh]" value="<?php echo $partner->holding_hvhh;?>" placeholder="Հոլդինգի ՀՎՀՀ" class="form-control">
                             <span style="margin-bottom: 4px;color: #878787;">Հոլդինգի իրավաբանական անվանումը</span>
                             <input type="text" name="FsUsers[holding_legal_name]" value="<?php echo $partner->holding_legal_name;?>" placeholder="Հոլդինգի իրավաբանական անվանումը" class="form-control">
+
+                            <span style="margin-bottom: 4px;color: #878787;">Հաճախորդի տեսակ</span>
+                            <select class="form-control multiple" name="users_group" >
+                                <option value=" ">Ընտրել</option>
+                                <?php foreach ($user_group as $index => $item) { ?>
+                                    <option value="<?= $item->id ?>" <?= $item->id == $chossen_group_ids ? 'selected' : '' ?>><?= $item->name ?></option>
+                                <?php } ?>
+                            </select>
 
                         </div>
                         <div class="col-sm-4">

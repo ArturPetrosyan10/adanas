@@ -1,14 +1,19 @@
 <?php
 use app\models\FsParams;
 use app\models\FsProductVariations;
-
 if(!empty($params)){
     foreach ($params as $pr){
         echo ' <div class="fs-single-prod-data-row">';
         $param = FsParams::find()->where(['id'=>$pr['param_id']])->one();
         $param->name = $_COOKIE['language'] != 'hy' ? ($_COOKIE['language'] === 'en' ? $param->name_en : $param->name_ru ) : $param->name;
-        $paramChailds = FsParams::find()->where(['parent_id'=>$param['id']])->asArray()->all();
+        $paramChailds = FsParams::find()->where(['parent_id'=>$param['id']])
+            ->andWhere(['in', 'id',$var_params_ids])
+            ->asArray()->all();
+
         if($param->type_ == 'select'){
+            if(!$paramChailds){
+                continue;
+            }
             echo ' <h4 class="fs-single-prod-data-title">'.$param->name.'</h4>';
             if(!empty($paramChailds) ) {
                 $numItems = count($paramChailds);
@@ -25,7 +30,7 @@ if(!empty($params)){
         } else {
             if($param->name) {
                 echo ' <h4 class="fs-single-prod-data-title">' . $param->name . '</h4>';
-                echo '<p class="fs-single-prod-data-text">' . $pr->value . '</p>';
+                echo '<p class="fs-single-prod-data-text">' . $first_params[$param->id] . '</p>';
             }
         }
         echo '</div>';

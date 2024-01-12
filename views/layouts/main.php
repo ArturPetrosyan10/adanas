@@ -119,44 +119,41 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <ul class="nav navbar-nav">
                <?php if(Yii::$app->fsUser->identity->status === 2  && Yii::$app->user->isGuest){ ?>
                    <li>
-                       <a href="../"><i class="menu-icon fa fa-sitemap"></i><</a>
-                   </li>
-                   <li>
                        <a href="/admin/customers"><i class="menu-icon fa fa-sitemap"></i>Հաճախորդներ</a>
                    </li>
                <?php } ?>
-                   <!--                     <li >-->
-<!--                         <a href="/admin/dashboard"><i class="menu-icon fa fa-dashboard"></i>Վահանակ </a>-->
-<!--                     </li>-->
                    <?php if( Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 20){ ?>
                      <li>
                          <a href="/admin/orders"><i class="menu-icon fa fa-shopping-cart"></i>Պատվերներ</a>
                      </li>
                    <?php } ?>
                    <?php if( Yii::$app->user->identity->role == 10){ ?>
-                      <li>
+                       <li>
                          <a href="/admin/stores"><i class="menu-icon fa fa-archive"></i>Խանութներ</a>
-                     </li>
+                       </li>
                        <li>
                          <a href="/admin/brands"><i class="menu-icon fa fa-cubes"></i>Ապրանքանիշներ</a>
-                     </li>
-<!--                     <li>-->
-<!--                         <a href="/admin/partners"><i class="menu-icon fa fa-user"></i>Գործընկերներ</a>-->
-<!--                     </li>-->
-                     <li>
-                         <a href="/admin/customers"><i class="menu-icon fa fa-sitemap"></i>Հաճախորդներ</a>
-                     </li>
-                     <li>
-                        <a href="/admin/discounts"><i class="menu-icon fa fa-percent"></i>Զեղչեր</a>
-                    </li>
+                       </li>
+                       <li>
+                           <a href="/admin/customers"><i class="menu-icon fa fa-sitemap"></i>Հաճախորդներ</a>
+                       </li>
+                       <li>
+                           <a href="/admin/user-groups"><i class="menu-icon fa fa-group"></i>Հաճախորդի տեսակ</a>
+                       </li>
+                       <li>
+                           <a href="/admin/discounts"><i class="menu-icon fa fa-percent"></i>Զեղչեր</a>
+                       </li>
                    <?php } ?>
                     <?php if( Yii::$app->user->identity->role == 10 || Yii::$app->user->identity->role == 30){ ?>
+                        <li>
+                             <a href="/admin/products"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
+                        </li>
+                        <li>
+                             <a href="/admin/pages"><i class="menu-icon fa fa-file"></i>Էջեր</a>
+                        </li>
                      <li>
-                         <a href="/admin/pages"><i class="menu-icon fa fa-file"></i>Էջեր</a>
-                     </li>
-                    <li>
                         <a href="/admin/blogs"><i class="menu-icon fa fa-rss"></i>Նորություններ</a>
-                    </li>
+                     </li>
                     <li>
                         <a href="/admin/texts"><i class="menu-icon fa fa-font"></i>Տեքստեր</a>
                     </li>
@@ -164,20 +161,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                          <a href="/admin/banners"><i class="menu-icon fa fa-picture-o"></i>Պաստառներ</a>
                      </li>
                     
-                     <li>
-                         <a href="/admin/products"><i class="menu-icon fa fa-cube"></i>Ապրանքներ</a>
-                     </li>
+
                      <li>
                          <a href="/admin/categories"><i class="menu-icon fa fa-bars"></i>Կատեգորիաներ </a>
                      </li>
                      <li>
                          <a href="/admin/properties"><i class="menu-icon fa fa-gg"></i>Պարամետրեր</a>
                      </li>
-<!--                      <li>-->
-<!--                         <a href="/admin/subscriptions"><i class="menu-icon fa fa-group"></i>Բաժանորդներ</a>-->
-<!--                     </li>-->
-                    
-                      <li>
+                     <li>
                          <a href="/admin/measurement"><i class="menu-icon fa fa-eraser"></i>Չափման միավորներ</a>
                      </li>
                      <?php } ?>

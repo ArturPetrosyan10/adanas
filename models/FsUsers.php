@@ -31,6 +31,7 @@ use yii\web\IdentityInterface;
  * @property int|null $notify
  * @property string|null $created_at
  * @property string|null $active_date
+ * @property int|null $group_id
  */
 class FsUsers extends ActiveRecord implements IdentityInterface
 {
@@ -201,5 +202,9 @@ class FsUsers extends ActiveRecord implements IdentityInterface
     public function getTemplates()
     {
         return $this->hasMany(FsTemplates::class, ['user_id' => 'id']);
+    }
+    public function getGroup()
+    {
+        return $this->hasOne(FsUsersGroup::class, ['id' => 'group_id']);
     }
 }

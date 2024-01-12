@@ -159,37 +159,47 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                         </div>
 
                         <?php
-                         $params = \app\models\FsProductParams::find()->where(['product_id'=>$product->id])->groupBy('param_id')->all();
-                         echo  Yii::$app->view->renderFile('@app/views/site/get-param-product.php',['params'=>$params,'product'=>$product,'category_id'=>$product->category_id]);?>
+
+                        $params = \app\models\FsProductParams::find()->where(['product_id'=>$product->id])->groupBy('param_id')->all();
+                        $first_params = array_column($variations[0]['variationParams'],'value' , 'param_id' );
+                        echo  Yii::$app->view->renderFile('@app/views/site/get-param-product.php',
+                            [
+                                'params'=>$params,
+                                'product'=>$product,
+                                'category_id'=>$product->category_id,
+                                'first_params'=>$first_params,
+                                'var_params_ids' => $var_params_ids
+                            ]);?>
                     </div>
-                    <?php  $aah = $product->is_aah ? $product->price * 20 / 100 : 0;
-                    $tax = $product->is_tax ? $product->price * $product->tax_procent / 100 : 0;
-                    $env = $product->is_env ? $product->price * $product->env_procent / 100 : 0;
-                    $productTotal = $product->price + $aah + $tax + $env; ?>
+                    <?php  $aah = $product->is_aah ? $variations[0]->price * 20 / 100 : 0;
+                    $tax = $product->is_tax ? $variations[0]->price * $product->tax_procent / 100 : 0;
+                    $env = $product->is_env ? $variations[0]->price * $product->env_procent / 100 : 0;
+                    $productTotal = $variations[0]->price + $aah + $tax + $env; ?>
                     <div class="fs-single-product-price-block">
                          <?php
                          if($product->is_aah || $product->is_tax || $product->is_env){
                              if(!$discount->discount_procent){ ?>
-                                <p class="fs-single-product-current-price" data-price="<?= $product['price'] ?>" data-message="(<?= $GLOBALS['text']['__not__include__taxes__'] ?>)"><?=number_format($product['price'], 0);?> <?= $GLOBALS['text']['__dr__']?>/<?php echo  @strtoupper($product->qty->name);?></p>
+                                <p class="fs-single-product-current-price"
+                                   data-price="<?= $variations[0]->price ?>"
+                                   data-message="(<?= $GLOBALS['text']['__not__include__taxes__'] ?>)">
+                                    <?=number_format($variations[0]->price, 0);?> <?= $GLOBALS['text']['__dr__']?>/<?php echo  @strtoupper($product->qty->name);?></p>
                        <?php } else { ?>
-                                <p class="fs-single-product-current-price" data-price="<?= $product->price - ($product->price*$discount->discount_procent/100) ?>" data-message="(<?= $GLOBALS['text']['__not__include__taxes__'] ?>)"><span  style=" text-decoration: line-through;color:#9B958C;padding-right:15px;font-size: 2rem;"><?=number_format($product->price,0)?> դր </span> <?=number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?></p>
+                                <p class="fs-single-product-current-price"
+                                   data-price="<?= $variations[0]->price - ($variations[0]->price * $discount->discount_procent/100) ?>"
+                                   data-message="(<?= $GLOBALS['text']['__not__include__taxes__'] ?>)">
+                                    <span  style=" text-decoration: line-through;color:#9B958C;padding-right:15px;font-size: 2rem;"><?=number_format($variations[0]->price,0)?> դր </span>
+                                    <?=number_format($variations[0]->price - ($variations[0]->price*$discount->discount_procent/100), 0);?>
+                                </p>
                        <?php }
                          } else {
                             if(!$discount->discount_procent){ ?>
-                                <p class="fs-single-product-current-price" data-price="<?= $product['price'] ?>" ><?=number_format($product['price'], 0);?> <?= $GLOBALS['text']['__dr__']?>/<?php echo  @strtoupper($product->qty->name);?></p>
+                                <p class="fs-single-product-current-price" data-price="<?= $variations[0]->price ?>" ><?=number_format($variations[0]->price, 0);?> <?= $GLOBALS['text']['__dr__']?>/<?php echo  @strtoupper($product->qty->name);?></p>
                             <?php } else { ?>
-                                 <p class="fs-single-product-current-price" data-price="<?= $product->price ?>" ><span  style=" text-decoration: line-through;color:#9B958C;padding-right:15px;font-size: 2rem;"><?=number_format($product->price,0)?> դր </span> <?=number_format($product->price - ($product->price*$discount->discount_procent/100), 0);?> դր/<?php echo  @strtoupper($product->qty->name);?></p>
+                                 <p class="fs-single-product-current-price" data-price="<?= $variations[0]->price ?>" ><span  style=" text-decoration: line-through;color:#9B958C;padding-right:15px;font-size: 2rem;"><?=number_format($variations[0]->price,0)?> դր </span> <?=number_format($variations[0]->price - ($variations[0]->price * $discount->discount_procent/100), 0);?> դր/<?php echo  @strtoupper($product->qty->name);?></p>
                             <?php }
                          } ?>
                     </div>
                     <div class="add-product-order">
-
-<!--                        --><?php //echo Yii::$app->view->renderFile('@app/views/site/get-filter-product.php',[
-//                                    'params'=>$params,
-//                                    'product'=>$product,
-//                                    'category_id'=>$product->category_id ,
-//                                    'variations' => $variations,
-//                                ]) ?>
                         <div class="w-100 border-1 order-block">
                             <form action="" class="d-flex justify-content-start">
                                 <div class="d-flex counts-block fs-single-prod-calc-block-inner fs-single-order-td">
@@ -198,7 +208,7 @@ if (Yii::$app->fsUser->identity->verified > 0) {
                                     <button type="button" class="fs-icon-plus" data-action="plus"></button>
                                 </div>
                                 <div class="d-flex adding-block">
-                                    <button type="button" <?= $verified ? '' : 'disabled' ?> class="fs-product-add-to-cart-1 fs-icon-basket" disabled data-variation="" data-price="<?= $product->price ?>" data-product="<?= $product->id ?>">Ավելացնել</button>
+                                    <button type="button" <?= $verified ? '' : 'disabled' ?> class="fs-product-add-to-cart-1 fs-icon-basket"  data-variation="<?= $variations[0]->id ?>" data-price="<?= $variations[0]->price ?>" data-product="<?= $product->id ?>">Ավելացնել</button>
                                     <button type="button" <?= $verified ? '' : 'disabled' ?> class="">Գնել հիմա</button>
                                 </div>
                                 <div class="d-flex choosen-block">

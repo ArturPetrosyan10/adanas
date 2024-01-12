@@ -869,6 +869,10 @@ jQuery(document).ready(function($) {
 		var id = $('.sortableTable  tr.active').attr('data-id');
 		editePartner(id);
 	});
+	$('body').on('click','#editeCustomerGroup',function(){
+		var id = $(this).closest('tr').attr('data-id');
+		editeCustomerGroup($(this),id);
+	});
 	$('body').on('click', '#copyUser', function(event) {
 		var id = $('.sortableTable  tr.active').attr('data-id');
 		copyUser(id);
@@ -951,6 +955,18 @@ function removeImg(el, id){
 		success: function(result) {
 		}
 	});
+}
+function editeCustomerGroup(el, id){
+	$('body').find('.update_form').remove();
+	let name = el.closest('tr').find('.group_name').text();
+	let upodate_group_form = $('body').find('.creat_from').clone();
+	upodate_group_form.find('legend').html('Թարմացնել Տեսակ');
+	upodate_group_form.find('.name__').val(name);
+	upodate_group_form.find('button').attr('name','edite');
+	upodate_group_form.addClass('update_form');
+	upodate_group_form.append('<input type="hidden" name="id" value="' + id + '">');
+	el.closest('.container-fluid').append(upodate_group_form);
+
 }
 
 	});

@@ -9,6 +9,7 @@ use app\models\FsCart;
 use app\models\FsOrders;
 use app\models\FsPages;
 use app\models\FsParamToCategory;
+use app\models\FsProductByUserGroup;
 use app\models\FsProductParams;
 use app\models\FsProducts;
 use app\models\FsProductVariations;
@@ -17,6 +18,7 @@ use app\models\FsStores;
 use app\models\FsDiscounts;
 use app\models\FsTexts;
 use app\models\FsUsers;
+use app\models\FsUsersGroup;
 use app\models\FsVariationsParams;
 use app\models\User;
 use app\models\FsNotifications;
@@ -130,6 +132,14 @@ class AdminController extends Controller {
             $product->save(false);
             $product->url = $this->transLateURRL($product->name).'_'.$product->id;
             $product->save(false);
+            if(!empty($post['users_group'])){
+                foreach ($post['users_group'] as $index => $item) {
+                    $gr = new FsProductByUserGroup();
+                    $gr->product_id = $product->id;
+                    $gr->group_id = $item;
+                    $gr->save(false);
+                }
+            }
             if (!empty($post['property'])) {
                 for ($i = 0; $i < count($post['property']); $i++) {
                     foreach ($post['property'][$i] as $prop => $prop_val) {
@@ -189,6 +199,14 @@ class AdminController extends Controller {
                     }
 //                    $variation_new->code = $post['code_'][$i];
                 }
+            }
+            else{
+                $variation_new = new FsProductVariations();
+                $variation_new->product_id = $product->id;
+                $variation_new->price = $product->price;
+                $variation_new->img = $product->image;
+                $variation_new->code = $product->code_;
+                $variation_new->save(false);
             }
             //new commented
 //            if (!empty($post['vid_'])) {
@@ -263,8 +281,18 @@ class AdminController extends Controller {
                 $product->video = "web/uploads/$name";
             }
 //            commented new
-            FsProductParams::deleteAll(['product_id' => $product->id]);
             $product->save(false);
+
+            FsProductParams::deleteAll(['product_id' => $product->id]);
+            FsProductByUserGroup::deleteAll(['product_id' => $product->id]);
+            if(!empty($post['users_group'])){
+                foreach ($post['users_group'] as $index => $item) {
+                    $gr = new FsProductByUserGroup();
+                    $gr->product_id = $product->id;
+                    $gr->group_id = $item;
+                    $gr->save(false);
+                }
+            }
             if (!empty($post['property'])) {
                 for ($i = 0; $i < count($post['property']); $i++) {
                     foreach ($post['property'][$i] as $prop => $prop_val) {
@@ -332,6 +360,14 @@ class AdminController extends Controller {
                         }
                     }
                 }
+            }
+            else{
+                $variation_new = new FsProductVariations();
+                $variation_new->product_id = $product->id;
+                $variation_new->price = $product->price;
+                $variation_new->img = $product->image;
+                $variation_new->code = $product->code_;
+                $variation_new->save(false);
             }
             foreach ($imgs_for_delete as $index => $img) {
                 if(!$img){
@@ -517,6 +553,8 @@ class AdminController extends Controller {
             }  else if($post['old_img']){
                 $user->image = $post['old_img'];
             }
+
+            $user->group_id = $post['users_group'];
             $user->save(false);
             $this->redirect(['customers', 'success' => 'true', 'id' => 'key' . $user->id]);
         }
@@ -535,6 +573,7 @@ class AdminController extends Controller {
                 move_uploaded_file($tmp_name, "web/uploads/users/$name");
                 $user->image = "web/uploads/users/$name";
             }
+            $user->group_id = $post['users_group'];
             $user->save(false);
             $this->redirect(['customers', 'success' => 'true', 'id' => 'key' . $user->id]);
         }
@@ -1056,12 +1095,8 @@ class AdminController extends Controller {
     }
     /*SETTINGS PAGE ACTION EDITE|DELETE|CREATE|COPY*/
     public function actionSettings() {
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['admin/login']);
-        }
         $post = Yii::$app->request->post();
         if ($post && $post['edite']) {
-
             $settings = FsSettings::findOne(['id' => 1]);
             $settings->load($post);
             if (isset($_FILES['img'])) {
@@ -1674,6 +1709,28 @@ class AdminController extends Controller {
         }
         $item->save(false);
         return true;
+    }
+    public function actionDeleteUserGroup($id) {
+        $group = FsUsersGroup::findOne($id);
+        $group->delete();
+        return $this->redirect('user-groups');
+    }
+    public function actionUserGroups() {
+        $post = Yii::$app->request->post();
+        if ($post && $post['add']) {
+            $group = new FsUsersGroup();
+            $group->name = $post['group']['name'];
+            $group->save(false);
+            return $this->redirect(['user-groups','success' => 'true']);
+        }else if($post && $post['edite']) {
+            $group = FsUsersGroup::findOne($post['id']);
+            $group->name = $post['group']['name'];
+            $group->save(false);
+            return $this->redirect(['user-groups','success' => 'true']);
+        }
+
+        $groups = FsUsersGroup::find()->all();
+        return $this->render('user-groups',['groups' => $groups]);
     }
     public function actionCategoryDisable() {
         $id = intval($_GET['id']);

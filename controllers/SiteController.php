@@ -176,6 +176,7 @@ class SiteController extends Controller
         return $this->goBack(Yii::$app->request->referrer);
     }
 
+
     /**
      * Displays homepage.
      *
@@ -193,9 +194,8 @@ class SiteController extends Controller
         }
         $banners = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 0])->orderBy(['order_num' => SORT_ASC])->all();
         $offers = FsBanners::find()->where(['status' => 1])->andWhere(['type_' => 1])->orderBy(['order_num' => SORT_ASC])->all();
-//        $partners = FsUsers::find()->where(['status' => 1])->andWhere(['is_seller'=>1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
         $partners = FsStores::find()->where(['status' => 1])->orderBy(['order_num' => SORT_ASC])->limit(15)->all();
-        $view_history  = FsProducts::find()->select('id')->where(['status'=>1,'send_notice'=>1])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
+        $view_history = FsProducts::find()->select('id')->where(['status'=>1,'send_notice'=>1])->orderBy(['id'=>SORT_DESC])->limit(10)->all();
         return $this->render('index', ['categories' => $categories, 'banners' => $banners, 'offers' => $offers,'view_history'=>$view_history,'partners'=>$partners]);
     }
 
@@ -890,7 +890,16 @@ class SiteController extends Controller
             ->where(['product_id' => $product->id])
             ->with('variationParams')
             ->all();
-        return $this->render('product', ['product' => $product,'variations' => $variations ]);
+
+        $var_params_ids = array_unique(
+            array_column(FsVariationsParams::find()
+                ->select('id,param_id')
+                ->where(['in', 'variation_id', array_column($variations, 'id')])
+                ->asArray()->all(),'param_id')
+        );
+
+
+        return $this->render('product', ['product' => $product,'variations' => $variations , 'var_params_ids' => $var_params_ids]);
     }
     public function actionShop(){
         $this->layout = 'site';
